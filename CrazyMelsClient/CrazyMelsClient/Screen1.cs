@@ -68,6 +68,9 @@ namespace CrazyMelsClient
             updateButton.Show();
             deleteButton.Show();
             exitButton.Show();
+            titleLabel.Show();
+            pictureBox1.Show();
+            pictureBox2.Show();
         }
 
         public void HideButtons()
@@ -77,6 +80,9 @@ namespace CrazyMelsClient
             updateButton.Hide();
             deleteButton.Hide();
             exitButton.Hide();
+            titleLabel.Hide();
+            pictureBox1.Hide();
+            pictureBox2.Hide();
         }
     }
 }
