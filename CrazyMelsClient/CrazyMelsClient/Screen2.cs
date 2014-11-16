@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -474,43 +476,61 @@ namespace CrazyMelsClient
                 if (customerCustID_textbox.Enabled)
                 {
                     C_Customer customer = new C_Customer();
-                    
+                    query(customer);
                 }
                 else if (productProdID_textbox.Enabled)
                 {
                     C_Product product = new C_Product();
-
+                    query(product);
                 }
                 else if (orderOrderID_textbox.Enabled)
                 {
                     C_Order order = new C_Order();
-
+                    query(order);
                 }
                 else
                 {
                     C_Cart cart = new C_Cart();
-
+                    query(cart);
                 }
             }
         }
 
-        private void query(Object table)
+
+        private async void query(Object table)
         {
-            if (table.GetType() == typeof(C_Customer))
+            using (var client = new HttpClient())
             {
+                client.BaseAddress = new Uri("http://192.168.0.120/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            }
-            else if (table.GetType() == typeof(C_Product))
-            {
-
-            }
-            else if (table.GetType() == typeof(C_Order))
-            {
-
-            }
-            else
-            {
-
+                // New code:
+                HttpResponseMessage response = await client.GetAsync("SOA4/api/product/");
+                if (response.IsSuccessStatusCode)
+                {
+                    if (table.GetType() == typeof(C_Customer))
+                    {
+                        C_Customer customer = (C_Customer)table;
+                        var product = await response.Content.ReadAsAsync<C_Customer>();
+                    }
+                    else if (table.GetType() == typeof(C_Product))
+                    {
+                        //C_Product product = (C_Product)table;
+                        var product = await response.Content.ReadAsAsync<C_Product>();
+                    }
+                    else if (table.GetType() == typeof(C_Order))
+                    {
+                        C_Order order = (C_Order)table;
+                        var product = await response.Content.ReadAsAsync<C_Order>();
+                    }
+                    else
+                    {
+                        C_Cart cart = (C_Cart)table;
+                        var product = await response.Content.ReadAsAsync<C_Cart>();
+                    }
+                    
+                }
             }
         }
 
