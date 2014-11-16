@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="C_Cart.cs" />
+    <Compile Include="C_Customer.cs" />
+    <Compile Include="C_Order.cs" />
+    <Compile Include="C_Product.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
