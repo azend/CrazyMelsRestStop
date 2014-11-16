@@ -601,6 +601,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.productOrder_panel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Screen2";
             this.Text = "Crazy Mel\'s Shopping Emporium";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
