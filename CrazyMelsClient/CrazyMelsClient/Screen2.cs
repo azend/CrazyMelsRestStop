@@ -74,10 +74,20 @@ namespace CrazyMelsClient
             if (customerCustID_textbox.Text != "")
             {
                 toggleProductFields(true);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(true);
+                    toggleCartFields(true);
+                }
             }
             else
             {
                 toggleProductFields(false);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
@@ -86,10 +96,20 @@ namespace CrazyMelsClient
             if (firstName_textbox.Text != "")
             {
                 toggleProductFields(true);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(true);
+                    toggleCartFields(true);
+                }
             }
             else
             {
                 toggleProductFields(false);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
@@ -98,10 +118,20 @@ namespace CrazyMelsClient
             if (lastName_textbox.Text != "")
             {
                 toggleProductFields(true);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(true);
+                    toggleCartFields(true);
+                }
             }
             else
             {
                 toggleProductFields(false);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
@@ -110,10 +140,20 @@ namespace CrazyMelsClient
             if (phoneNumber_textbox.Text != "")
             {
                 toggleProductFields(true);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(true);
+                    toggleCartFields(true);
+                }
             }
             else
             {
                 toggleProductFields(false);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
@@ -123,10 +163,20 @@ namespace CrazyMelsClient
             if (productProdID_textbox.Text != "")
             {
                 toggleCustomerFields(true);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(true);
+                    toggleCartFields(true);
+                }
             }
             else
             {
                 toggleCustomerFields(false);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
@@ -135,10 +185,20 @@ namespace CrazyMelsClient
             if (prodName_textbox.Text != "")
             {
                 toggleCustomerFields(true);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(true);
+                    toggleCartFields(true);
+                }
             }
             else
             {
                 toggleCustomerFields(false);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
@@ -147,10 +207,20 @@ namespace CrazyMelsClient
             if (price_textbox.Text != "")
             {
                 toggleCustomerFields(true);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(true);
+                    toggleCartFields(true);
+                }
             }
             else
             {
                 toggleCustomerFields(false);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
@@ -159,10 +229,20 @@ namespace CrazyMelsClient
             if (prodWeight_textbox.Text != "")
             {
                 toggleCustomerFields(true);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(true);
+                    toggleCartFields(true);
+                }
             }
             else
             {
                 toggleCustomerFields(false);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
@@ -171,13 +251,138 @@ namespace CrazyMelsClient
             if (soldOut_checkbox.Checked == true)
             {
                 toggleCustomerFields(true);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(true);
+                    toggleCartFields(true);
+                }
             }
             else
             {
                 toggleCustomerFields(false);
+                if (screen1Option != (int)CRUD.SEARCH)
+                {
+                    toggleOrderFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
+        /* ----- EDITING ORDER FIELDS ----- */
+        private void orderOrderID_textbox_TextChanged(object sender, EventArgs e)
+        {
+            if (orderOrderID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            {
+                toggleCustomerFields(true);
+                toggleProductFields(true);
+                toggleCartFields(true);
+            }
+            else
+            {
+                toggleCustomerFields(false);
+                toggleProductFields(false);
+                toggleCartFields(false);
+            }
+        }
+
+        private void custID_textbox_TextChanged(object sender, EventArgs e)
+        {
+            if (custID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            {
+                toggleCustomerFields(true);
+                toggleProductFields(true);
+                toggleCartFields(true);
+            }
+            else
+            {
+                toggleCustomerFields(false);
+                toggleProductFields(false);
+                toggleCartFields(false);
+            }
+        }
+
+        private void poNumber_textbox_TextChanged(object sender, EventArgs e)
+        {
+            if (poNumber_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            {
+                toggleCustomerFields(true);
+                toggleProductFields(true);
+                toggleCartFields(true);
+            }
+            else
+            {
+                toggleCustomerFields(false);
+                toggleProductFields(false);
+                toggleCartFields(false);
+            }
+        }
+
+        private void orderDate_textbox_TextChanged(object sender, EventArgs e)
+        {
+            if (orderDate_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            {
+                toggleCustomerFields(true);
+                toggleProductFields(true);
+                toggleCartFields(true);
+            }
+            else
+            {
+                toggleCustomerFields(false);
+                toggleProductFields(false);
+                toggleCartFields(false);
+            }
+        }
+
+        /* ----- EDITING CART FIELDS ----- */
+        private void cartOrderID_textbox_TextChanged(object sender, EventArgs e)
+        {
+            if (cartOrderID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            {
+                toggleCustomerFields(true);
+                toggleProductFields(true);
+                toggleOrderFields(true);
+            }
+            else
+            {
+                toggleCustomerFields(false);
+                toggleProductFields(false);
+                toggleOrderFields(false);
+            }
+        }
+
+        private void cartProdID_textbox_TextChanged(object sender, EventArgs e)
+        {
+            if (cartProdID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            {
+                toggleCustomerFields(true);
+                toggleProductFields(true);
+                toggleOrderFields(true);
+            }
+            else
+            {
+                toggleCustomerFields(false);
+                toggleProductFields(false);
+                toggleOrderFields(false);
+            }
+        }
+
+        private void quantity_textbox_TextChanged(object sender, EventArgs e)
+        {
+            if (quantity_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            {
+                toggleCustomerFields(true);
+                toggleProductFields(true);
+                toggleOrderFields(true);
+            }
+            else
+            {
+                toggleCustomerFields(false);
+                toggleProductFields(false);
+                toggleOrderFields(false);
+            }
+        }
+
+        // toggleCustomerFields method header (lazy version)
         private void toggleCustomerFields(bool disable)
         {
             if (disable)
@@ -196,6 +401,7 @@ namespace CrazyMelsClient
             }
         }
 
+        // toggleProductFields method header (lazy version)
         private void toggleProductFields(bool disable)
         {
             if (disable)
@@ -215,6 +421,43 @@ namespace CrazyMelsClient
                 soldOut_checkbox.Enabled = true;
             }
         }
+
+        // toggleOrderFields method header (lazy version)
+        private void toggleOrderFields(bool disable)
+        {
+            if (disable)
+            {
+                orderOrderID_textbox.ReadOnly = true;
+                custID_textbox.ReadOnly = true;
+                poNumber_textbox.ReadOnly = true;
+                orderDate_textbox.ReadOnly = true;
+            }
+            else
+            {
+                orderOrderID_textbox.ReadOnly = false;
+                custID_textbox.ReadOnly = false;
+                poNumber_textbox.ReadOnly = false;
+                orderDate_textbox.ReadOnly = false;
+            }
+        }
+
+        // toggleCartFields method header (lazy version)
+        private void toggleCartFields(bool disable)
+        {
+            if (disable)
+            {
+                cartOrderID_textbox.ReadOnly = true;
+                cartProdID_textbox.ReadOnly = true;
+                quantity_textbox.ReadOnly = true;
+            }
+            else
+            {
+                cartOrderID_textbox.ReadOnly = false;
+                cartProdID_textbox.ReadOnly = false;
+                quantity_textbox.ReadOnly = false;
+            }
+        }
+
 
         /* ----- BUTTON CLICKS ----- */
 

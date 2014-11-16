@@ -349,6 +349,7 @@
             this.orderDate_textbox.Name = "orderDate_textbox";
             this.orderDate_textbox.Size = new System.Drawing.Size(100, 20);
             this.orderDate_textbox.TabIndex = 32;
+            this.orderDate_textbox.TextChanged += new System.EventHandler(this.orderDate_textbox_TextChanged);
             // 
             // label16
             // 
@@ -366,6 +367,7 @@
             this.poNumber_textbox.Name = "poNumber_textbox";
             this.poNumber_textbox.Size = new System.Drawing.Size(100, 20);
             this.poNumber_textbox.TabIndex = 30;
+            this.poNumber_textbox.TextChanged += new System.EventHandler(this.poNumber_textbox_TextChanged);
             // 
             // label17
             // 
@@ -383,6 +385,7 @@
             this.custID_textbox.Name = "custID_textbox";
             this.custID_textbox.Size = new System.Drawing.Size(100, 20);
             this.custID_textbox.TabIndex = 28;
+            this.custID_textbox.TextChanged += new System.EventHandler(this.custID_textbox_TextChanged);
             // 
             // label18
             // 
@@ -410,6 +413,7 @@
             this.orderOrderID_textbox.Name = "orderOrderID_textbox";
             this.orderOrderID_textbox.Size = new System.Drawing.Size(100, 20);
             this.orderOrderID_textbox.TabIndex = 25;
+            this.orderOrderID_textbox.TextChanged += new System.EventHandler(this.orderOrderID_textbox_TextChanged);
             // 
             // soldOut_checkbox
             // 
@@ -485,6 +489,7 @@
             this.quantity_textbox.Name = "quantity_textbox";
             this.quantity_textbox.Size = new System.Drawing.Size(100, 20);
             this.quantity_textbox.TabIndex = 40;
+            this.quantity_textbox.TextChanged += new System.EventHandler(this.quantity_textbox_TextChanged);
             // 
             // label23
             // 
@@ -522,6 +527,7 @@
             this.cartOrderID_textbox.Name = "cartOrderID_textbox";
             this.cartOrderID_textbox.Size = new System.Drawing.Size(100, 20);
             this.cartOrderID_textbox.TabIndex = 35;
+            this.cartOrderID_textbox.TextChanged += new System.EventHandler(this.cartOrderID_textbox_TextChanged);
             // 
             // cartProdID_textbox
             // 
@@ -529,6 +535,7 @@
             this.cartProdID_textbox.Name = "cartProdID_textbox";
             this.cartProdID_textbox.Size = new System.Drawing.Size(100, 20);
             this.cartProdID_textbox.TabIndex = 38;
+            this.cartProdID_textbox.TextChanged += new System.EventHandler(this.cartProdID_textbox_TextChanged);
             // 
             // label24
             // 
