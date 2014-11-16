@@ -11,19 +11,21 @@ namespace CrazyMelsWebService.Controllers
     public class CartController : ApiController
     {
         private CrazyMelEntities db = new CrazyMelEntities();
-        public Cart Get()
+        public Cart[] Get()
         {
+            List<Cart> data = new List<Cart>();
+
             IQueryable<C_Cart> returnValue = from mine in db.C_Cart
                                                 select mine;
 
-            C_Cart bob = returnValue.First();
+            foreach (C_Cart car in returnValue)
+            {
+                data.Add(new Cart(car));
+            }
 
-            Cart mike = new Cart();
+            return data.ToArray();
 
-            mike.orderID = bob.orderID;
-            mike.prodID = bob.prodID;
-            mike.quantity = bob.quantity;
-            return mike;
+           
 
         }
     }

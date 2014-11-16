@@ -12,21 +12,23 @@ namespace CrazyMelsWebService.Controllers
     {
 
         private CrazyMelEntities db = new CrazyMelEntities();
-        public Product Get()
+        public Product[] Get()
         {
-            IQueryable<C_Product> returnValue = from mine in db.C_Product
+           List<Product> data = new List<Product>();
+
+           IQueryable<C_Product> returnValue = from mine in db.C_Product
                                               select mine;
 
-            C_Product bob = returnValue.First();
+            foreach (C_Product prod in returnValue)
+            {
+                data.Add(new Product(prod));
+            }
 
-            Product mike = new Product();
+            return data.ToArray();
 
-            mike.inStock = bob.inStock;
-            mike.price = bob.price;
-            mike.prodID = bob.prodID;
-            mike.prodName = bob.prodName;
-            mike.prodWeight = bob.prodWeight;
-            return mike;
+
+
+
 
         }
     }

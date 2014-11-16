@@ -12,20 +12,20 @@ namespace CrazyMelsWebService.Controllers
     {
 
         private CrazyMelEntities db = new CrazyMelEntities();
-        public Order Get()
+        public Order[] Get()
         {
+            List<Order> data = new List<Order>();
+
             IQueryable<C_Order> returnValue = from mine in db.C_Order
                                                  select mine;
 
-            C_Order bob = returnValue.First();
+            foreach (C_Order ord in returnValue)
+            {
+                data.Add(new Order(ord));
+            }
 
-            Order mike = new Order();
+            return data.ToArray();
 
-            mike.custID = (int)bob.custID;
-            mike.orderDate = bob.orderDate;
-            mike.orderID = bob.orderID;
-            mike.poNumber = bob.poNumber;
-            return mike;
 
         }
     }

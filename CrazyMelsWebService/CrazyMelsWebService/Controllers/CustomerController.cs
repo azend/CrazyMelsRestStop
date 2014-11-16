@@ -18,17 +18,10 @@ namespace CrazyMelsWebService.Controllers
             IQueryable<C_Customer> returnValue = from mine in db.C_Customer
                               select mine;
 
-            foreach(C_Customer bob in returnValue)
+            foreach(C_Customer cust in returnValue)
             {
-                Customer mike = new Customer();
-                mike.custID = bob.custID;
-                mike.firstName = bob.firstName;
-                mike.lastName = bob.lastName;
-                mike.phoneNumber = bob.phoneNumber;
-                data.Add(mike);
+                data.Add(new Customer(cust));
             }
-            
-
             return data.ToArray();
 
         }
