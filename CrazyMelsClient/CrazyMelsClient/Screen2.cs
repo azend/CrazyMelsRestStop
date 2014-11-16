@@ -421,7 +421,6 @@ namespace CrazyMelsClient
                 soldOut_checkbox.Enabled = true;
             }
         }
-
         // toggleOrderFields method header (lazy version)
         private void toggleOrderFields(bool disable)
         {
@@ -470,7 +469,49 @@ namespace CrazyMelsClient
 
         private void execute_button_Click(object sender, EventArgs e)
         {
+            if (screen1Option != (int)CRUD.SEARCH)
+            {
+                if (customerCustID_textbox.Enabled)
+                {
+                    C_Customer customer = new C_Customer();
+                    
+                }
+                else if (productProdID_textbox.Enabled)
+                {
+                    C_Product product = new C_Product();
 
+                }
+                else if (orderOrderID_textbox.Enabled)
+                {
+                    C_Order order = new C_Order();
+
+                }
+                else
+                {
+                    C_Cart cart = new C_Cart();
+
+                }
+            }
+        }
+
+        private void query(Object table)
+        {
+            if (table.GetType() == typeof(C_Customer))
+            {
+
+            }
+            else if (table.GetType() == typeof(C_Product))
+            {
+
+            }
+            else if (table.GetType() == typeof(C_Order))
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         private void exit_button_Click(object sender, EventArgs e)
