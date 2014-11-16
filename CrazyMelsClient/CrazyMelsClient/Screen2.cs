@@ -506,7 +506,7 @@ namespace CrazyMelsClient
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 // New code:
-                HttpResponseMessage response = await client.GetAsync("SOA4/api/product/");
+                HttpResponseMessage response = await client.GetAsync("CrazyMel/api/product/");
                 if (response.IsSuccessStatusCode)
                 {
                     if (table.GetType() == typeof(C_Customer))
