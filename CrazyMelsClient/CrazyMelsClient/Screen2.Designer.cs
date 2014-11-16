@@ -127,6 +127,7 @@
             this.productOrder_checkbox.TabIndex = 4;
             this.productOrder_checkbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.productOrder_checkbox.UseVisualStyleBackColor = true;
+            this.productOrder_checkbox.CheckedChanged += new System.EventHandler(this.productOrder_checkbox_CheckedChanged_1);
             // 
             // productOrder_label
             // 
@@ -144,6 +145,7 @@
             this.customerCustID_textbox.Name = "customerCustID_textbox";
             this.customerCustID_textbox.Size = new System.Drawing.Size(100, 20);
             this.customerCustID_textbox.TabIndex = 5;
+            this.customerCustID_textbox.TextChanged += new System.EventHandler(this.customerCustID_textbox_TextChanged);
             // 
             // label2
             // 
@@ -181,6 +183,7 @@
             this.firstName_textbox.Name = "firstName_textbox";
             this.firstName_textbox.Size = new System.Drawing.Size(100, 20);
             this.firstName_textbox.TabIndex = 8;
+            this.firstName_textbox.TextChanged += new System.EventHandler(this.firstName_textbox_TextChanged);
             // 
             // label5
             // 
@@ -198,6 +201,7 @@
             this.lastName_textbox.Name = "lastName_textbox";
             this.lastName_textbox.Size = new System.Drawing.Size(100, 20);
             this.lastName_textbox.TabIndex = 10;
+            this.lastName_textbox.TextChanged += new System.EventHandler(this.lastName_textbox_TextChanged);
             // 
             // label6
             // 
@@ -215,6 +219,7 @@
             this.phoneNumber_textbox.Name = "phoneNumber_textbox";
             this.phoneNumber_textbox.Size = new System.Drawing.Size(100, 20);
             this.phoneNumber_textbox.TabIndex = 12;
+            this.phoneNumber_textbox.TextChanged += new System.EventHandler(this.phoneNumber_textbox_TextChanged);
             // 
             // label7
             // 
@@ -252,6 +257,7 @@
             this.prodWeight_textbox.Name = "prodWeight_textbox";
             this.prodWeight_textbox.Size = new System.Drawing.Size(100, 20);
             this.prodWeight_textbox.TabIndex = 22;
+            this.prodWeight_textbox.TextChanged += new System.EventHandler(this.prodWeight_textbox_TextChanged);
             // 
             // label10
             // 
@@ -269,6 +275,7 @@
             this.price_textbox.Name = "price_textbox";
             this.price_textbox.Size = new System.Drawing.Size(100, 20);
             this.price_textbox.TabIndex = 20;
+            this.price_textbox.TextChanged += new System.EventHandler(this.price_textbox_TextChanged);
             // 
             // label11
             // 
@@ -286,6 +293,7 @@
             this.prodName_textbox.Name = "prodName_textbox";
             this.prodName_textbox.Size = new System.Drawing.Size(100, 20);
             this.prodName_textbox.TabIndex = 18;
+            this.prodName_textbox.TextChanged += new System.EventHandler(this.prodName_textbox_TextChanged);
             // 
             // label12
             // 
@@ -313,6 +321,7 @@
             this.productProdID_textbox.Name = "productProdID_textbox";
             this.productProdID_textbox.Size = new System.Drawing.Size(100, 20);
             this.productProdID_textbox.TabIndex = 15;
+            this.productProdID_textbox.TextChanged += new System.EventHandler(this.productProdID_textbox_TextChanged);
             // 
             // label14
             // 
@@ -413,6 +422,7 @@
             this.soldOut_checkbox.TabIndex = 45;
             this.soldOut_checkbox.Text = "Sold Out";
             this.soldOut_checkbox.UseVisualStyleBackColor = true;
+            this.soldOut_checkbox.CheckedChanged += new System.EventHandler(this.soldOut_checkbox_CheckedChanged);
             // 
             // back_button
             // 
@@ -551,7 +561,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 682);
+            this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.exit_button);
             this.Controls.Add(this.execute_button);
             this.Controls.Add(this.back_button);
