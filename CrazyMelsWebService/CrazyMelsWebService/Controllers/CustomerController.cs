@@ -37,6 +37,21 @@ namespace CrazyMelsWebService.Controllers
                 return NotFound();
             }
 
+            IQueryable<C_Order> custOrderDate = from orders in db.C_Order
+                                                where orders.custID == id
+                                                select orders;
+
+            
+            foreach(C_Order a in custOrderDate)
+            {
+                IQueryable<C_Cart> cartData = from carts in db.C_Cart where carts.orderID == a.orderID select carts;
+                foreach (C_Cart cart in cartData)
+                {
+                    db.C_Cart.Remove(cart);
+                }
+                db.C_Order.Remove(a);
+            }
+
             db.C_Customer.Remove(c_customer);
             db.SaveChanges();
 
