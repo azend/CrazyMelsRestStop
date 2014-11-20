@@ -1,6 +1,8 @@
 ﻿using CrazyMelsWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -25,6 +27,67 @@ namespace CrazyMelsWeb.Controllers
             }
             return data.ToArray();
 
+        }
+
+        // PUT api/Customer/5
+        public IHttpActionResult PutCustomer(int id, Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != customer.custID)
+            {
+                return BadRequest();
+            }
+
+            C_Customer c_customer = new C_Customer();
+            c_customer.custID = customer.custID;
+            c_customer.firstName = customer.firstName;
+            c_customer.lastName = customer.lastName;
+            c_customer.phoneNumber = customer.phoneNumber;
+
+            db.Entry(c_customer).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!C_CustomerExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST api/Customer
+        [ResponseType(typeof(Customer))]
+        public IHttpActionResult PostC_Customer(Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            C_Customer c_customer = new C_Customer();
+            c_customer.custID = customer.custID;
+            c_customer.firstName = customer.firstName;
+            c_customer.lastName = customer.lastName;
+            c_customer.phoneNumber = customer.phoneNumber;
+
+            db.C_Customer.Add(c_customer);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = c_customer.custID }, customer);
         }
 
         // DELETE api/Customer/5
@@ -56,6 +119,11 @@ namespace CrazyMelsWeb.Controllers
             db.SaveChanges();
 
             return Ok(c_customer);
+        }
+
+        private bool C_CustomerExists(int id)
+        {
+            return db.C_Customer.Count(e => e.custID == id) > 0;
         }
 
 
