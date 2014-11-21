@@ -27,22 +27,22 @@ namespace CrazyMelsClient
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            createScreen2(1);
+            createScreen2(0);
         }
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-            createScreen2(2);
+            createScreen2(1);
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            createScreen2(3);
+            createScreen2(2);
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            createScreen2(4);
+            createScreen2(3);
         }
 
         private void createScreen2(int action)

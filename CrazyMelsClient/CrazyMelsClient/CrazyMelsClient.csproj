@@ -51,16 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="C_Cart.cs" />
-    <Compile Include="C_Customer.cs" />
-    <Compile Include="C_Order.cs" />
-    <Compile Include="C_Product.cs" />
+    <Compile Include="Cart.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Screen1.cs">
       <SubType>Form</SubType>
     </Compile>

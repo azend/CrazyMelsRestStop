@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -17,7 +19,7 @@ namespace CrazyMelsClient
         /* ----- ATTRIBUTES ----- */
         private Screen1 screen1 = new Screen1();
         private int screen1Option = 0;
-        private enum CRUD { INSERT, SEARCH, UPDATE, DELETE };
+        private enum CRUD { SEARCH, INSERT, UPDATE, DELETE };
 
         // Constructor
         public Screen2(int crud)
@@ -31,6 +33,13 @@ namespace CrazyMelsClient
                 productOrder_label.Visible = false;
                 productOrder_panel.Visible = false;
             }
+            if (crud == (int)CRUD.INSERT)
+            {
+                customerCustID_textbox.Enabled = false;
+                productProdID_textbox.Enabled = false;
+                orderOrderID_textbox.Enabled = false;
+            }
+
         }
 
         // PO Checkbox - Enables/Disables appropriate fields
@@ -45,7 +54,6 @@ namespace CrazyMelsClient
                 prodName_textbox.ReadOnly = true;
                 price_textbox.ReadOnly = true;
                 prodWeight_textbox.ReadOnly = true;
-                orderDate_textbox.ReadOnly = true;
                 cartOrderID_textbox.ReadOnly = true;
                 cartProdID_textbox.ReadOnly = true;
                 quantity_textbox.ReadOnly = true;
@@ -58,7 +66,6 @@ namespace CrazyMelsClient
                 prodName_textbox.ReadOnly = false;
                 price_textbox.ReadOnly = false;
                 prodWeight_textbox.ReadOnly = false;
-                orderDate_textbox.ReadOnly = false;
                 cartOrderID_textbox.ReadOnly = false;
                 cartProdID_textbox.ReadOnly = false;
                 quantity_textbox.ReadOnly = false;
@@ -475,64 +482,149 @@ namespace CrazyMelsClient
             {
                 if (customerCustID_textbox.Enabled)
                 {
-                    C_Customer customer = new C_Customer();
-                    query(customer);
+                    Customer customer = new Customer();
+                    try
+                    {
+                        if (Convert.ToUInt32(customerCustID_textbox.Text) > Int32.MaxValue)
+                        {
+                            MessageBox.Show("You entered a number number larger than the maximum allowed number of " + Int32.MaxValue);
+                            return;
+                        }
+                        else
+                        {
+                            customer.custID = (int)Convert.ToUInt32(customerCustID_textbox.Text);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("You did not enter a number or you entered an invalid number.");
+                        return;
+                    }
+                    
+                    customer.firstName = firstName_textbox.Text;
+                    customer.lastName = lastName_textbox.Text;
+                    customer.phoneNumber = phoneNumber_textbox.Text;
+                    queryCustomer(customer);
                 }
                 else if (productProdID_textbox.Enabled)
                 {
-                    C_Product product = new C_Product();
-                    query(product);
+                    Product product = new Product();
+                    queryProduct(product);
                 }
                 else if (orderOrderID_textbox.Enabled)
                 {
-                    C_Order order = new C_Order();
-                    query(order);
+                    Order order = new Order();
+                    queryOrder(order);
                 }
                 else
                 {
-                    C_Cart cart = new C_Cart();
-                    query(cart);
+                    Cart cart = new Cart();
+                    queryCart(cart);
                 }
             }
         }
 
 
-        private async void query(Object table)
+        private async void queryCustomer(Customer table)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:1973/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response;
+
+                if (screen1Option == (int)CRUD.INSERT)
+                {
+                    response = await client.PostAsJsonAsync("api/Customer/", table);
+                }
+                else if (screen1Option == (int)CRUD.UPDATE)
+                {
+                    response = await client.PutAsJsonAsync("api/Customer/", table);
+                }
+                else if (screen1Option == (int)CRUD.DELETE)
+                {
+                    response = await client.DeleteAsync("api/Customer/");
+                }
+            }
+        }
+
+        private async void queryProduct(Product table)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://192.168.0.120/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response;
 
-                // New code:
-                HttpResponseMessage response = await client.GetAsync("CrazyMel/api/product/");
-                if (response.IsSuccessStatusCode)
+
+                if (screen1Option == (int)CRUD.INSERT)
                 {
-                    if (table.GetType() == typeof(C_Customer))
-                    {
-                        C_Customer customer = (C_Customer)table;
-                        var product = await response.Content.ReadAsAsync<C_Customer>();
-                    }
-                    else if (table.GetType() == typeof(C_Product))
-                    {
-                        //C_Product product = (C_Product)table;
-                        var product = await response.Content.ReadAsAsync<C_Product>();
-                    }
-                    else if (table.GetType() == typeof(C_Order))
-                    {
-                        C_Order order = (C_Order)table;
-                        var product = await response.Content.ReadAsAsync<C_Order>();
-                    }
-                    else
-                    {
-                        C_Cart cart = (C_Cart)table;
-                        var product = await response.Content.ReadAsAsync<C_Cart>();
-                    }
-                    
+                    response = await client.PostAsJsonAsync("api/Customer/", table);
+                }
+                else if (screen1Option == (int)CRUD.UPDATE)
+                {
+                    response = await client.PutAsJsonAsync("api/Customer/", table);
+                }
+                else if (screen1Option == (int)CRUD.DELETE)
+                {
+                    response = await client.DeleteAsync("api/Customer/");
                 }
             }
         }
+
+        private async void queryOrder(Order table)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://192.168.0.120/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response;
+
+
+                if (screen1Option == (int)CRUD.INSERT)
+                {
+                    response = await client.PostAsJsonAsync("api/Customer/", table);
+                }
+                else if (screen1Option == (int)CRUD.UPDATE)
+                {
+                    response = await client.PutAsJsonAsync("api/Customer/", table);
+                }
+                else if (screen1Option == (int)CRUD.DELETE)
+                {
+                    response = await client.DeleteAsync("api/Customer/");
+                }
+            }
+        }
+
+        private async void queryCart(Cart table)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://192.168.0.120/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response;
+
+
+                if (screen1Option == (int)CRUD.INSERT)
+                {
+                    response = await client.PostAsJsonAsync("api/Customer/", table);
+                }
+                else if (screen1Option == (int)CRUD.UPDATE)
+                {
+                    response = await client.PutAsJsonAsync("api/Customer/", table);
+                }
+                else if (screen1Option == (int)CRUD.DELETE)
+                {
+                    response = await client.DeleteAsync("api/Customer/");
+                }
+            }
+        }
+
+
 
         private void exit_button_Click(object sender, EventArgs e)
         {
