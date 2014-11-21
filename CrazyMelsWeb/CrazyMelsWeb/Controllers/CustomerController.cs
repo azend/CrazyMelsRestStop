@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -30,14 +31,14 @@ namespace CrazyMelsWeb.Controllers
         }
 
         // PUT api/Customer/5
-        public IHttpActionResult PutCustomer(int id, Customer customer)
+        public IHttpActionResult PutCustomer(Customer customer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != customer.custID)
+            if (customer.custID == null)
             {
                 return BadRequest();
             }
@@ -56,7 +57,7 @@ namespace CrazyMelsWeb.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!C_CustomerExists(id))
+                if (!C_CustomerExists(customer.custID))
                 {
                     return NotFound();
                 }

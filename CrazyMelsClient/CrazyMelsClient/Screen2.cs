@@ -480,25 +480,28 @@ namespace CrazyMelsClient
         {
             if (screen1Option != (int)CRUD.SEARCH)
             {
-                if (customerCustID_textbox.Enabled)
+                if (firstName_textbox.Enabled)
                 {
                     Customer customer = new Customer();
-                    try
+                    if (screen1Option != (int)CRUD.INSERT)
                     {
-                        if (Convert.ToUInt32(customerCustID_textbox.Text) > Int32.MaxValue)
+                        try
                         {
-                            MessageBox.Show("You entered a number number larger than the maximum allowed number of " + Int32.MaxValue);
+                            if (Convert.ToUInt32(customerCustID_textbox.Text) > Int32.MaxValue)
+                            {
+                                MessageBox.Show("You entered a number number larger than the maximum allowed number of " + Int32.MaxValue);
+                                return;
+                            }
+                            else
+                            {
+                                customer.custID = (int)Convert.ToUInt32(customerCustID_textbox.Text);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("You did not enter a number or you entered an invalid number.");
                             return;
                         }
-                        else
-                        {
-                            customer.custID = (int)Convert.ToUInt32(customerCustID_textbox.Text);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("You did not enter a number or you entered an invalid number.");
-                        return;
                     }
                     
                     customer.firstName = firstName_textbox.Text;
@@ -506,12 +509,12 @@ namespace CrazyMelsClient
                     customer.phoneNumber = phoneNumber_textbox.Text;
                     queryCustomer(customer);
                 }
-                else if (productProdID_textbox.Enabled)
+                else if (prodName_textbox.Enabled)
                 {
                     Product product = new Product();
                     queryProduct(product);
                 }
-                else if (orderOrderID_textbox.Enabled)
+                else if (custID_textbox.Enabled)
                 {
                     Order order = new Order();
                     queryOrder(order);
