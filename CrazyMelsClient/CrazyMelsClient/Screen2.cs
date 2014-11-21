@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace CrazyMelsClient
 {
@@ -20,6 +21,7 @@ namespace CrazyMelsClient
         private Screen1 screen1 = new Screen1();
         private int screen1Option = 0;
         private enum CRUD { SEARCH, INSERT, UPDATE, DELETE };
+        private Regex rgx;
 
         // Constructor
         public Screen2(int crud)
@@ -503,10 +505,40 @@ namespace CrazyMelsClient
                             return;
                         }
                     }
-                    
-                    customer.firstName = firstName_textbox.Text;
-                    customer.lastName = lastName_textbox.Text;
-                    customer.phoneNumber = phoneNumber_textbox.Text;
+
+                    rgx = new Regex("[a-zA-Z ,.'-]{2,50}");
+                    if (rgx.IsMatch(firstName_textbox.Text))
+                    {
+                        customer.firstName = firstName_textbox.Text;
+                    }
+                    else
+                    {
+                        MessageBox.Show("You did not enter a valid first name. The accepted characters are 'a' through 'z' ',' '.' ' ' '-' and '. The name must also be between 2 and 50 characters long.");
+                        return;
+                    }
+
+                    if (rgx.IsMatch(lastName_textbox.Text))
+                    {
+                        customer.lastName = lastName_textbox.Text;
+                    }
+                    else
+                    {
+                        MessageBox.Show("You did not enter a valid last name. The accepted characters are 'a' through 'z' ',' '.' ' ' '-' and '. The name must also be between 2 and 50 characters long.");
+                        return;
+                    }
+
+
+
+                    rgx = new Regex("[0-9]{3}-[0-9]{3}-[0-9]{4}");
+                    if (rgx.IsMatch(phoneNumber_textbox.Text))
+                    {
+                        customer.phoneNumber = phoneNumber_textbox.Text;
+                    }
+                    else
+                    {
+                        MessageBox.Show("You did not enter a valid phone number");
+                        return;
+                    }
                     queryCustomer(customer);
                 }
                 else if (prodName_textbox.Enabled)
