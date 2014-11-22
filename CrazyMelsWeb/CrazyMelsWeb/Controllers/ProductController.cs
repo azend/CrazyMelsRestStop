@@ -49,14 +49,14 @@ namespace CrazyMelsWeb.Controllers
 
             db.SaveChanges();
 
-            Product p = new Product();
-            p.prodID = c_product.prodID;
-            p.prodName = c_product.prodName;
-            p.prodWeight = c_product.prodWeight;
-            p.price = p.price;
-            p.inStock =Convert.ToBoolean( c_product.inStock);
-
-            return Ok(p);
+            return Ok(new Product(c_product));
         }
+
+
+        //TODO: CustomerController, PUT(Update), Add, Function Not Implemented
+        //TODO: CustomerController, POST(Insert), Add, Function Not Implemented
+
+
+        //TODO: CustomerController, General, Add, Comments
     }
 }
