@@ -10,9 +10,9 @@ namespace CrazyMelsWeb.Controllers
 {
     public class OrderController : ApiController
     {
-
-        //private CrazyMelEntities db = new CrazyMelEntities();
         private CrazyMelsRestServiceEntities db = new CrazyMelsRestServiceEntities();
+
+        //TODO: OrderController, GET(Search), ADD, Missing search functions beyond get all scenario.
         public Order[] Get()
         {
             List<Order> data = new List<Order>();
@@ -29,5 +29,12 @@ namespace CrazyMelsWeb.Controllers
 
 
         }
+
+        //TODO: OrderController, DELETE, Add, Function Not Implemented
+        //TODO: OrderController, PUT(Update), Add, Function Not Implemented
+        //TODO: OrderController, POST(Insert), Add, Function Not Implemented
+
+
+        //TODO: OrderController, General, Add, Comments
     }
 }

@@ -10,8 +10,9 @@ namespace CrazyMelsWeb.Controllers
 {
     public class CartController : ApiController
     {
-        //private CrazyMelEntities db = new CrazyMelEntities();
         private CrazyMelsRestServiceEntities db = new CrazyMelsRestServiceEntities();
+
+        //TODO: CustomerController, GET(Search), ADD, Missing search functions beyond get all scenario.
         public Cart[] Get()
         {
             List<Cart> data = new List<Cart>();
@@ -26,7 +27,9 @@ namespace CrazyMelsWeb.Controllers
 
             return data.ToArray();
 
-           
+           //TODO: CartController, DELETE, Add, Function Not Implemented
+            //TODO: CartController, PUT(Update), Add, Function Not Implemented
+            //TODO: CartController, POST(Insert), Add, Function Not Implemented
 
         }
     }
