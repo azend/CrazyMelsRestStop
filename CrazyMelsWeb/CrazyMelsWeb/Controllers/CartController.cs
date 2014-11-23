@@ -48,13 +48,22 @@ namespace CrazyMelsWeb.Controllers
             return Ok(c_cart);
         }
 
-        public IHttpActionResult PutC_Cart(int oid, C_Cart c_cart)
+        public IHttpActionResult PutC_Cart(int oid, Cart cart)
         {
+            C_Cart c_cart = new C_Cart();
+            c_cart = cart.CartToC_Cart(cart);
+
+            //TODO: change instock  in the Product table to a boolean and uncomment code below
+            //C_Product c_product = db.C_Product.Find(c_cart.prodID);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            /*if (c_product.inStock == false)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "Cart cannot be updated because the product is currently out of stock!"));
+            }*/
             if (oid != c_cart.orderID)
             {
                 return BadRequest();
@@ -81,12 +90,22 @@ namespace CrazyMelsWeb.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        public IHttpActionResult PostC_Cart(C_Cart c_cart)
+        public IHttpActionResult PostC_Cart(Cart cart)
         {
+            C_Cart c_cart = new C_Cart();
+            c_cart = cart.CartToC_Cart(cart);
+
+            //TODO: change instock  in the Product table to a boolean and uncomment code below
+            //C_Product c_product = db.C_Product.Find(c_cart.prodID);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            /*if (c_product.inStock == false)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "The Product cannot be inserted into the cart because it is out of stock!"));
+            }*/
 
             db.Entry(c_cart).State = EntityState.Added;
 
@@ -115,6 +134,5 @@ namespace CrazyMelsWeb.Controllers
             }
             base.Dispose(disposing);
         }
-
     }
 }

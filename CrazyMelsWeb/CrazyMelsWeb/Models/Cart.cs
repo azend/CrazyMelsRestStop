@@ -22,6 +22,16 @@ namespace CrazyMelsWeb.Models
             quantity = 0;
         }
 
+        public C_Cart CartToC_Cart(Cart cart)
+        {
+            C_Cart c_cart = new C_Cart();
+
+            c_cart.orderID = cart.orderID;
+            c_cart.prodID = cart.prodID;
+            c_cart.quantity = cart.quantity;
+
+            return c_cart;
+        }
 
         public int orderID { get; set; }
         public int prodID { get; set; }
