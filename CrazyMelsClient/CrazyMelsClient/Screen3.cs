@@ -12,84 +12,65 @@ namespace CrazyMelsClient
 {
     public partial class Screen3 : Form
     {
+        private Screen1 screen1 = new Screen1();
+
         public Screen3()
         {
             InitializeComponent();
+            this.Dock = DockStyle.Fill;
         }
 
-        private void ID_label_Click(object sender, EventArgs e)
+        /* ----- BUTTON CLICKS ----- */
+        private void back_button_Click(object sender, EventArgs e)
+        {
+            screen1 = this.Owner as Screen1;
+            screen1.ShowButtons();
+            this.Close();
+        }
+
+        private void exit_button_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void print_button_Click(object sender, EventArgs e)
+        {
+
+        }
+        /* ----- END BUTTON CLICKS ----- */
+
+        /* ----- FIELD POPULATION ----- */
+        void populateCustomerInformation()
         {
 
         }
 
-        private void prodName_label_Click(object sender, EventArgs e)
+        void populateTableFields()
         {
 
         }
 
-        private void quantity_label_Click(object sender, EventArgs e)
+        void populateTotals()
         {
+            int subtotal = 0;
+            double tax = 0;
+            double taxPercent = 0.13;
+            Int32.TryParse(price_label.Text, out subtotal);
+            if (subtotal != 0)
+            {
+                subtotal_label.Text = subtotal.ToString();
+            }
+            else
+            {
+                subtotal_label.Text = "derp";
+            }
 
+            tax = subtotal*taxPercent;
+            tax_label.Text = tax.ToString();
+
+            total_label.Text = (subtotal + tax).ToString();
         }
+        /* ----- END FIELD POPULATION ----- */
 
-        private void price_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void purchaseDate_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void firstLastName_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void phoneNumber_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void orderDate_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void poNumber_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void probWeight_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void subtotal_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tax_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void total_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void totalNumOrderPieves_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void totalOrderWeight_label_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -19,6 +19,7 @@ namespace CrazyMelsClient
     {
         /* ----- ATTRIBUTES ----- */
         private Screen1 screen1 = new Screen1();
+        private Screen3 screen3 = new Screen3();
         private int screen1Option = 0;
         private enum CRUD { SEARCH, INSERT, UPDATE, DELETE };
         private Regex rgx;
@@ -75,7 +76,7 @@ namespace CrazyMelsClient
             }
         }
 
-        /* ----- EDITING CUSTOMER FIELDS ----- */
+        /* ----- TOGGLING/EDITING CUSTOMER FIELDS ----- */
         //The Customer and Product tables are independent of each other
         //The UI is not to allow data from the Customer and the Product areas to be input for searching, inserting, updating and deleting
         //Behind the scenes (on the web-service side) it very well may be the case that joins of customer and product are required, but they are not to be allowed through the UI!!
@@ -393,7 +394,6 @@ namespace CrazyMelsClient
             }
         }
 
-        // toggleCustomerFields method header (lazy version)
         private void toggleCustomerFields(bool disable)
         {
             if (disable)
@@ -412,7 +412,6 @@ namespace CrazyMelsClient
             }
         }
 
-        // toggleProductFields method header (lazy version)
         private void toggleProductFields(bool disable)
         {
             if (disable)
@@ -432,7 +431,7 @@ namespace CrazyMelsClient
                 soldOut_checkbox.Enabled = true;
             }
         }
-        // toggleOrderFields method header (lazy version)
+
         private void toggleOrderFields(bool disable)
         {
             if (disable)
@@ -451,7 +450,6 @@ namespace CrazyMelsClient
             }
         }
 
-        // toggleCartFields method header (lazy version)
         private void toggleCartFields(bool disable)
         {
             if (disable)
@@ -467,6 +465,7 @@ namespace CrazyMelsClient
                 quantity_textbox.ReadOnly = false;
             }
         }
+        /* ----- END FIELD EDITING/TOGGLING ----- */
 
 
         /* ----- BUTTON CLICKS ----- */
@@ -646,9 +645,22 @@ namespace CrazyMelsClient
                 Cart cart = new Cart();
                 queryCart(cart);
             }
+
+            if (productOrder_checkbox.Checked == true)
+            {
+                screen1 = this.Owner as Screen1;
+                screen1.createScreen3();
+                this.Close();
+            }
         }
 
+        private void exit_button_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        /* ----- END BUTTON CLICKS ----- */
 
+        /* ----- QUERIES ----- */
         private async void queryCustomer(Customer table)
         {
             using (var client = new HttpClient())
@@ -747,7 +759,9 @@ namespace CrazyMelsClient
                 }
             }
         }
+        /* ----- END QUERIES ----- */
 
+        /* ----- VALIDATION ----- */
         public bool ValidateIDOrQuantity(string id)
         {
             if (screen1Option != (int)CRUD.INSERT)
@@ -853,10 +867,6 @@ namespace CrazyMelsClient
                 return false;
             }
         }
-
-        private void exit_button_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        /* ----- END VALIDATION ----- */
     }
 }

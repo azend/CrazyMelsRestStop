@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Screen2));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.titleLabel = new System.Windows.Forms.Label();
             this.productOrder_checkbox = new System.Windows.Forms.CheckBox();
             this.productOrder_label = new System.Windows.Forms.Label();
@@ -65,9 +63,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.orderOrderID_textbox = new System.Windows.Forms.TextBox();
             this.soldOut_checkbox = new System.Windows.Forms.CheckBox();
-            this.back_button = new System.Windows.Forms.Button();
-            this.execute_button = new System.Windows.Forms.Button();
-            this.exit_button = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -80,29 +75,16 @@
             this.label24 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.productOrder_panel = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.exit_button = new System.Windows.Forms.Button();
+            this.execute_button = new System.Windows.Forms.Button();
+            this.back_button = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.productOrder_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(943, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(169, 136);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(969, 530);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(143, 140);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
             // 
             // titleLabel
             // 
@@ -432,36 +414,6 @@
             this.soldOut_checkbox.UseVisualStyleBackColor = true;
             this.soldOut_checkbox.CheckedChanged += new System.EventHandler(this.soldOut_checkbox_CheckedChanged);
             // 
-            // back_button
-            // 
-            this.back_button.Image = ((System.Drawing.Image)(resources.GetObject("back_button.Image")));
-            this.back_button.Location = new System.Drawing.Point(382, 540);
-            this.back_button.Name = "back_button";
-            this.back_button.Size = new System.Drawing.Size(185, 62);
-            this.back_button.TabIndex = 46;
-            this.back_button.UseVisualStyleBackColor = true;
-            this.back_button.Click += new System.EventHandler(this.back_button_Click);
-            // 
-            // execute_button
-            // 
-            this.execute_button.Image = ((System.Drawing.Image)(resources.GetObject("execute_button.Image")));
-            this.execute_button.Location = new System.Drawing.Point(573, 540);
-            this.execute_button.Name = "execute_button";
-            this.execute_button.Size = new System.Drawing.Size(178, 62);
-            this.execute_button.TabIndex = 47;
-            this.execute_button.UseVisualStyleBackColor = true;
-            this.execute_button.Click += new System.EventHandler(this.execute_button_Click);
-            // 
-            // exit_button
-            // 
-            this.exit_button.Image = ((System.Drawing.Image)(resources.GetObject("exit_button.Image")));
-            this.exit_button.Location = new System.Drawing.Point(757, 540);
-            this.exit_button.Name = "exit_button";
-            this.exit_button.Size = new System.Drawing.Size(181, 62);
-            this.exit_button.TabIndex = 48;
-            this.exit_button.UseVisualStyleBackColor = true;
-            this.exit_button.Click += new System.EventHandler(this.exit_button_Click);
-            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -568,6 +520,54 @@
             this.productOrder_panel.Size = new System.Drawing.Size(475, 59);
             this.productOrder_panel.TabIndex = 53;
             // 
+            // exit_button
+            // 
+            this.exit_button.Image = ((System.Drawing.Image)(resources.GetObject("exit_button.Image")));
+            this.exit_button.Location = new System.Drawing.Point(757, 540);
+            this.exit_button.Name = "exit_button";
+            this.exit_button.Size = new System.Drawing.Size(181, 62);
+            this.exit_button.TabIndex = 48;
+            this.exit_button.UseVisualStyleBackColor = true;
+            this.exit_button.Click += new System.EventHandler(this.exit_button_Click);
+            // 
+            // execute_button
+            // 
+            this.execute_button.Image = ((System.Drawing.Image)(resources.GetObject("execute_button.Image")));
+            this.execute_button.Location = new System.Drawing.Point(573, 540);
+            this.execute_button.Name = "execute_button";
+            this.execute_button.Size = new System.Drawing.Size(178, 62);
+            this.execute_button.TabIndex = 47;
+            this.execute_button.UseVisualStyleBackColor = true;
+            this.execute_button.Click += new System.EventHandler(this.execute_button_Click);
+            // 
+            // back_button
+            // 
+            this.back_button.Image = ((System.Drawing.Image)(resources.GetObject("back_button.Image")));
+            this.back_button.Location = new System.Drawing.Point(382, 540);
+            this.back_button.Name = "back_button";
+            this.back_button.Size = new System.Drawing.Size(185, 62);
+            this.back_button.TabIndex = 46;
+            this.back_button.UseVisualStyleBackColor = true;
+            this.back_button.Click += new System.EventHandler(this.back_button_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(969, 530);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(143, 140);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(943, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(169, 136);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // Screen2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,12 +625,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Screen2";
             this.Text = "Crazy Mel\'s Shopping Emporium";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.productOrder_panel.ResumeLayout(false);
             this.productOrder_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
