@@ -350,6 +350,7 @@
             // poNumber_textbox
             // 
             this.poNumber_textbox.Location = new System.Drawing.Point(631, 375);
+            this.poNumber_textbox.MaxLength = 30;
             this.poNumber_textbox.Name = "poNumber_textbox";
             this.poNumber_textbox.Size = new System.Drawing.Size(100, 20);
             this.poNumber_textbox.TabIndex = 30;
