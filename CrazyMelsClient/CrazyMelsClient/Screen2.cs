@@ -563,6 +563,30 @@ namespace CrazyMelsClient
                                 return;
                             }
                         }
+                        else
+                        {
+                            if (firstName_textbox.Text != "")
+                            {
+                                if (!ValidateCustomerName(firstName_textbox.Text, 1))
+                                {
+                                    return;
+                                }
+                            }
+                            if (lastName_textbox.Text != "")
+                            {
+                                if (!ValidateCustomerName(lastName_textbox.Text, 2))
+                                {
+                                    return;
+                                }
+                            }
+                            if (phoneNumber_textbox.Text != "")
+                            {
+                                if (!ValidateCustomerPhoneNumber())
+                                {
+                                    return;
+                                }
+                            }
+                        }
                     }                    
                     else
                     {
