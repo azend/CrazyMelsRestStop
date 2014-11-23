@@ -293,6 +293,7 @@
             // prodName_textbox
             // 
             this.prodName_textbox.Location = new System.Drawing.Point(433, 287);
+            this.prodName_textbox.MaxLength = 100;
             this.prodName_textbox.Name = "prodName_textbox";
             this.prodName_textbox.Size = new System.Drawing.Size(100, 20);
             this.prodName_textbox.TabIndex = 18;
@@ -332,9 +333,9 @@
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label14.Location = new System.Drawing.Point(971, 378);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(113, 20);
+            this.label14.Size = new System.Drawing.Size(91, 20);
             this.label14.TabIndex = 34;
-            this.label14.Text = "MM-DD-YYYY";
+            this.label14.Text = "MM-DD-YY";
             // 
             // label15
             // 

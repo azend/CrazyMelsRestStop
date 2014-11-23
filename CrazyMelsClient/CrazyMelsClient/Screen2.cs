@@ -484,78 +484,140 @@ namespace CrazyMelsClient
             {
                 if (firstName_textbox.Enabled)
                 {
-                    Customer customer = new Customer();
-                    if (screen1Option != (int)CRUD.INSERT)
+                    if (screen1Option == (int)CRUD.INSERT)
                     {
-                        try
+                        if (firstName_textbox.Text != "")
                         {
-                            if (Convert.ToUInt32(customerCustID_textbox.Text) > Int32.MaxValue)
+                            if (!ValidateCustomerName(firstName_textbox.Text, 1))
                             {
-                                MessageBox.Show("You entered a number number larger than the maximum allowed number of " + Int32.MaxValue);
                                 return;
                             }
-                            else
-                            {
-                                customer.custID = (int)Convert.ToUInt32(customerCustID_textbox.Text);
-                            }
                         }
-                        catch (Exception ex)
+                        if (!ValidateCustomerName(lastName_textbox.Text, 2))
                         {
-                            MessageBox.Show("You did not enter a number or you entered an invalid number.");
+                            return;
+                        }
+                        if (!ValidateCustomerPhoneNumber())
+                        {
                             return;
                         }
                     }
-
-                    rgx = new Regex("[a-zA-Z ,.'-]{2,50}");
-                    if (rgx.IsMatch(firstName_textbox.Text))
+                    if (screen1Option == (int)CRUD.UPDATE)
                     {
-                        customer.firstName = firstName_textbox.Text;
+                        if (customerCustID_textbox.Text != "")
+                        {
+                            if (!ValidateIDOrQuantity(customerCustID_textbox.Text))
+                            {
+                                return;
+                            }
+                            if (firstName_textbox.Text != "")
+                            {
+                                if (!ValidateCustomerName(firstName_textbox.Text, 1))
+                                {
+                                    return;
+                                }
+                            }
+                            if (lastName_textbox.Text != "")
+                            {
+                                if (!ValidateCustomerName(lastName_textbox.Text, 2))
+                                {
+                                    return;
+                                }
+                            }
+                            if (phoneNumber_textbox.Text != "")
+                            {
+                                if (!ValidateCustomerPhoneNumber())
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (firstName_textbox.Text != "")
+                            {
+                                if (!ValidateCustomerName(firstName_textbox.Text, 1))
+                                {
+                                    return;
+                                }
+                            }
+                            if (!ValidateCustomerName(lastName_textbox.Text, 2))
+                            {
+                                return;
+                            }
+                            if (!ValidateCustomerPhoneNumber())
+                            {
+                                return;
+                            }
+                        }
                     }
+                    if (screen1Option == (int)CRUD.DELETE)
+                    {
+                        if (customerCustID_textbox.Text != "")
+                        {
+                            if (!ValidateIDOrQuantity(customerCustID_textbox.Text))
+                            {
+                                firstName_textbox.Text = "";
+                                lastName_textbox.Text = "";
+                                phoneNumber_textbox.Text = "";
+                                return;
+                            }
+                        }
+                    }                    
                     else
                     {
-                        MessageBox.Show("You did not enter a valid first name. The accepted characters are 'a' through 'z' ',' '.' ' ' '-' and '. The name must also be between 2 and 50 characters long.");
-                        return;
+                        if (customerCustID_textbox.Text != "")
+                        {
+                            if (!ValidateIDOrQuantity(customerCustID_textbox.Text))
+                            {
+                                return;
+                            }
+                        }
+                        if (firstName_textbox.Text != "")
+                        {
+                            if (!ValidateCustomerName(firstName_textbox.Text, 1))
+                            {
+                                return;
+                            }
+                        }
+                        if (lastName_textbox.Text != "")
+                        {
+                            if (!ValidateCustomerName(lastName_textbox.Text, 2))
+                            {
+                                return;
+                            }
+                        }
+                        if (phoneNumber_textbox.Text != "")
+                        {
+                            if (!ValidateCustomerPhoneNumber())
+                            {
+                                return;
+                            }
+                        }
                     }
-
-                    if (rgx.IsMatch(lastName_textbox.Text))
-                    {
-                        customer.lastName = lastName_textbox.Text;
-                    }
-                    else
-                    {
-                        MessageBox.Show("You did not enter a valid last name. The accepted characters are 'a' through 'z' ',' '.' ' ' '-' and '. The name must also be between 2 and 50 characters long.");
-                        return;
-                    }
-
-
-
-                    rgx = new Regex("[0-9]{3}-[0-9]{3}-[0-9]{4}");
-                    if (rgx.IsMatch(phoneNumber_textbox.Text))
-                    {
-                        customer.phoneNumber = phoneNumber_textbox.Text;
-                    }
-                    else
-                    {
-                        MessageBox.Show("You did not enter a valid phone number");
-                        return;
-                    }
-                    queryCustomer(customer);
                 }
-                else if (prodName_textbox.Enabled)
-                {
-                    Product product = new Product();
-                    queryProduct(product);
-                }
-                else if (custID_textbox.Enabled)
-                {
-                    Order order = new Order();
-                    queryOrder(order);
-                }
-                else
-                {
-                    Cart cart = new Cart();
-                    queryCart(cart);
-                }
+                Customer customer = new Customer();
+                customer.custID = Convert.ToInt32(customerCustID_textbox.Text);
+                customer.firstName = firstName_textbox.Text;
+                customer.lastName = lastName_textbox.Text;
+                customer.phoneNumber = phoneNumber_textbox.Text;
+
+                queryCustomer(customer);
+            }
+            else if (prodName_textbox.Enabled)
+            {
+                Product product = new Product();
+                queryProduct(product);
+            }
+            else if (custID_textbox.Enabled)
+            {
+                Order order = new Order();
+                queryOrder(order);
+            }
+            else
+            {
+                Cart cart = new Cart();
+                queryCart(cart);
             }
         }
 
@@ -659,7 +721,111 @@ namespace CrazyMelsClient
             }
         }
 
+        public bool ValidateIDOrQuantity(string id)
+        {
+            if (screen1Option != (int)CRUD.INSERT)
+            {
+                try
+                {
+                    if (Convert.ToUInt32(id) > Int32.MaxValue)
+                    {
+                        MessageBox.Show("You entered a number number larger than the maximum allowed number of " + Int32.MaxValue);
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("You did not enter a number or you entered an invalid number.");
+                    return false;
+                }
+            }
 
+            return true;
+        }
+
+
+
+        public bool ValidateCustomerName(string name, int type)
+        {
+            string namePrefix = "";
+            if (type == 1)
+            {
+                namePrefix = "first";
+            }
+            else
+            {
+                namePrefix = "last";
+            }
+
+            rgx = new Regex("[a-zA-Z ,.'-]{2,50}");
+            if (!rgx.IsMatch(name))
+            {
+                MessageBox.Show("You did not enter a valid " + namePrefix + " name. The accepted characters are 'a' through 'z' ',' '.' ' ' '-' and '. The name must also be between 2 and 50 characters long.");
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ValidateCustomerPhoneNumber()
+        {
+            rgx = new Regex("[0-9]{3}-[0-9]{3}-[0-9]{4}");
+            if (!rgx.IsMatch(phoneNumber_textbox.Text))
+            {
+                MessageBox.Show("You did not enter a valid phone number");
+                return false;
+            }
+
+            return true;
+        }
+
+
+        public bool ValidateProductPriceOrWeight(string text)
+        {
+            try
+            {
+                if (Convert.ToDouble(text) < 0)
+                {
+                    MessageBox.Show("You may not enter a negative number" + Int32.MaxValue);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("You did not enter a number or you entered an invalid number.");
+                return false;
+            }
+
+
+            return true;
+        }
+
+        public bool ValidateOrderPONumber()
+        {
+            rgx = new Regex("[a-zA-Z-]{2,50}");
+            if (!rgx.IsMatch(poNumber_textbox.Text))
+            {
+                MessageBox.Show("You did not enter a valid last name. The accepted characters are 'a' through 'z' ',' '.' ' ' '-' and '. The name must also be between 2 and 50 characters long.");
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ValidateOrderDate(string date)
+        {
+            string expectedFormat = "MM-DD-YY";
+            DateTime outDate;
+            if (DateTime.TryParseExact(date, expectedFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out outDate))
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("You must enter the date in the format MM-DD-YY");
+                return false;
+            }
+        }
 
         private void exit_button_Click(object sender, EventArgs e)
         {
