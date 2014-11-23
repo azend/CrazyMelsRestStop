@@ -43,15 +43,16 @@ namespace CrazyMelsWeb.Controllers
                 return NotFound();
             }
 
-            C_Customer completeCustomer;
+           // C_Customer completeCustomer;
 
-            if (!Validation.IsValid.MergeEntries(currentCustomer, updateCustomer, out completeCustomer))
+            if (!Validation.IsValid.MergeEntries(currentCustomer, updateCustomer))
             {
                 return BadRequest();
             }
 
-            currentCustomer = completeCustomer;
-
+           // currentCustomer = completeCustomer;
+            db.Entry(currentCustomer).State = EntityState.Modified;
+            
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -65,7 +66,7 @@ namespace CrazyMelsWeb.Controllers
         public IHttpActionResult PostC_Customer(Customer customer)
         {
             C_Customer newCustomer = customer.ToC_Customer();
-            if(Validation.IsValid.NewEntry(newCustomer))
+            if(!Validation.IsValid.NewEntry(newCustomer))
             {
                 return BadRequest("Invalid New Entry");
             }
