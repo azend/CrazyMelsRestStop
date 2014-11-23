@@ -112,7 +112,34 @@ namespace CrazyMelsWeb.Models
             }
 
 
+            static public Boolean MergeEntries(C_Customer oldEntry, C_Customer newEntry)
+            {
+                Boolean returnValue = true;
+                ResetInvalids();
 
+             
+
+
+                if (!String.IsNullOrEmpty(newEntry.firstName))
+                {
+                    oldEntry.firstName = newEntry.firstName;
+                }
+
+                if (!String.IsNullOrEmpty(newEntry.lastName))
+                {
+                    oldEntry.lastName = newEntry.lastName;
+                }
+
+                if (!String.IsNullOrEmpty(newEntry.phoneNumber))
+                {
+                    oldEntry.phoneNumber = newEntry.phoneNumber;
+                }
+
+                returnValue = NewEntry(oldEntry);
+
+             
+                return returnValue;
+            }
 
 
 
