@@ -141,7 +141,7 @@
           <Property Name="prodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Double" Nullable="false" />
           <Property Name="prodWeight" Type="Double" Nullable="false" />
-          <Property Name="inStock" Type="Binary" MaxLength="1" FixedLength="true" Nullable="false" />
+          <Property Name="inStock" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="C_Cart" Relationship="Self.FK___Cart__prodID__1A14E395" FromRole="C_Product" ToRole="C_Cart" />
         </EntityType>
         <Association Name="FK___Cart__orderID__1920BF5C">

@@ -9,11 +9,11 @@ namespace CrazyMelsWeb.Models
     {
         public Product(C_Product rawInput)
         {
-        prodID = rawInput.prodID;             
-        prodName = rawInput.prodName;
-        price = rawInput.price;
-        prodWeight = rawInput.prodWeight;
-        inStock = Convert.ToBoolean( rawInput.inStock);
+            prodID = rawInput.prodID;             
+            prodName = rawInput.prodName;
+            price = rawInput.price;
+            prodWeight = rawInput.prodWeight;
+            inStock = Convert.ToBoolean( rawInput.inStock);
 
         }
         public Product()
@@ -25,7 +25,17 @@ namespace CrazyMelsWeb.Models
             inStock = false;
         }
 
+        public C_Product ToC_Product()
+        {
+            C_Product c_product = new C_Product();
+            c_product.prodID = prodID;
+            c_product.prodName = prodName;
+            c_product.prodWeight = prodWeight;
+            c_product.price = price;
+            c_product.inStock = inStock;
 
+            return c_product;
+        }
 
         
         public int prodID { get; set; }
