@@ -15,15 +15,15 @@ namespace CrazyMelsWeb.Controllers
     public class CustomerController : ApiController
     {
         private CrazyMelsRestServiceEntities db = new CrazyMelsRestServiceEntities();
-        
+
         //TODO: CustomerController, Get, ADD, Search functions beyond get all scenario.
         public Customer[] Get()
         {
             List<Customer> data = new List<Customer>();
             IQueryable<C_Customer> returnValue = from mine in db.C_Customer
-                              select mine;
+                                                 select mine;
 
-            foreach(C_Customer cust in returnValue)
+            foreach (C_Customer cust in returnValue)
             {
                 data.Add(new Customer(cust));
             }
@@ -31,7 +31,7 @@ namespace CrazyMelsWeb.Controllers
 
         }
 
-        // PUT api/Customer/5
+        // PUT api/Customer/5 (UPDATE)
         public IHttpActionResult PutCustomer(Customer customer)
         {
             //TODO: CustomerController, PUT, Fix?, This code doesnt seem to be modifying a customer so much as adding a new one....
@@ -97,22 +97,22 @@ namespace CrazyMelsWeb.Controllers
 
         // DELETE api/Customer/5
         [ResponseType(typeof(Customer))]
-        public IHttpActionResult DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(Customer customerToDelete)
         {
-            //TODO: CustomerController, DELETE, Fix/Add, Create methods for delete based on info other than ID??????
-            //TODO: CustomerController, DELETE, Add, Error response scenarios.
-            C_Customer c_customer = db.C_Customer.Find(id);
+            
+            
+            C_Customer c_customer = searchCustomer(customerToDelete);
             if (c_customer == null)
             {
                 return NotFound();
             }
 
             IQueryable<C_Order> custOrderDate = from orders in db.C_Order
-                                                where orders.custID == id
+                                                where orders.custID == c_customer.custID
                                                 select orders;
 
-            
-            foreach(C_Order a in custOrderDate)
+
+            foreach (C_Order a in custOrderDate)
             {
                 IQueryable<C_Cart> cartData = from carts in db.C_Cart where carts.orderID == a.orderID select carts;
                 foreach (C_Cart cart in cartData)
@@ -127,42 +127,60 @@ namespace CrazyMelsWeb.Controllers
 
             return Ok(new Customer(c_customer));
         }
-/*
 
-        private C_Customer searchCustomer (Customer userInput)
+
+        private C_Customer searchCustomer(Customer userInput)
         {
             IQueryable<C_Customer> searchResults = null;
-            if(userInput.custID > 0)
+            if (userInput.custID > 0)
             {
                 return db.C_Customer.Find(userInput.custID);
             }
 
-            if(userInput.phoneNumber != null && userInput.phoneNumber != String.Empty)
+            if (userInput.phoneNumber != null && userInput.phoneNumber != String.Empty)
             {
-               searchResults = db.C_Customer.Where(Cust => Cust.phoneNumber == userInput.phoneNumber);
-               if(searchResults.Count() == 1)
-               {
-                   return searchResults.First();
-               }
-               else if (searchResults.Count() == 0)
-               {
-                   return null;
-               }
+                searchResults = db.C_Customer.Where(Cust => Cust.phoneNumber == userInput.phoneNumber);
+                if (searchResults.Count() == 1)
+                {
+                    return searchResults.First();
+                }
+                else if (searchResults.Count() > 1)
+                {
+                    IQueryable<C_Customer> secondarySearch = null;
+
+                    if (userInput.firstName != null && userInput.firstName != String.Empty)
+                    {
+                        secondarySearch = searchResults.Where(Cust => Cust.firstName == userInput.firstName);
+
+                        if (secondarySearch.Count() == 1)
+                        {
+                            return secondarySearch.First();
+                        }
+                    }
+
+                    if (userInput.lastName != null && userInput.lastName != String.Empty)
+                    {
+                        secondarySearch = searchResults.Where(Cust => Cust.lastName == userInput.lastName);
+                        if (secondarySearch.Count() == 1)
+                        {
+                            return secondarySearch.First();
+                        }
+                    }
+                }
             }
 
-            if(userInput.)
+            if (userInput.firstName != null && userInput.firstName != String.Empty && userInput.lastName != null && userInput.lastName != String.Empty)
+            {
+                searchResults = db.C_Customer.Where(Cust => Cust.firstName == userInput.firstName && Cust.lastName == userInput.lastName);
+                if (searchResults.Count() == 1)
+                {
+                    return searchResults.First();
+                }
+            }
 
-
-
-            
-
-
-
-
+            return null;
         }
 
-
-        */
         private bool C_CustomerExists(int id)
         {
             return db.C_Customer.Count(e => e.custID == id) > 0;

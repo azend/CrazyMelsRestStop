@@ -22,8 +22,9 @@ custID int
 	PRIMARY KEY 
 	IDENTITY(1,1),
 firstName nVarChar(50),
-lastName nVarChar(50),
-phoneNumber nVarChar(12)
+lastName nVarChar(50)
+	NOT NULL,
+phoneNumber nVarChar(12) NOT NULL
 );
 
 
@@ -33,10 +34,10 @@ prodID int
 	NOT NULL 
 	PRIMARY KEY 
 	IDENTITY(1,1),
-prodName nVarChar(100),
-price uFloat,
-prodWeight uFloat,
-inStock binary NOT NULL
+prodName nVarChar(100) NOT NULL,
+price uFloat NOT NULL,
+prodWeight uFloat NOT NULL,
+inStock bit NOT NULL
 );
 
 
@@ -46,7 +47,7 @@ orderID int
 	NOT NULL 
 	PRIMARY KEY 
 	IDENTITY(1,1),
-custID int 
+custID int NOT NULL
 	FOREIGN KEY REFERENCES _Customer(custID),
 poNumber nvarchar(30),
 orderDate date NOT NULL
@@ -56,8 +57,10 @@ orderDate date NOT NULL
 CREATE TABLE _Cart
 (
 orderID int 
+	NOT NULL
 	FOREIGN KEY REFERENCES _Order(orderID),
 prodID int 
+	NOT NULL
 	FOREIGN KEY REFERENCES _Product(prodID),
 quantity uInt,
 CONSTRAINT cartID 
