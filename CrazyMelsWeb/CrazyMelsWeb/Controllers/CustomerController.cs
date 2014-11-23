@@ -79,9 +79,62 @@ namespace CrazyMelsWeb.Controllers
 
         // DELETE api/Customer/5
         [ResponseType(typeof(Customer))]
-        public IHttpActionResult DeleteCustomer(Customer customerToDelete)
+        public IHttpActionResult DeleteCustomer(String input)       // Customer customerToDelete)
         {
             
+            Char parameterDelimiter = '|';
+            Char valueDelimiter = '=';
+
+            String[] parameters = input.Split(new Char[] { parameterDelimiter });
+
+            SortedList<String, String> paramValues = new SortedList<string, string>();
+
+            foreach (String a in parameters)
+            {
+                String[] temp = a.Split(new Char[] { valueDelimiter });
+                if (temp.Length == 2)
+                {
+                    paramValues.Add(temp[0], temp[1]);
+                }
+                else if (temp.Length == 1)
+                {
+                    paramValues.Add(temp[0], String.Empty);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+            }
+
+
+            Customer customerToDelete = new Customer();
+
+            if(paramValues.ContainsKey("custID"))
+            {
+                customerToDelete.custID = Int32.Parse(paramValues["custID"]);
+            }
+            if (paramValues.ContainsKey("firstName"))
+            {
+                customerToDelete.firstName = paramValues["firstName"];
+            }
+
+            if (paramValues.ContainsKey("lastName"))
+            {
+                customerToDelete.lastName = paramValues["lastName"];
+            }
+
+            if (paramValues.ContainsKey("phoneNumber"))
+            {
+                customerToDelete.phoneNumber = paramValues["phoneNumber"];
+            }
+
+
+
+
+
+
+
             
             C_Customer c_customer = searchCustomer(customerToDelete);
             if (c_customer == null)
