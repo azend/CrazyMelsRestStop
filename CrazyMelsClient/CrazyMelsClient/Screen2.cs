@@ -818,16 +818,74 @@ namespace CrazyMelsClient
                     {
                         return;
                     }
+                    if (!ValidateIDOrQuantity(cartProdID_textbox.Text))
+                    {
+                        return;
+                    }
+                    if (!ValidateIDOrQuantity(quantity_textbox.Text)) 
+                    {
+                        return;
+                    }
                 }
                 else if (screen1Option == (int)CRUD.UPDATE)
                 {
-                    
+                    if (cartOrderID_textbox.Text != "")
+                    {
+                        if (!ValidateIDOrQuantity(cartOrderID_textbox.Text))
+                        {
+                            return;
+                        }
+                    }
+                    if (cartProdID_textbox.Text != "")
+                    {
+                        if (!ValidateIDOrQuantity(cartProdID_textbox.Text))
+                        {
+                            return;
+                        }
+                    }
+                    if (quantity_textbox.Text != "")
+                    {
+                        if (!ValidateIDOrQuantity(quantity_textbox.Text))
+                        {
+                            return;
+                        }
+                    }
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
-                    
+                    if (!ValidateIDOrQuantity(cartOrderID_textbox.Text))
+                    {
+                        return;
+                    }
+                    if (cartProdID_textbox.Text != "")
+                    {
+                        if (!ValidateIDOrQuantity(cartProdID_textbox.Text))
+                        {
+                            return;
+                        }
+                    }
+                    if (quantity_textbox.Text != "")
+                    {
+                        if (!ValidateIDOrQuantity(quantity_textbox.Text))
+                        {
+                            return;
+                        }
+                    }
                 }
                 Cart cart = new Cart();
+                if (cartOrderID_textbox.Text != "")
+                {
+                    cart.orderID = Convert.ToInt32(cartOrderID_textbox.Text);
+                }
+                if (cartProdID_textbox.Text != "")
+                {
+                    cart.prodID = Convert.ToInt32(cartProdID_textbox.Text);
+                }
+                if (quantity_textbox.Text != "")
+                {
+                    cart.quantity = Convert.ToInt32(quantity_textbox.Text);
+                }
+                
                 queryCart(cart);
             }
 
