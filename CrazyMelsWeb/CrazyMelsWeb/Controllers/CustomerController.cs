@@ -79,9 +79,10 @@ namespace CrazyMelsWeb.Controllers
 
         // DELETE api/Customer/5
         [ResponseType(typeof(Customer))]
-        public IHttpActionResult DeleteCustomer(String input)       // Customer customerToDelete)
+        [Route("api/customer/custId={custId:int}/firstName={firstName}/lastName={lastName}/phoneNumber={phoneNumber}")]
+        public IHttpActionResult DeleteCustomer(int custId, String firstName, String lastName, String phoneNumber)       // Customer customerToDelete)
         {
-            
+            /*
             Char parameterDelimiter = '|';
             Char valueDelimiter = '=';
 
@@ -105,9 +106,9 @@ namespace CrazyMelsWeb.Controllers
                     return BadRequest();
                 }
 
-            }
+            }*/
 
-
+            /*
             Customer customerToDelete = new Customer();
 
             if(paramValues.ContainsKey("custID"))
@@ -128,9 +129,17 @@ namespace CrazyMelsWeb.Controllers
             {
                 customerToDelete.phoneNumber = paramValues["phoneNumber"];
             }
+            */
 
+            Customer customerToDelete = new Customer();
 
+            customerToDelete.custID = custId;
+            customerToDelete.firstName = firstName;
+          
+                customerToDelete.lastName = lastName;
 
+                customerToDelete.phoneNumber = phoneNumber;
+            
 
 
 
