@@ -25,9 +25,24 @@ namespace CrazyMelsWeb.Models
             phoneNumber = String.Empty;
         }
 
+        public C_Customer ToC_Customer()
+        {
+            C_Customer converted = new C_Customer();
+
+            converted.custID = custID;
+            converted.firstName = firstName;
+            converted.lastName = lastName;
+            converted.phoneNumber = phoneNumber;
+
+            return converted;
+        }
+
         public int custID { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string phoneNumber { get; set; }
+
+
+        
     }
 }
