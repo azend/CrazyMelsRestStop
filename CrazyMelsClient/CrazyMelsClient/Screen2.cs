@@ -1105,11 +1105,11 @@ namespace CrazyMelsClient
 
                 if (screen1Option == (int)CRUD.INSERT)
                 {
-                    response = await client.PostAsJsonAsync(path, table);
+                    response = await client.PostAsJsonAsync("api/Order/", table);
                 }
                 else if (screen1Option == (int)CRUD.UPDATE)
                 {
-                    response = await client.PutAsJsonAsync(path, table);
+                    response = await client.PutAsJsonAsync("api/Order/", table);
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
@@ -1131,12 +1131,12 @@ namespace CrazyMelsClient
 
                 if (screen1Option == (int)CRUD.INSERT)
                 {
-                    response = await client.PostAsJsonAsync(path, table);
+                    response = await client.PostAsJsonAsync("api/Cart/", table);
 
                 }
                 else if (screen1Option == (int)CRUD.UPDATE)
                 {
-                    response = await client.PutAsJsonAsync(path, table);
+                    response = await client.PutAsJsonAsync("api/Cart/", table);
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
