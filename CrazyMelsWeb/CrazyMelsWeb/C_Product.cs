@@ -23,7 +23,7 @@ namespace CrazyMelsWeb
         public string prodName { get; set; }
         public double price { get; set; }
         public double prodWeight { get; set; }
-        public bool inStock { get; set; }
+        public byte[] inStock { get; set; }
     
         public virtual ICollection<C_Cart> C_Cart { get; set; }
     }

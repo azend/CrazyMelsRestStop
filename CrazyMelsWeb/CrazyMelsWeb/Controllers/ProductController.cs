@@ -92,7 +92,7 @@ namespace CrazyMelsWeb.Controllers
                 c_product.prodName = product.prodName;
                 c_product.prodWeight = product.prodWeight;
                 c_product.price = product.price;
-                c_product.inStock = product.inStock;
+                c_product.inStock = new byte[] { product.inStock ? (byte)1 : (byte)0 };
 
                 db.SaveChanges();
             }
