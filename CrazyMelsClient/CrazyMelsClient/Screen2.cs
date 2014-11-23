@@ -557,10 +557,13 @@ namespace CrazyMelsClient
                         {
                             if (!ValidateIDOrQuantity(customerCustID_textbox.Text))
                             {
+                                return;
+                            }
+                            else
+                            {
                                 firstName_textbox.Text = "";
                                 lastName_textbox.Text = "";
                                 phoneNumber_textbox.Text = "";
-                                return;
                             }
                         }
                         else
@@ -587,37 +590,6 @@ namespace CrazyMelsClient
                                 }
                             }
                         }
-                    }                    
-                    else
-                    {
-                        if (customerCustID_textbox.Text != "")
-                        {
-                            if (!ValidateIDOrQuantity(customerCustID_textbox.Text))
-                            {
-                                return;
-                            }
-                        }
-                        if (firstName_textbox.Text != "")
-                        {
-                            if (!ValidateCustomerName(firstName_textbox.Text, 1))
-                            {
-                                return;
-                            }
-                        }
-                        if (lastName_textbox.Text != "")
-                        {
-                            if (!ValidateCustomerName(lastName_textbox.Text, 2))
-                            {
-                                return;
-                            }
-                        }
-                        if (phoneNumber_textbox.Text != "")
-                        {
-                            if (!ValidateCustomerPhoneNumber())
-                            {
-                                return;
-                            }
-                        }
                     }
                 }
                 Customer customer = new Customer();
@@ -633,16 +605,229 @@ namespace CrazyMelsClient
             }
             else if (prodName_textbox.Enabled)
             {
+                if (screen1Option == (int)CRUD.INSERT)
+                {
+                    if (prodName_textbox.Text == "")
+                    {
+                        MessageBox.Show("You did not enter a product name");
+                        return;
+                    }
+                    if (!ValidateProductPriceOrWeight(price_textbox.Text, 1))
+                    {
+                        return;
+                    }
+                    if (!ValidateProductPriceOrWeight(prodWeight_textbox.Text, 2))
+                    {
+                        return;
+                    }
+                }
+                if (screen1Option == (int)CRUD.UPDATE)
+                {
+                    if (productProdID_textbox.Text != "")
+                    {
+                        if (!ValidateIDOrQuantity(productProdID_textbox.Text))
+                        {
+                            return;
+                        }
+                    }
+                    if (price_textbox.Text != "")
+                    {
+                        if (!ValidateProductPriceOrWeight(price_textbox.Text, 1))
+                        {
+                            return;
+                        }
+                    }
+                    if (prodWeight_textbox.Text != "")
+                    {
+                        if (!ValidateProductPriceOrWeight(prodWeight_textbox.Text, 2))
+                        {
+                            return;
+                        }
+                    }
+                    
+                }
+                if (screen1Option == (int)CRUD.DELETE)
+                {
+                    if (productProdID_textbox.Text != "")
+                    {
+                        if (!ValidateIDOrQuantity(productProdID_textbox.Text))
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            prodName_textbox.Text = "";
+                            price_textbox.Text = "";
+                            prodWeight_textbox.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        if (price_textbox.Text != "")
+                        {
+                            if (!ValidateProductPriceOrWeight(price_textbox.Text, 1))
+                            {
+                                return;
+                            }
+                        }
+                        if (prodWeight_textbox.Text != "")
+                        {
+                            if (!ValidateProductPriceOrWeight(prodWeight_textbox.Text, 2))
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
                 Product product = new Product();
+                if (productProdID_textbox.Text != "")
+                {
+                    product.prodID = Convert.ToInt32(productProdID_textbox.Text);
+                }
+                product.prodName = prodName_textbox.Text;
+                if (price_textbox.Text != "")
+                {
+                    product.price = Convert.ToDouble(price_textbox.Text);
+                }
+                if (prodWeight_textbox.Text != "")
+                {
+                    product.prodWeight = Convert.ToDouble(prodWeight_textbox.Text);
+                }
+                product.inStock = soldOut_checkbox.Checked;
                 queryProduct(product);
             }
             else if (custID_textbox.Enabled)
             {
+                if (screen1Option == (int)CRUD.INSERT)
+                {
+                    if (!ValidateIDOrQuantity(custID_textbox.Text))
+                    {
+                        return;
+                    }
+                    if (poNumber_textbox.Text != "")
+                    {
+                        if (!ValidateOrderPONumber())
+                        {
+                            return;
+                        }
+                    }
+                    if (!ValidateOrderDate(orderDate_textbox.Text))
+                    {
+                        return;
+                    }
+                }
+                if (screen1Option == (int)CRUD.UPDATE)
+                {
+                    if (orderOrderID_textbox.Text != "")
+                    {
+                        if(!ValidateIDOrQuantity(orderOrderID_textbox.Text))
+                        {
+                            return;
+                        }
+                    }
+                    if (custID_textbox.Text != "")
+                    {
+                        if (!ValidateIDOrQuantity(custID_textbox.Text))
+                        {
+                            return;
+                        }
+                    }
+                    if (poNumber_textbox.Text != "")
+                    {
+                        if (!ValidateOrderPONumber())
+                        {
+                            return;
+                        }
+                    }
+                    if (orderDate_textbox.Text != "")
+                    {
+                        if (!ValidateOrderDate(orderDate_textbox.Text))
+                        {
+                            return;
+                        }
+                    }
+                }
+                if (screen1Option == (int)CRUD.DELETE)
+                {
+                    if (orderOrderID_textbox.Text != "")
+                    {
+                        if (!ValidateIDOrQuantity(orderOrderID_textbox.Text))
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            custID_textbox.Text = "";
+                            poNumber_textbox.Text = "";
+                            orderDate_textbox.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        if (custID_textbox.Text != "")
+                        {
+                            if (!ValidateIDOrQuantity(custID_textbox.Text))
+                            {
+                                return;
+                            }
+                        }
+                        if (poNumber_textbox.Text != "")
+                        {
+                            if (!ValidateOrderPONumber())
+                            {
+                                return;
+                            }
+                        }
+                        if (orderDate_textbox.Text != "")
+                        {
+                            if (!ValidateOrderDate(orderDate_textbox.Text))
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
+                
                 Order order = new Order();
+
+                if (orderOrderID_textbox.Text != "")
+                {
+                    order.orderID = Convert.ToInt32(orderOrderID_textbox.Text);
+                }
+                if (custID_textbox.Text != "")
+                {
+                    order.custID = Convert.ToInt32(custID_textbox.Text);
+                }
+                if (poNumber_textbox.Text != "")
+                {
+                    order.poNumber = poNumber_textbox.Text;
+                }
+                if (orderDate_textbox.Text != "")
+                {
+                    string expectedFormat = "MM-DD-YY";
+                    DateTime outDate;
+                    DateTime.TryParseExact(orderDate_textbox.Text, expectedFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out outDate);
+                    order.orderDate = outDate;
+                }
                 queryOrder(order);
             }
             else
             {
+                if (screen1Option == (int)CRUD.INSERT)
+                {
+                    if(!ValidateIDOrQuantity(cartOrderID_textbox.Text))
+                    {
+                        return;
+                    }
+                }
+                else if (screen1Option == (int)CRUD.UPDATE)
+                {
+                    
+                }
+                else if (screen1Option == (int)CRUD.DELETE)
+                {
+                    
+                }
                 Cart cart = new Cart();
                 queryCart(cart);
             }
@@ -807,19 +992,29 @@ namespace CrazyMelsClient
         }
 
 
-        public bool ValidateProductPriceOrWeight(string text)
+        public bool ValidateProductPriceOrWeight(string text, int type)
         {
+            string priceOrWeight = "";
+            if (type == 1)
+            {
+                priceOrWeight = "price";
+            }
+            else
+            {
+                priceOrWeight = "Weight";
+            }
+
             try
             {
                 if (Convert.ToDouble(text) < 0)
                 {
-                    MessageBox.Show("You may not enter a negative number" + Int32.MaxValue);
+                    MessageBox.Show("You may not enter a negative number for " + priceOrWeight);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("You did not enter a number or you entered an invalid number.");
+                MessageBox.Show("You did not enter a number or you entered an invalid number for " + priceOrWeight + ".");
                 return false;
             }
 
