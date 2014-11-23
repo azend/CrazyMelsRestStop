@@ -32,7 +32,7 @@ namespace CrazyMelsWeb.Models
             c_product.prodName = prodName;
             c_product.prodWeight = prodWeight;
             c_product.price = price;
-            c_product.inStock = new byte[] { inStock ? (byte)1 : (byte)0 };
+            c_product.inStock = inStock;
 
             return c_product;
         }

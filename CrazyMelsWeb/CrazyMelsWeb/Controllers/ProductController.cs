@@ -13,7 +13,7 @@ namespace CrazyMelsWeb.Controllers
 {
     public class ProductController : ApiController
     {
-        private CrazyMelsRestServiceEntities db = new CrazyMelsRestServiceEntities();
+        private CrazyMelsEntities db = new CrazyMelsEntities();
 
         //TODO: CustomerController, Get, ADD, Search functions beyond get all scenario.
         public Product[] Get()
@@ -92,7 +92,7 @@ namespace CrazyMelsWeb.Controllers
                 c_product.prodName = product.prodName;
                 c_product.prodWeight = product.prodWeight;
                 c_product.price = product.price;
-                c_product.inStock = new byte[] { product.inStock ? (byte)1 : (byte)0 };
+                c_product.inStock = product.inStock;
 
                 db.SaveChanges();
             }

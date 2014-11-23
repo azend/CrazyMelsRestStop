@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b20648e3ff6a488da56154f6573273b5" Name="Diagram1">
+      <Diagram DiagramId="7391b9cfe54d405bb6432071a2dee8b2" Name="Diagram1">
         <EntityTypeShape EntityType="CrazyMelsRestServiceModel.C_Cart" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CrazyMelsRestServiceModel.C_Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CrazyMelsRestServiceModel.C_Order" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CrazyMelsRestServiceModel.C_Product" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <AssociationConnector Association="CrazyMelsRestServiceModel.FK___Cart__orderID__1920BF5C" ManuallyRouted="false" />
-        <AssociationConnector Association="CrazyMelsRestServiceModel.FK___Cart__prodID__1A14E395" ManuallyRouted="false" />
-        <AssociationConnector Association="CrazyMelsRestServiceModel.FK___Order__custID__164452B1" ManuallyRouted="false" />
+        <AssociationConnector Association="CrazyMelsRestServiceModel.FK___Cart__orderID__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="CrazyMelsRestServiceModel.FK___Cart__prodID__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="CrazyMelsRestServiceModel.FK___Order__custID__3C69FB99" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
