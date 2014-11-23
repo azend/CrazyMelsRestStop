@@ -1058,7 +1058,7 @@ namespace CrazyMelsClient
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
-                    response = await client.DeleteAsync("api/Customer/");
+                    response = await client.DeleteAsync("api/Customer/custID=" + table.custID + "/firstName=" + table.firstName + "/lastName=" + table.lastName + "/phonrNumber=" + table.phoneNumber);
                 }
             }
         }
@@ -1083,7 +1083,7 @@ namespace CrazyMelsClient
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
-                    response = await client.DeleteAsync("api/Customer/");
+                    response = await client.DeleteAsync("api/Customer/prodID=" + table.prodID + "/prodName=" + table.prodName + "/price=" + table.price + "/prodWeight=" + table.prodWeight + "/inStock=" + table.inStock);
                 }
             }
         }
