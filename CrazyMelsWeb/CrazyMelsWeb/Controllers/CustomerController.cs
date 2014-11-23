@@ -127,7 +127,42 @@ namespace CrazyMelsWeb.Controllers
 
             return Ok(new Customer(c_customer));
         }
+/*
 
+        private C_Customer searchCustomer (Customer userInput)
+        {
+            IQueryable<C_Customer> searchResults = null;
+            if(userInput.custID > 0)
+            {
+                return db.C_Customer.Find(userInput.custID);
+            }
+
+            if(userInput.phoneNumber != null && userInput.phoneNumber != String.Empty)
+            {
+               searchResults = db.C_Customer.Where(Cust => Cust.phoneNumber == userInput.phoneNumber);
+               if(searchResults.Count() == 1)
+               {
+                   return searchResults.First();
+               }
+               else if (searchResults.Count() == 0)
+               {
+                   return null;
+               }
+            }
+
+            if(userInput.)
+
+
+
+            
+
+
+
+
+        }
+
+
+        */
         private bool C_CustomerExists(int id)
         {
             return db.C_Customer.Count(e => e.custID == id) > 0;
