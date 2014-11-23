@@ -1043,6 +1043,7 @@ namespace CrazyMelsClient
         {
             using (var client = new HttpClient())
             {
+                string path;
                 client.BaseAddress = new Uri("http://localhost:1973/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1058,7 +1059,8 @@ namespace CrazyMelsClient
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
-                    response = await client.DeleteAsync("api/Customer/custID=" + table.custID + "/firstName=" + table.firstName + "/lastName=" + table.lastName + "/phonrNumber=" + table.phoneNumber);
+                    path = "api/Customer/custID=" + table.custID + "/firstName=" + table.firstName + "/lastName=" + table.lastName + "/phoneNumber=" + table.phoneNumber;
+                    response = await client.DeleteAsync(path);
                 }
             }
         }
@@ -1067,6 +1069,7 @@ namespace CrazyMelsClient
         {
             using (var client = new HttpClient())
             {
+                string path;
                 client.BaseAddress = new Uri("http://192.168.0.120/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1083,7 +1086,8 @@ namespace CrazyMelsClient
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
-                    response = await client.DeleteAsync("api/Customer/prodID=" + table.prodID + "/prodName=" + table.prodName + "/price=" + table.price + "/prodWeight=" + table.prodWeight + "/inStock=" + table.inStock);
+                    path = "api/Customer/prodID=" + table.prodID + "/prodName=" + table.prodName + "/price=" + table.price + "/prodWeight=" + table.prodWeight + "/inStock=" + table.inStock;
+                    response = await client.DeleteAsync(path);
                 }
             }
         }
