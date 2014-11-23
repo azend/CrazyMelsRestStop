@@ -621,7 +621,10 @@ namespace CrazyMelsClient
                     }
                 }
                 Customer customer = new Customer();
-                customer.custID = Convert.ToInt32(customerCustID_textbox.Text);
+                if (customerCustID_textbox.Text != "")
+                {
+                    customer.custID = Convert.ToInt32(customerCustID_textbox.Text);
+                }
                 customer.firstName = firstName_textbox.Text;
                 customer.lastName = lastName_textbox.Text;
                 customer.phoneNumber = phoneNumber_textbox.Text;
