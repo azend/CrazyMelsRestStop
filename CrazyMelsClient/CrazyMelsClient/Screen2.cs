@@ -1043,6 +1043,7 @@ namespace CrazyMelsClient
         {
             using (var client = new HttpClient())
             {
+                string path;
                 client.BaseAddress = new Uri("http://localhost:1973/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1058,7 +1059,8 @@ namespace CrazyMelsClient
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
-                    response = await client.DeleteAsync("api/Customer/custID=" + table.custID + "/firstName=" + table.firstName + "/lastName=" + table.lastName + "/phonrNumber=" + table.phoneNumber);
+                    path = "api/Customer/custID=" + table.custID + "/firstName=" + table.firstName + "/lastName=" + table.lastName + "/phoneNumber=" + table.phoneNumber;
+                    response = await client.DeleteAsync(path);
                 }
             }
         }
@@ -1067,6 +1069,7 @@ namespace CrazyMelsClient
         {
             using (var client = new HttpClient())
             {
+                string path;
                 client.BaseAddress = new Uri("http://192.168.0.120/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1083,7 +1086,8 @@ namespace CrazyMelsClient
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
-                    response = await client.DeleteAsync("api/Customer/prodID=" + table.prodID + "/prodName=" + table.prodName + "/price=" + table.price + "/prodWeight=" + table.prodWeight + "/inStock=" + table.inStock);
+                    path = "api/Customer/prodID=" + table.prodID + "/prodName=" + table.prodName + "/price=" + table.price + "/prodWeight=" + table.prodWeight + "/inStock=" + table.inStock;
+                    response = await client.DeleteAsync(path);
                 }
             }
         }
@@ -1092,6 +1096,7 @@ namespace CrazyMelsClient
         {
             using (var client = new HttpClient())
             {
+                string path = "api/Order/orderID=" + table.orderID + "/custID=" + table.custID + "/poNumber=" + table.poNumber + "/orderDate=" + table.orderDate;
                 client.BaseAddress = new Uri("http://192.168.0.120/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1100,15 +1105,15 @@ namespace CrazyMelsClient
 
                 if (screen1Option == (int)CRUD.INSERT)
                 {
-                    response = await client.PostAsJsonAsync("api/Customer/", table);
+                    response = await client.PostAsJsonAsync("api/Order/", table);
                 }
                 else if (screen1Option == (int)CRUD.UPDATE)
                 {
-                    response = await client.PutAsJsonAsync("api/Customer/", table);
+                    response = await client.PutAsJsonAsync("api/Order/", table);
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
-                    response = await client.DeleteAsync("api/Customer/");
+                    response = await client.DeleteAsync(path);
                 }
             }
         }
@@ -1117,6 +1122,7 @@ namespace CrazyMelsClient
         {
             using (var client = new HttpClient())
             {
+                string path = "api/Cart/orderID=" + table.orderID + "/prodID=" + table.prodID + "/quantity=" + table.quantity;
                 client.BaseAddress = new Uri("http://192.168.0.120/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1125,15 +1131,16 @@ namespace CrazyMelsClient
 
                 if (screen1Option == (int)CRUD.INSERT)
                 {
-                    response = await client.PostAsJsonAsync("api/Customer/", table);
+                    response = await client.PostAsJsonAsync("api/Cart/", table);
+
                 }
                 else if (screen1Option == (int)CRUD.UPDATE)
                 {
-                    response = await client.PutAsJsonAsync("api/Customer/", table);
+                    response = await client.PutAsJsonAsync("api/Cart/", table);
                 }
                 else if (screen1Option == (int)CRUD.DELETE)
                 {
-                    response = await client.DeleteAsync("api/Customer/");
+                    response = await client.DeleteAsync(path);
                 }
             }
         }
@@ -1161,8 +1168,6 @@ namespace CrazyMelsClient
 
             return true;
         }
-
-
 
         public bool ValidateCustomerName(string name, int type)
         {

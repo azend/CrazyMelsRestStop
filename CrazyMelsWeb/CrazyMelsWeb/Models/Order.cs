@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CrazyMelsWeb.Models
 {
-    public class Order
+    public class Order : CrazyMelDataModel
     {
         public Order (C_Order rawInput)
         {
