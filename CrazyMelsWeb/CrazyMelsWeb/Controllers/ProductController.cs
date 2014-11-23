@@ -13,7 +13,7 @@ namespace CrazyMelsWeb.Controllers
 {
     public class ProductController : ApiController
     {
-        private CrazyMelsRestServiceEntities db = new CrazyMelsRestServiceEntities();
+        private CrazyMelsEntities db = new CrazyMelsEntities();
 
         //TODO: CustomerController, Get, ADD, Search functions beyond get all scenario.
         public Product[] Get()

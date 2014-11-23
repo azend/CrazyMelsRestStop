@@ -46,7 +46,7 @@
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "CrazyMelvin\'s Shopping Emporium";
             this.ResumeLayout(false);
 
         }

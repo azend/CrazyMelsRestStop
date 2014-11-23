@@ -11,6 +11,7 @@ namespace CrazyMelsClient
     public partial class Screen1 : Form
     {
         Screen2 screen2;
+        Screen3 screen3;
         public Panel panel = new Panel();
 
         public Screen1()
@@ -45,7 +46,7 @@ namespace CrazyMelsClient
             createScreen2(3);
         }
 
-        private void createScreen2(int action)
+        public void createScreen2(int action)
         {
             screen2 = new Screen2(action);
             screen2.Owner = this;
@@ -53,6 +54,17 @@ namespace CrazyMelsClient
             panel.Dock = DockStyle.Fill;
             panel.Controls.Add(screen2);
             screen2.Show();
+            HideButtons();
+        }
+
+        public void createScreen3()
+        {
+            screen3 = new Screen3();
+            screen3.Owner = this;
+            screen3.TopLevel = false;
+            panel.Dock = DockStyle.Fill;
+            panel.Controls.Add(screen3);
+            screen3.Show();
             HideButtons();
         }
 
@@ -84,5 +96,7 @@ namespace CrazyMelsClient
             pictureBox1.Hide();
             pictureBox2.Hide();
         }
+
+
     }
 }

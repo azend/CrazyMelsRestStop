@@ -13,7 +13,7 @@ namespace CrazyMelsWeb.Models
             prodName = rawInput.prodName;
             price = rawInput.price;
             prodWeight = rawInput.prodWeight;
-            inStock = Convert.ToBoolean( rawInput.inStock);
+            //inStock = Convert.ToBoolean( rawInput.inStock);
 
         }
         public Product()

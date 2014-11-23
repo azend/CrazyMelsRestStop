@@ -161,32 +161,32 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="CrazyMel.Context.cs">
+    <Compile Include="CrazyMels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrazyMel.Context.tt</DependentUpon>
+      <DependentUpon>CrazyMels.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CrazyMel.cs">
+    <Compile Include="CrazyMels.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrazyMel.tt</DependentUpon>
+      <DependentUpon>CrazyMels.tt</DependentUpon>
     </Compile>
-    <Compile Include="CrazyMel.Designer.cs">
+    <Compile Include="CrazyMels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrazyMel.edmx</DependentUpon>
+      <DependentUpon>CrazyMels.edmx</DependentUpon>
     </Compile>
     <Compile Include="C_Cart.cs">
-      <DependentUpon>CrazyMel.tt</DependentUpon>
+      <DependentUpon>CrazyMels.tt</DependentUpon>
     </Compile>
     <Compile Include="C_Customer.cs">
-      <DependentUpon>CrazyMel.tt</DependentUpon>
+      <DependentUpon>CrazyMels.tt</DependentUpon>
     </Compile>
     <Compile Include="C_Order.cs">
-      <DependentUpon>CrazyMel.tt</DependentUpon>
+      <DependentUpon>CrazyMels.tt</DependentUpon>
     </Compile>
     <Compile Include="C_Product.cs">
-      <DependentUpon>CrazyMel.tt</DependentUpon>
+      <DependentUpon>CrazyMels.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -232,25 +232,25 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="CrazyMel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CrazyMel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="CrazyMel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CrazyMel.edmx</DependentUpon>
-      <LastGenOutput>CrazyMel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="CrazyMel.edmx.diagram">
-      <DependentUpon>CrazyMel.edmx</DependentUpon>
-    </Content>
-    <Content Include="CrazyMel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CrazyMel.edmx</DependentUpon>
-      <LastGenOutput>CrazyMel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <EntityDeploy Include="CrazyMels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CrazyMels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="CrazyMels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CrazyMels.edmx</DependentUpon>
+      <LastGenOutput>CrazyMels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CrazyMels.edmx.diagram">
+      <DependentUpon>CrazyMels.edmx</DependentUpon>
+    </Content>
+    <Content Include="CrazyMels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CrazyMels.edmx</DependentUpon>
+      <LastGenOutput>CrazyMels.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

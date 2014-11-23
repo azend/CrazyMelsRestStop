@@ -14,7 +14,7 @@ namespace CrazyMelsWeb.Controllers
 {
     public class CartController : ApiController
     {
-        private CrazyMelsRestServiceEntities db = new CrazyMelsRestServiceEntities();
+        private CrazyMelsEntities db = new CrazyMelsEntities();
 
         public Cart[] Get()
         {

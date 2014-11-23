@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CrazyMelsRestServiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CrazyMelsRestServiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="_Cart">
           <Key>
             <PropertyRef Name="orderID" />
@@ -20,15 +20,15 @@
           </Key>
           <Property Name="custID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="firstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="lastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="phoneNumber" Type="nvarchar" MaxLength="12" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="12" Nullable="false" />
         </EntityType>
         <EntityType Name="_Order">
           <Key>
             <PropertyRef Name="orderID" />
           </Key>
           <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="custID" Type="int" />
+          <Property Name="custID" Type="int" Nullable="false" />
           <Property Name="poNumber" Type="nvarchar" MaxLength="30" />
           <Property Name="orderDate" Type="date" Nullable="false" />
         </EntityType>
@@ -37,12 +37,12 @@
             <PropertyRef Name="prodID" />
           </Key>
           <Property Name="prodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="prodName" Type="nvarchar" MaxLength="100" />
+          <Property Name="prodName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="price" Type="float" Nullable="false" />
           <Property Name="prodWeight" Type="float" Nullable="false" />
-          <Property Name="inStock" Type="binary" MaxLength="1" Nullable="false" />
+          <Property Name="inStock" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK___Cart__orderID__1920BF5C">
+        <Association Name="FK___Cart__orderID__3F466844">
           <End Role="_Order" Type="Self._Order" Multiplicity="1" />
           <End Role="_Cart" Type="Self._Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -54,7 +54,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK___Cart__prodID__1A14E395">
+        <Association Name="FK___Cart__prodID__403A8C7D">
           <End Role="_Product" Type="Self._Product" Multiplicity="1" />
           <End Role="_Cart" Type="Self._Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -66,8 +66,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK___Order__custID__164452B1">
-          <End Role="_Customer" Type="Self._Customer" Multiplicity="0..1" />
+        <Association Name="FK___Order__custID__3C69FB99">
+          <End Role="_Customer" Type="Self._Customer" Multiplicity="1" />
           <End Role="_Order" Type="Self._Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="_Customer">
@@ -83,15 +83,15 @@
           <EntitySet Name="_Customer" EntityType="Self._Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="_Order" EntityType="Self._Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="_Product" EntityType="Self._Product" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK___Cart__orderID__1920BF5C" Association="Self.FK___Cart__orderID__1920BF5C">
+          <AssociationSet Name="FK___Cart__orderID__3F466844" Association="Self.FK___Cart__orderID__3F466844">
             <End Role="_Order" EntitySet="_Order" />
             <End Role="_Cart" EntitySet="_Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK___Cart__prodID__1A14E395" Association="Self.FK___Cart__prodID__1A14E395">
+          <AssociationSet Name="FK___Cart__prodID__403A8C7D" Association="Self.FK___Cart__prodID__403A8C7D">
             <End Role="_Product" EntitySet="_Product" />
             <End Role="_Cart" EntitySet="_Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK___Order__custID__164452B1" Association="Self.FK___Order__custID__164452B1">
+          <AssociationSet Name="FK___Order__custID__3C69FB99" Association="Self.FK___Order__custID__3C69FB99">
             <End Role="_Customer" EntitySet="_Customer" />
             <End Role="_Order" EntitySet="_Order" />
           </AssociationSet>
@@ -109,8 +109,8 @@
           <Property Name="orderID" Type="Int32" Nullable="false" />
           <Property Name="prodID" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="C_Order" Relationship="Self.FK___Cart__orderID__1920BF5C" FromRole="C_Cart" ToRole="C_Order" />
-          <NavigationProperty Name="C_Product" Relationship="Self.FK___Cart__prodID__1A14E395" FromRole="C_Cart" ToRole="C_Product" />
+          <NavigationProperty Name="C_Order" Relationship="Self.FK___Cart__orderID__3F466844" FromRole="C_Cart" ToRole="C_Order" />
+          <NavigationProperty Name="C_Product" Relationship="Self.FK___Cart__prodID__403A8C7D" FromRole="C_Cart" ToRole="C_Product" />
         </EntityType>
         <EntityType Name="C_Customer">
           <Key>
@@ -118,33 +118,33 @@
           </Key>
           <Property Name="custID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="phoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="C_Order" Relationship="Self.FK___Order__custID__164452B1" FromRole="C_Customer" ToRole="C_Order" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Order" Relationship="Self.FK___Order__custID__3C69FB99" FromRole="C_Customer" ToRole="C_Order" />
         </EntityType>
         <EntityType Name="C_Order">
           <Key>
             <PropertyRef Name="orderID" />
           </Key>
           <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="custID" Type="Int32" />
+          <Property Name="custID" Type="Int32" Nullable="false" />
           <Property Name="poNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="C_Cart" Relationship="Self.FK___Cart__orderID__1920BF5C" FromRole="C_Order" ToRole="C_Cart" />
-          <NavigationProperty Name="C_Customer" Relationship="Self.FK___Order__custID__164452B1" FromRole="C_Order" ToRole="C_Customer" />
+          <NavigationProperty Name="C_Cart" Relationship="Self.FK___Cart__orderID__3F466844" FromRole="C_Order" ToRole="C_Cart" />
+          <NavigationProperty Name="C_Customer" Relationship="Self.FK___Order__custID__3C69FB99" FromRole="C_Order" ToRole="C_Customer" />
         </EntityType>
         <EntityType Name="C_Product">
           <Key>
             <PropertyRef Name="prodID" />
           </Key>
           <Property Name="prodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="prodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="prodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="price" Type="Double" Nullable="false" />
           <Property Name="prodWeight" Type="Double" Nullable="false" />
-          <Property Name="inStock" Type="Binary" MaxLength="1" FixedLength="true" Nullable="false" />
-          <NavigationProperty Name="C_Cart" Relationship="Self.FK___Cart__prodID__1A14E395" FromRole="C_Product" ToRole="C_Cart" />
+          <Property Name="inStock" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="C_Cart" Relationship="Self.FK___Cart__prodID__403A8C7D" FromRole="C_Product" ToRole="C_Cart" />
         </EntityType>
-        <Association Name="FK___Cart__orderID__1920BF5C">
+        <Association Name="FK___Cart__orderID__3F466844">
           <End Role="C_Order" Type="Self.C_Order" Multiplicity="1" />
           <End Role="C_Cart" Type="Self.C_Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -156,7 +156,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK___Cart__prodID__1A14E395">
+        <Association Name="FK___Cart__prodID__403A8C7D">
           <End Role="C_Product" Type="Self.C_Product" Multiplicity="1" />
           <End Role="C_Cart" Type="Self.C_Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -168,8 +168,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK___Order__custID__164452B1">
-          <End Role="C_Customer" Type="Self.C_Customer" Multiplicity="0..1" />
+        <Association Name="FK___Order__custID__3C69FB99">
+          <End Role="C_Customer" Type="Self.C_Customer" Multiplicity="1" />
           <End Role="C_Order" Type="Self.C_Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Customer">
@@ -180,20 +180,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CrazyMelsRestServiceEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CrazyMelsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C_Cart" EntityType="Self.C_Cart" />
           <EntitySet Name="C_Customer" EntityType="Self.C_Customer" />
           <EntitySet Name="C_Order" EntityType="Self.C_Order" />
           <EntitySet Name="C_Product" EntityType="Self.C_Product" />
-          <AssociationSet Name="FK___Cart__orderID__1920BF5C" Association="Self.FK___Cart__orderID__1920BF5C">
+          <AssociationSet Name="FK___Cart__orderID__3F466844" Association="Self.FK___Cart__orderID__3F466844">
             <End Role="C_Order" EntitySet="C_Order" />
             <End Role="C_Cart" EntitySet="C_Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK___Cart__prodID__1A14E395" Association="Self.FK___Cart__prodID__1A14E395">
+          <AssociationSet Name="FK___Cart__prodID__403A8C7D" Association="Self.FK___Cart__prodID__403A8C7D">
             <End Role="C_Product" EntitySet="C_Product" />
             <End Role="C_Cart" EntitySet="C_Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK___Order__custID__164452B1" Association="Self.FK___Order__custID__164452B1">
+          <AssociationSet Name="FK___Order__custID__3C69FB99" Association="Self.FK___Order__custID__3C69FB99">
             <End Role="C_Customer" EntitySet="C_Customer" />
             <End Role="C_Order" EntitySet="C_Order" />
           </AssociationSet>
@@ -203,7 +203,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CrazyMelsRestServiceModelStoreContainer" CdmEntityContainer="CrazyMelsRestServiceEntities">
+        <EntityContainerMapping StorageEntityContainer="CrazyMelsRestServiceModelStoreContainer" CdmEntityContainer="CrazyMelsEntities">
           <EntitySetMapping Name="C_Cart">
             <EntityTypeMapping TypeName="CrazyMelsRestServiceModel.C_Cart">
               <MappingFragment StoreEntitySet="_Cart">
@@ -260,7 +260,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
