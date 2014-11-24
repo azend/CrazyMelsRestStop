@@ -62,7 +62,7 @@ namespace CrazyMelsWeb.Controllers
             }
             /*if (c_product.inStock == false)
             {
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "Cart cannot be updated because the product is currently out of stock!"));
+                return BadRequest("Cart cannot be updated because the product is currently out of stock!"));
             }*/
             if (db.C_Cart.Find(c_cart.orderID) == null)
             {
@@ -95,9 +95,13 @@ namespace CrazyMelsWeb.Controllers
             {
                 return BadRequest(ModelState);
             }
+            if (db.C_Product.Find(c_cart.prodID) == null)
+            {
+                return BadRequest("Invalid ProductId");
+            }
             /*if (c_product.inStock == false)
             {
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "The Product cannot be inserted into the cart because it is out of stock!"));
+                return BadRequest("The Product cannot be inserted into the cart because it is out of stock!");
             }*/
 
             db.Entry(c_cart).State = EntityState.Added;

@@ -59,17 +59,17 @@ namespace CrazyMelsWeb.Controllers
         public IHttpActionResult PostOrder(Order order)
         {
             C_Order c_order = order.ToC_Order(order);
-            
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if(db.C_Order.Find(c_order.orderID) == null)
+            if (db.C_Customer.Find(c_order.custID) == null)
             {
-                return NotFound();
+                return BadRequest("Invalid CustomerId");
             }
-
-            db.Entry(c_order).State = EntityState.Modified;
+          
+            db.Entry(c_order).State = EntityState.Added;
 
             db.SaveChanges();
 
