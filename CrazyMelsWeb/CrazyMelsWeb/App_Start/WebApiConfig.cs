@@ -10,7 +10,7 @@ namespace CrazyMelsWeb
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            config.Formatters.JsonFormatter.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects;
             // Web API routes
             config.MapHttpAttributeRoutes();
 

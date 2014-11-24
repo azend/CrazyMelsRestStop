@@ -1094,6 +1094,7 @@ namespace CrazyMelsClient
                     }
                     if (search.Length == 0)
                     {
+                        MessageBox.Show("You did not enter anything to search");
                         return;
                     }
                     search.Remove(search.Length - 1);
@@ -1119,7 +1120,13 @@ namespace CrazyMelsClient
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
 
-                response = await client.GetAsync("api/Search/" + parameters);
+                response = await client.GetAsync("api/Search/");// + parameters);
+                if (response.IsSuccessStatusCode)
+                {
+                    IEnumerable<CrazyMelDataModel> data;
+                    data = await response.Content.ReadAsAsync<CrazyMelDataModel[]>();
+                    Cart c = (Cart)data.ToArray()[3];
+                }
             }
         }
 

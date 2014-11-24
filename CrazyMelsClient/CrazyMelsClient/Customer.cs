@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CrazyMelsClient
 {
-    public class Customer
+    public class Customer : CrazyMelDataModel
     {
         public int custID { get; set; }
         public string firstName { get; set; }

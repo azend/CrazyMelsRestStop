@@ -1,5 +1,4 @@
 ﻿using CrazyMelsWeb.Models;
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -81,6 +80,7 @@ namespace CrazyMelsWeb.Controllers
         [ResponseType(typeof(Customer))]
 
         [Route("api/customer/{*input}")]
+
         public IHttpActionResult DeleteCustomer(string input)
         {
             SortedList<String, String> paramValues;
@@ -92,14 +92,12 @@ namespace CrazyMelsWeb.Controllers
             {
                 return BadRequest(e.Message);
             }
-
-
             Customer customerToDelete = new Customer();
 
             if (paramValues.ContainsKey("custID"))
             {
                 Int32 tempCustID;
-                if (Int32.TryParse(paramValues["cID"], out tempCustID))
+                if (Int32.TryParse(paramValues["custID"], out tempCustID))
                 {
                     customerToDelete.custID = tempCustID;
                 }
