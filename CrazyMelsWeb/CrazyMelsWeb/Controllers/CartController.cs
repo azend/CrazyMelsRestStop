@@ -36,52 +36,36 @@ namespace CrazyMelsWeb.Controllers
         [Route("api/cart/{*input}")]
         public IHttpActionResult DeleteC_Cart(String input) //int oid, int pid)
         {
-           
-
-            Char parameterDelimiter = '/';
-            Char valueDelimiter = '=';
-
-            String[] parameters = input.Split(new Char[] { parameterDelimiter });
-
-            SortedList<String, String> paramValues = new SortedList<string, string>();
-
-            foreach (String a in parameters)
-            {
-                String[] temp = a.Split(new Char[] { valueDelimiter });
-                if (temp.Length == 2)
-                {
-                    paramValues.Add(temp[0], temp[1]);
-                }
-                else if (temp.Length == 1)
-                {
-                    paramValues.Add(temp[0], String.Empty);
-                }
-                else
-                {
-                    return BadRequest();
-                }
-
-            }
-
+            SortedList<String, String> paramValues;
             Int32 oid;
             Int32 pid;
+
+            try
+            {
+                paramValues = Parsing.parseInputValuePairs(input);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
 
 
             if (paramValues.ContainsKey("pID") && paramValues.ContainsKey("oID"))
             {
                 if (!(Int32.TryParse(paramValues["pID"], out pid)))
                 {
-                    return BadRequest();
+                    return BadRequest("Invalid pID value");
                 }
 
                 if (!(Int32.TryParse(paramValues["oID"], out oid)))
                 {
-                    return BadRequest();
+                    return BadRequest("Invalid pID value");
                 }
             }
             else
             {
-                return BadRequest();
+                return BadRequest("Both oID and pID required");
             }
                         
 
@@ -95,7 +79,7 @@ namespace CrazyMelsWeb.Controllers
             db.C_Cart.Remove(c_cart);
             db.SaveChanges();
 
-            return Ok(c_cart);
+            return Ok(new Cart(c_cart));
         }
 
         public IHttpActionResult PutC_Cart(Cart cart)

@@ -77,19 +77,84 @@ namespace CrazyMelsWeb.Controllers
         }
 
         
-        public IHttpActionResult DeleteOrder(int oid)
+        public IHttpActionResult DeleteOrder(String input)
         {
-            C_Order c_order = db.C_Order.Find(oid);
+            SortedList<String, String> paramValues;
+            Int32 oid;
+            C_Order orderToDelete = null;
 
-            if (c_order == null)
+            try
+            {
+                paramValues = Parsing.parseInputValuePairs(input);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            if (paramValues.ContainsKey("oID") && Int32.TryParse(paramValues["oID"], out oid))
+            {
+                if (oid == 0)
+                {
+                    orderToDelete = null;
+                }
+                else
+                {
+                    orderToDelete = db.C_Order.Find(oid);
+                    if (orderToDelete == null)
+                    {
+                        return BadRequest("Order oid does not exist");
+                    }
+                }
+            }
+
+            if(orderToDelete == null)
+            {
+                if(paramValues.ContainsKey("custID") && paramValues.ContainsKey("orderDate"))
+                {
+                    Int32 tempCustID;
+                    DateTime tempOrderDate;
+                    if(Int32.TryParse(paramValues["custID"], out tempCustID) && DateTime.TryParse(paramValues["orderDate"], out tempOrderDate) )
+                    {
+                        IQueryable<C_Order> tempList = db.C_Order.Where(data=> data.custID == tempCustID && data.orderDate == tempOrderDate);
+                        if(tempList.Count() == 1)
+                        {
+                            orderToDelete = tempList.First();
+                        }
+                        else if( tempList.Count() == 0)
+                        {
+                            orderToDelete = null;
+                        }
+                        else
+                        {
+                            return BadRequest("Too many results, refine delete");
+                        }
+                    }
+                    else
+                    {
+                        return BadRequest("Invalid custID or orderDate");
+                    }
+                }
+                {
+                    
+                }
+            }
+
+
+
+
+            
+            if (orderToDelete == null)
             {
                 return NotFound();
             }
 
-            db.C_Order.Remove(c_order);
+            IQueryable<C_Cart> cartsToDelete = db.C_Cart.Where(data => data.orderID == orderToDelete.orderID);
+            db.C_Cart.RemoveRange(cartsToDelete);
+            db.C_Order.Remove(orderToDelete);
             db.SaveChanges();
 
-            return Ok(c_order);
+            return Ok(new Order(orderToDelete));
         }
 
         private bool C_OrderExists(int oid)

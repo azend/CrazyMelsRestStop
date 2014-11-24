@@ -24,7 +24,7 @@ namespace CrazyMelsWeb.Controllers
             List<Customer> data = new List<Customer>();
             IQueryable<C_Customer> returnValue = from mine in db.C_Customer
                                                  select mine;
-            
+
             foreach (C_Customer cust in returnValue)
             {
                 data.Add(new Customer(cust));
@@ -43,16 +43,16 @@ namespace CrazyMelsWeb.Controllers
                 return NotFound();
             }
 
-           // C_Customer completeCustomer;
+            // C_Customer completeCustomer;
 
             if (!Validation.IsValid.MergeEntries(currentCustomer, updateCustomer))
             {
                 return BadRequest();
             }
 
-           // currentCustomer = completeCustomer;
+            // currentCustomer = completeCustomer;
             db.Entry(currentCustomer).State = EntityState.Modified;
-            
+
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -66,57 +66,47 @@ namespace CrazyMelsWeb.Controllers
         public IHttpActionResult PostC_Customer(Customer customer)
         {
             C_Customer newCustomer = customer.ToC_Customer();
-            if(!Validation.IsValid.NewEntry(newCustomer))
+            if (!Validation.IsValid.NewEntry(newCustomer))
             {
                 return BadRequest("Invalid New Entry");
             }
-                                   
+
             db.C_Customer.Add(newCustomer);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = newCustomer.custID },new Customer(newCustomer));
+            return CreatedAtRoute("DefaultApi", new { id = newCustomer.custID }, new Customer(newCustomer));
         }
 
         // DELETE api/Customer/5
         [ResponseType(typeof(Customer))]
 
         [Route("api/customer/{*input}")]
-        public IHttpActionResult DeleteCustomer(string input)       // Customer customerToDelete)
-  
-
-{
-            
-            Char parameterDelimiter = '/';
-            Char valueDelimiter = '=';
-
-            String[] parameters = input.Split(new Char[] { parameterDelimiter });
-
-            SortedList<String, String> paramValues = new SortedList<string, string>();
-
-            foreach (String a in parameters)
+        public IHttpActionResult DeleteCustomer(string input)
+        {
+            SortedList<String, String> paramValues;
+            try
             {
-                String[] temp = a.Split(new Char[] { valueDelimiter });
-                if (temp.Length == 2)
-                {
-                    paramValues.Add(temp[0], temp[1]);
-                }
-                else if (temp.Length == 1)
-                {
-                    paramValues.Add(temp[0], String.Empty);
-                }
-                else
-                {
-                    return BadRequest();
-                }
-
+                paramValues = Parsing.parseInputValuePairs(input);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
             }
 
 
             Customer customerToDelete = new Customer();
 
-            if(paramValues.ContainsKey("custID"))
+            if (paramValues.ContainsKey("custID"))
             {
-                customerToDelete.custID = Int32.Parse(paramValues["custID"]);
+                Int32 tempCustID;
+                if (Int32.TryParse(paramValues["cID"], out tempCustID))
+                {
+                    customerToDelete.custID = tempCustID;
+                }
+                else
+                {
+                    return BadRequest("Invalid custID indicated");
+                }
             }
 
             if (paramValues.ContainsKey("firstName"))
@@ -131,28 +121,22 @@ namespace CrazyMelsWeb.Controllers
             {
                 customerToDelete.phoneNumber = paramValues["phoneNumber"];
             }
-            
+
             C_Customer c_customer = searchCustomer(customerToDelete);
             if (c_customer == null)
             {
                 return NotFound();
             }
 
-            IQueryable<C_Order> custOrderDate = from orders in db.C_Order
-                                                where orders.custID == c_customer.custID
-                                                select orders;
+            IQueryable<C_Order> custOrderData = db.C_Order.Where(orders => orders.custID == c_customer.custID);
 
-
-            foreach (C_Order a in custOrderDate)
+            foreach (C_Order a in custOrderData)
             {
-                IQueryable<C_Cart> cartData = from carts in db.C_Cart where carts.orderID == a.orderID select carts;
-                foreach (C_Cart cart in cartData)
-                {
-                    db.C_Cart.Remove(cart);
-                }
-                db.C_Order.Remove(a);
+                IQueryable<C_Cart> cartData = db.C_Cart.Where(carts => carts.orderID == a.orderID);
+                db.C_Cart.RemoveRange(cartData);
             }
 
+            db.C_Order.RemoveRange(custOrderData);
             db.C_Customer.Remove(c_customer);
             db.SaveChanges();
 

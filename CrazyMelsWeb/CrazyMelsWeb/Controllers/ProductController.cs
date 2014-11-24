@@ -40,39 +40,23 @@ namespace CrazyMelsWeb.Controllers
 
         public IHttpActionResult DeleteProduct(String input)
         {
+            SortedList<String, String> paramValues;
+            C_Product c_product = null;
+            Int32 pID;
 
-            Char parameterDelimiter = '/';
-            Char valueDelimiter = '=';
-
-            String[] parameters = input.Split(new Char[] { parameterDelimiter });
-
-            SortedList<String, String> paramValues = new SortedList<string, string>();
-
-            foreach (String a in parameters)
+            try
             {
-                String[] temp = a.Split(new Char[] { valueDelimiter });
-                if (temp.Length == 2)
-                {
-                    paramValues.Add(temp[0], temp[1]);
-                }
-                else if (temp.Length == 1)
-                {
-                    paramValues.Add(temp[0], String.Empty);
-                }
-                else
-                {
-                    return BadRequest();
-                }
-
+                paramValues = Parsing.parseInputValuePairs(input);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
             }
 
-
-            C_Product c_product;
-            Int32 pID;
+            
             if (paramValues.ContainsKey("pID") && !String.IsNullOrWhiteSpace(paramValues["pID"]))
-                {
-
-                    if (Int32.TryParse(paramValues["pID"], out pID))
+            {
+                   if (Int32.TryParse(paramValues["pID"], out pID))
                     {
                         c_product = db.C_Product.Find(pID);
                     }
@@ -85,7 +69,7 @@ namespace CrazyMelsWeb.Controllers
 
             
             
-            else if (paramValues.ContainsKey("prodName"))
+            if (paramValues.ContainsKey("prodName") && c_product == null)
             {
                 IQueryable<C_Product> data = db.C_Product.Where(prod => prod.prodName == paramValues["prodName"].Trim());
                 Int32 tempCount = data.Count();
@@ -102,11 +86,7 @@ namespace CrazyMelsWeb.Controllers
                     return BadRequest();
                 }
             }
-            else
-                {
-                    return BadRequest();
-                }
-         
+           
 
             if (c_product == null)
             {
