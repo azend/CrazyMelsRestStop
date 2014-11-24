@@ -23,6 +23,8 @@ namespace CrazyMelsClient
         {
             InitializeComponent();
 
+            label1.Visible = false;
+
             locationY[0] = 94;
             locationY[1] = 269;
             locationY[2] = 444;
@@ -152,6 +154,7 @@ namespace CrazyMelsClient
             dataGridView1.Name = name;
             dataGridView1.Location = new Point(locationX, locationY[tablesToShow]);
             dataGridView1.Size = new Size(589, 169);
+            dataGridView1.EditingControl.Enabled = false;
 
             dataGridView1.ColumnCount = columnNumber;
             dataGridView1.ColumnHeadersVisible = true;
@@ -161,6 +164,12 @@ namespace CrazyMelsClient
                 dataGridView1.Columns[x].Name = columnNames[x];
             }
             tablesToShow++;
+        }
+
+        public void generateMessage(string message)
+        {
+            label1.Text = message;
+            label1.Visible = true;
         }
 
         public void positionButtons()

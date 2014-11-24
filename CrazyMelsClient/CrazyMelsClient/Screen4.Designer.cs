@@ -33,6 +33,7 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.back_button = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,11 +78,23 @@
             this.exit_button.UseVisualStyleBackColor = true;
             this.exit_button.Click += new System.EventHandler(this.exit_button_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(604, 209);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 24);
+            this.label1.TabIndex = 57;
+            this.label1.Text = "label1";
+            this.label1.Visible = false;
+            // 
             // Screen4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 920);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.exit_button);
             this.Controls.Add(this.back_button);
             this.Controls.Add(this.titleLabel);
@@ -102,5 +115,6 @@
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Button back_button;
         private System.Windows.Forms.Button exit_button;
+        private System.Windows.Forms.Label label1;
     }
 }
