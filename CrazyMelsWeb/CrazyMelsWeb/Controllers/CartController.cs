@@ -33,8 +33,58 @@ namespace CrazyMelsWeb.Controllers
         }
 
         [ResponseType(typeof(Cart))]
-        public IHttpActionResult DeleteC_Cart(int oid, int pid)
+        [Route("api/cart/{*input}")]
+        public IHttpActionResult DeleteC_Cart(String input) //int oid, int pid)
         {
+           
+
+            Char parameterDelimiter = '/';
+            Char valueDelimiter = '=';
+
+            String[] parameters = input.Split(new Char[] { parameterDelimiter });
+
+            SortedList<String, String> paramValues = new SortedList<string, string>();
+
+            foreach (String a in parameters)
+            {
+                String[] temp = a.Split(new Char[] { valueDelimiter });
+                if (temp.Length == 2)
+                {
+                    paramValues.Add(temp[0], temp[1]);
+                }
+                else if (temp.Length == 1)
+                {
+                    paramValues.Add(temp[0], String.Empty);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+            }
+
+            Int32 oid;
+            Int32 pid;
+
+
+            if (paramValues.ContainsKey("pID") && paramValues.ContainsKey("oID"))
+            {
+                if (!(Int32.TryParse(paramValues["pID"], out pid)))
+                {
+                    return BadRequest();
+                }
+
+                if (!(Int32.TryParse(paramValues["oID"], out oid)))
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+                        
+
             C_Cart c_cart = db.C_Cart.Find(oid, pid);
 
             if (c_cart == null)

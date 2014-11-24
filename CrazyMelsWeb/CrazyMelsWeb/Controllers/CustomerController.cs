@@ -79,8 +79,6 @@ namespace CrazyMelsWeb.Controllers
 
         // DELETE api/Customer/5
         [ResponseType(typeof(Customer))]
-//        [Route("api/customer/custID={custId:int}/firstName={firstName}/lastName={lastName}/phoneNumber={phoneNumber}")]
-//        public IHttpActionResult DeleteCustomer(int custID, String firstName, String lastName, String phoneNumber)       // Customer customerToDelete)
         [Route("api/customer/{*input}")]
         public IHttpActionResult DeleteCustomer(string input)       // Customer customerToDelete)
   

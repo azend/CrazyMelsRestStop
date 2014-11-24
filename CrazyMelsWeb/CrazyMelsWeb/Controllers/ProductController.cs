@@ -32,24 +32,91 @@ namespace CrazyMelsWeb.Controllers
 
         }
 
-
+        [Route("api/product/{*input}")]
         // DELETE api/Product/5
         //[Route("api/product/{*data})]
         [ResponseType(typeof(Product))]
-        public IHttpActionResult DeleteProduct(int pid)
+        public IHttpActionResult DeleteProduct(String input)
         {
-            C_Product c_product = db.C_Product.Find(pid);
+
+            Char parameterDelimiter = '/';
+            Char valueDelimiter = '=';
+
+            String[] parameters = input.Split(new Char[] { parameterDelimiter });
+
+            SortedList<String, String> paramValues = new SortedList<string, string>();
+
+            foreach (String a in parameters)
+            {
+                String[] temp = a.Split(new Char[] { valueDelimiter });
+                if (temp.Length == 2)
+                {
+                    paramValues.Add(temp[0], temp[1]);
+                }
+                else if (temp.Length == 1)
+                {
+                    paramValues.Add(temp[0], String.Empty);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+            }
+
+
+            C_Product c_product;
+            Int32 pID;
+            if (paramValues.ContainsKey("pID") && !String.IsNullOrWhiteSpace(paramValues["pID"]))
+                {
+
+                    if (Int32.TryParse(paramValues["pID"], out pID))
+                    {
+                        c_product = db.C_Product.Find(pID);
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+
+                }
+
+            
+            
+            else if (paramValues.ContainsKey("prodName"))
+            {
+                IQueryable<C_Product> data = db.C_Product.Where(prod => prod.prodName == paramValues["prodName"].Trim());
+                Int32 tempCount = data.Count();
+                if(tempCount == 0)
+                {
+                    c_product = null;
+                }
+                else if(tempCount == 1)
+                {
+                    c_product = data.First();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+                {
+                    return BadRequest();
+                }
+         
             if (c_product == null)
             {
                 return NotFound();
             }
 
-            db.C_Product.Remove(c_product);
 
-            foreach (C_Cart cart in db.C_Cart.Where(c => c.prodID == pid))
+
+            foreach (C_Cart cart in db.C_Cart.Where(c => c.prodID == c_product.prodID))
             {
                 db.C_Cart.Remove(cart);
             }
+            db.C_Product.Remove(c_product);
 
             db.SaveChanges();
 
