@@ -1121,7 +1121,7 @@ namespace CrazyMelsClient
                         MessageBox.Show("You did not enter anything to search");
                         return;
                     }
-                    search.Remove(search.Length - 1);
+                    search = search.Remove(search.Length - 1);
 
                     this.search(search);
                 }
