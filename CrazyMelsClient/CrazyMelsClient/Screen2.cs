@@ -1395,9 +1395,9 @@ namespace CrazyMelsClient
 
         public bool ValidateOrderDate(string date)
         {
-            string expectedFormat = "MM-DD-YY";
+            string expectedFormat = "mm-dd-yy";
             DateTime outDate;
-            if (DateTime.TryParseExact(date, expectedFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out outDate))
+            if (DateTime.TryParseExact(date, expectedFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out outDate) == true)
             {
                 return true;
             }
