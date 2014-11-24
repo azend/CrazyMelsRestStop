@@ -18,6 +18,14 @@ namespace CrazyMelsWeb.Controllers
         private CrazyMelsEntities db = new CrazyMelsEntities();
 
         //TODO: OrderController, GET(Search), ADD, Missing search functions beyond get all scenario.
+
+
+        /// <summary>
+        /// Queries the database and returns all rows from the data table;
+        /// </summary>
+        /// <returns>Array of Order objects</returns>
+       
+        [Route("api/order")]
         public Order[] Get()
         {
             List<Order> data = new List<Order>();
@@ -31,10 +39,9 @@ namespace CrazyMelsWeb.Controllers
             }
 
             return data.ToArray();
+        } //End Get();
 
-
-        }
-
+        [Route("api/order")]
         public IHttpActionResult PutOrder(Order order)
         {
             C_Order c_order = order.ToC_Order(order);
@@ -56,6 +63,7 @@ namespace CrazyMelsWeb.Controllers
         }
 
         [ResponseType(typeof(Order))]
+        [Route("api/order")]
         public IHttpActionResult PostOrder(Order order)
         {
             C_Order c_order = order.ToC_Order(order);
@@ -76,7 +84,13 @@ namespace CrazyMelsWeb.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        
+        /// <summary>
+        /// Deletes an entry in the database 
+        /// determined by the String input
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [Route("api/order/{*input}")]
         public IHttpActionResult DeleteOrder(String input)
         {
             SortedList<String, String> paramValues;
@@ -135,15 +149,8 @@ namespace CrazyMelsWeb.Controllers
                         return BadRequest("Invalid custID or orderDate");
                     }
                 }
-                {
-                    
-                }
             }
-
-
-
-
-            
+                        
             if (orderToDelete == null)
             {
                 return NotFound();

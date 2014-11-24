@@ -17,7 +17,12 @@ namespace CrazyMelsWeb.Controllers
 
         private CrazyMelsEntities db = new CrazyMelsEntities();
 
-        //TODO: CustomerController, Get, ADD, Search functions beyond get all scenario.
+        /// <summary>
+        /// Queries the database and returns all rows from the customer datatable;
+        /// </summary>
+        /// <returns>Array of Customer objects</returns>
+        /// GET api/Customer (GET All)
+        [Route("api/customer")]
         public Customer[] Get()
         {
             List<Customer> data = new List<Customer>();
@@ -31,9 +36,17 @@ namespace CrazyMelsWeb.Controllers
             return data.ToArray();
         }
 
-        // PUT api/Customer/5 (UPDATE)
+        
+        /// <summary>
+        /// Updates an instance of customer.
+        /// </summary>
+        /// <param name="customer">The customer to update</param>
+        /// <returns>httpActionResult</returns>
+        /// PUT api/Customer/5 (UPDATE)
+         [Route("api/customer")]
         public IHttpActionResult PutCustomer(Customer customer)
         {
+             //TODO: Only works if we have customer ID or phone number or (first and last name)
             C_Customer updateCustomer = customer.ToC_Customer();
             C_Customer currentCustomer = searchCustomer(customer);
 
@@ -41,27 +54,24 @@ namespace CrazyMelsWeb.Controllers
             {
                 return NotFound();
             }
-
-            // C_Customer completeCustomer;
-
+                    
             if (!Validation.IsValid.MergeEntries(currentCustomer, updateCustomer))
             {
                 return BadRequest();
             }
 
-            // currentCustomer = completeCustomer;
             db.Entry(currentCustomer).State = EntityState.Modified;
 
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);
-
         }
 
 
 
         // POST api/Customer
         [ResponseType(typeof(Customer))]
+        [Route("api/customer")]
         public IHttpActionResult PostC_Customer(Customer customer)
         {
             C_Customer newCustomer = customer.ToC_Customer();

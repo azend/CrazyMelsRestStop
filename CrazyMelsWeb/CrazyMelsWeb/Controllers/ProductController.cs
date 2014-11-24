@@ -16,6 +16,7 @@ namespace CrazyMelsWeb.Controllers
         private CrazyMelsEntities db = new CrazyMelsEntities();
 
         //TODO: CustomerController, Get, ADD, Search functions beyond get all scenario.
+        [Route("api/product")]
         public Product[] Get()
         {
            List<Product> data = new List<Product>();
@@ -108,6 +109,7 @@ namespace CrazyMelsWeb.Controllers
 
 
         // PUT api/Product/5
+        [Route("api/product")]
         public IHttpActionResult PutProduct(Product product)
         {
             if (!ModelState.IsValid)
@@ -154,6 +156,7 @@ namespace CrazyMelsWeb.Controllers
 
         // POST api/Product
         [ResponseType(typeof(Product))]
+        [Route("api/product")]
         public IHttpActionResult PostProduct(Product product)
         {
             if (!ModelState.IsValid)
