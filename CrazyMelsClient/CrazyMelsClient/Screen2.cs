@@ -1114,7 +1114,7 @@ namespace CrazyMelsClient
                     }
                     if (quantity_textbox.Text != "")
                     {
-                        search += "Cart.quantity" + quantity_textbox.Text + "/";
+                        search += "Cart.quantity=" + quantity_textbox.Text + "/";
                     }
                     if (search.Length == 0)
                     {
