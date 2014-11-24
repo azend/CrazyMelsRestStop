@@ -97,7 +97,7 @@ namespace CrazyMelsClient
 
         private void generateTable(string name, int columnNumber, string[] columnNames)
         {
-            DataGridView DataGridView1 = new DataGridView();
+            DataGridView dataGridView1 = new DataGridView();
             this.Controls.Add(dataGridView1);
 
             dataGridView1.Name = name;

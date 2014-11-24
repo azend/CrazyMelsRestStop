@@ -1155,7 +1155,12 @@ namespace CrazyMelsClient
                         }
                     }
 
-                    
+                    Screen4 screen4 = new Screen4();
+                    screen4.customerList(customers);
+                    screen4.productList(products);
+                    screen4.orderList(orders);
+                    screen4.cartList(carts);
+                    screen4.Show();
                 }
             }
         }
