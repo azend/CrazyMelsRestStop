@@ -79,81 +79,12 @@ namespace CrazyMelsWeb.Controllers
 
         // DELETE api/Customer/5
         [ResponseType(typeof(Customer))]
-//        [Route("api/customer/custID={custId:int}/firstName={firstName}/lastName={lastName}/phoneNumber={phoneNumber}")]
-//        public IHttpActionResult DeleteCustomer(int custID, String firstName, String lastName, String phoneNumber)       // Customer customerToDelete)
-        [Route("api/customer/{*input}")]
-        public IHttpActionResult DeleteCustomer(string input)       // Customer customerToDelete)
-  
+        [Route("api/customer/custID={custId:int}/firstName={firstName}/lastName={lastName}/phoneNumber={phoneNumber}")]
+        public IHttpActionResult DeleteCustomer(int custID, String firstName, String lastName, String phoneNumber)       // Customer customerToDelete)
+        {
+           
 
-{
-            
-            Char parameterDelimiter = '/';
-            Char valueDelimiter = '=';
-
-            String[] parameters = input.Split(new Char[] { parameterDelimiter });
-
-            SortedList<String, String> paramValues = new SortedList<string, string>();
-
-            foreach (String a in parameters)
-            {
-                String[] temp = a.Split(new Char[] { valueDelimiter });
-                if (temp.Length == 2)
-                {
-                    paramValues.Add(temp[0], temp[1]);
-                }
-                else if (temp.Length == 1)
-                {
-                    paramValues.Add(temp[0], String.Empty);
-                }
-                else
-                {
-                    return BadRequest();
-                }
-
-            }
-
-            
             Customer customerToDelete = new Customer();
-
-            if(paramValues.ContainsKey("custID"))
-            {
-                if(String.IsNullOrWhiteSpace(paramValues["custID"]))
-                {
-                    customerToDelete.custID = 0;
-
-                }
-                else
-                {
-                    Int32 tempInt;
-                    if (Int32.TryParse(paramValues["custID"], out tempInt))
-                    {
-                        customerToDelete.custID = tempInt;
-                    }
-                    else
-                    {
-                        return BadRequest();
-                    }
-                     
-                }
-                
-            }
-            if (paramValues.ContainsKey("firstName"))
-            {
-                customerToDelete.firstName = paramValues["firstName"];
-            }
-
-            if (paramValues.ContainsKey("lastName"))
-            {
-                customerToDelete.lastName = paramValues["lastName"];
-            }
-
-            if (paramValues.ContainsKey("phoneNumber"))
-            {
-                customerToDelete.phoneNumber = paramValues["phoneNumber"];
-            }
-            
-
-         /*   Customer customerToDelete = new Customer();
 
             customerToDelete.custID = custID;
             customerToDelete.firstName = firstName;
@@ -162,7 +93,7 @@ namespace CrazyMelsWeb.Controllers
 
                 customerToDelete.phoneNumber = phoneNumber;
             
-            */
+
 
 
 
