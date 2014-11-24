@@ -1029,6 +1029,77 @@ namespace CrazyMelsClient
                     screen1.createScreen3();
                     this.Close();
                 }
+                else
+                {
+                    string search = "";
+                    if (customerCustID_textbox.Text != "")
+                    {
+                        search += "Customer.custID=" + customerCustID_textbox.Text + "/";
+                    }
+                    if (firstName_textbox.Text != "")
+                    {
+                        search += "Customer.firstName=" + firstName_textbox.Text + "/";
+                    }
+                    if (lastName_textbox.Text != "")
+                    {
+                        search += "Customer.lastName=" + lastName_textbox.Text + "/";
+                    }
+                    if (phoneNumber_textbox.Text != "")
+                    {
+                        search += "Customer.phoneNumber=" + phoneNumber_textbox + "/";
+                    }
+                    if (productProdID_textbox.Text != "")
+                    {
+                        search += "Product.prodID=" + productProdID_textbox.Text + "/";
+                    }
+                    if (prodName_textbox.Text != "")
+                    {
+                        search += "Product.prodName=" + prodName_textbox.Text + "/";
+                    }
+                    if (price_textbox.Text != "")
+                    {
+                        search += "Product.price=" + price_textbox.Text + "/";
+                    }
+                    if (prodWeight_textbox.Text != "")
+                    {
+                        search += "Product.prodWeight=" + prodWeight_textbox.Text + "/";
+                    }
+                    if (orderOrderID_textbox.Text != "")
+                    {
+                        search += "Order.orderID=" + orderOrderID_textbox.Text + "/";
+                    }
+                    if (custID_textbox.Text != "")
+                    {
+                        search += "Order.custID=" + custID_textbox.Text + "/";
+                    }
+                    if (poNumber_textbox.Text != "")
+                    {
+                        search += "Order.poNumber=" + poNumber_textbox.Text + "/";
+                    }
+                    if (orderDate_textbox.Text != "")
+                    {
+                        search += "Order.orderDate=" + orderDate_textbox.Text + "/";
+                    }
+                    if (cartOrderID_textbox.Text != "")
+                    {
+                        search += "Cart.orderID=" + cartOrderID_textbox.Text + "/";
+                    }
+                    if (cartProdID_textbox.Text != "")
+                    {
+                        search += "Cart.prodID=" + cartProdID_textbox.Text + "/";
+                    }
+                    if (quantity_textbox.Text != "")
+                    {
+                        search += "Cart.quantity" + quantity_textbox.Text + "/";
+                    }
+                    if (search.Length == 0)
+                    {
+                        return;
+                    }
+                    search.Remove(search.Length - 1);
+
+                    this.search(search);
+                }
             }
         }
 
@@ -1039,6 +1110,19 @@ namespace CrazyMelsClient
         /* ----- END BUTTON CLICKS ----- */
 
         /* ----- QUERIES ----- */
+        private async void search(string parameters)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:1973/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response;
+
+                response = await client.GetAsync("api/Search/" + parameters);
+            }
+        }
+
         private async void queryCustomer(Customer table)
         {
             using (var client = new HttpClient())
@@ -1128,11 +1212,10 @@ namespace CrazyMelsClient
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
 
-
+                
                 if (screen1Option == (int)CRUD.INSERT)
                 {
                     response = await client.PostAsJsonAsync("api/Cart/", table);
-
                 }
                 else if (screen1Option == (int)CRUD.UPDATE)
                 {

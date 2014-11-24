@@ -41,25 +41,25 @@
             this.tax_label = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.probWeight_label = new System.Windows.Forms.Label();
+            this.column5_listbox = new System.Windows.Forms.ListBox();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
+            this.column5_label = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.price_label = new System.Windows.Forms.Label();
+            this.column4_listbox = new System.Windows.Forms.ListBox();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
+            this.column4_label = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.quantity_label = new System.Windows.Forms.Label();
+            this.column3_listbox = new System.Windows.Forms.ListBox();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
+            this.column3_label = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.prodName_label = new System.Windows.Forms.Label();
+            this.column2_listbox = new System.Windows.Forms.ListBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
+            this.column2_label = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.ID_label = new System.Windows.Forms.Label();
+            this.column1_listbox = new System.Windows.Forms.ListBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
+            this.column1_label = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.totalOrderWeight_label = new System.Windows.Forms.Label();
@@ -72,7 +72,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.phoneNumber_label = new System.Windows.Forms.Label();
             this.firstLastName_label = new System.Windows.Forms.Label();
-            this.purchaseDate_label = new System.Windows.Forms.Label();
+            this.custID_label = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -128,7 +128,7 @@
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.phoneNumber_label);
             this.panel1.Controls.Add(this.firstLastName_label);
-            this.panel1.Controls.Add(this.purchaseDate_label);
+            this.panel1.Controls.Add(this.custID_label);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -227,7 +227,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.probWeight_label);
+            this.panel2.Controls.Add(this.column5_listbox);
             this.panel2.Controls.Add(this.panel12);
             this.panel2.Controls.Add(this.panel10);
             this.panel2.Controls.Add(this.panel8);
@@ -239,180 +239,205 @@
             this.panel2.Size = new System.Drawing.Size(539, 262);
             this.panel2.TabIndex = 17;
             // 
-            // probWeight_label
+            // column5_listbox
             // 
-            this.probWeight_label.AutoSize = true;
-            this.probWeight_label.Location = new System.Drawing.Point(445, 40);
-            this.probWeight_label.Name = "probWeight_label";
-            this.probWeight_label.Size = new System.Drawing.Size(74, 13);
-            this.probWeight_label.TabIndex = 24;
-            this.probWeight_label.Text = "<prodWeight>";
+            this.column5_listbox.BackColor = System.Drawing.SystemColors.Control;
+            this.column5_listbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.column5_listbox.FormattingEnabled = true;
+            this.column5_listbox.Items.AddRange(new object[] {
+            "<unitWeight1>",
+            "<unitWeight2>",
+            "<unitWeight3>"});
+            this.column5_listbox.Location = new System.Drawing.Point(439, 38);
+            this.column5_listbox.Name = "column5_listbox";
+            this.column5_listbox.Size = new System.Drawing.Size(99, 223);
+            this.column5_listbox.TabIndex = 57;
             // 
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel12.Controls.Add(this.label21);
+            this.panel12.Controls.Add(this.column5_label);
             this.panel12.Location = new System.Drawing.Point(439, 0);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(100, 37);
             this.panel12.TabIndex = 23;
             // 
-            // label21
+            // column5_label
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(23, 10);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(63, 13);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "Unit Weight";
+            this.column5_label.AutoSize = true;
+            this.column5_label.Location = new System.Drawing.Point(23, 10);
+            this.column5_label.Name = "column5_label";
+            this.column5_label.Size = new System.Drawing.Size(63, 13);
+            this.column5_label.TabIndex = 0;
+            this.column5_label.Text = "Unit Weight";
             // 
             // panel10
             // 
             this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel10.Controls.Add(this.price_label);
+            this.panel10.Controls.Add(this.column4_listbox);
             this.panel10.Controls.Add(this.panel11);
             this.panel10.Location = new System.Drawing.Point(330, 0);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(109, 262);
             this.panel10.TabIndex = 22;
             // 
-            // price_label
+            // column4_listbox
             // 
-            this.price_label.AutoSize = true;
-            this.price_label.Location = new System.Drawing.Point(6, 40);
-            this.price_label.Name = "price_label";
-            this.price_label.Size = new System.Drawing.Size(42, 13);
-            this.price_label.TabIndex = 1;
-            this.price_label.Text = "<price>";
+            this.column4_listbox.BackColor = System.Drawing.SystemColors.Control;
+            this.column4_listbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.column4_listbox.FormattingEnabled = true;
+            this.column4_listbox.Items.AddRange(new object[] {
+            "<quantity1>",
+            "<quantity2>",
+            "<quantity3>"});
+            this.column4_listbox.Location = new System.Drawing.Point(0, 37);
+            this.column4_listbox.Name = "column4_listbox";
+            this.column4_listbox.Size = new System.Drawing.Size(108, 223);
+            this.column4_listbox.TabIndex = 56;
             // 
             // panel11
             // 
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel11.Controls.Add(this.label20);
+            this.panel11.Controls.Add(this.column4_label);
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(109, 37);
             this.panel11.TabIndex = 0;
             // 
-            // label20
+            // column4_label
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(28, 10);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(53, 13);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "Unit Price";
+            this.column4_label.AutoSize = true;
+            this.column4_label.Location = new System.Drawing.Point(28, 10);
+            this.column4_label.Name = "column4_label";
+            this.column4_label.Size = new System.Drawing.Size(53, 13);
+            this.column4_label.TabIndex = 0;
+            this.column4_label.Text = "Unit Price";
             // 
             // panel8
             // 
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Controls.Add(this.quantity_label);
+            this.panel8.Controls.Add(this.column3_listbox);
             this.panel8.Controls.Add(this.panel9);
             this.panel8.Location = new System.Drawing.Point(208, 0);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(125, 262);
             this.panel8.TabIndex = 21;
             // 
-            // quantity_label
+            // column3_listbox
             // 
-            this.quantity_label.AutoSize = true;
-            this.quantity_label.Location = new System.Drawing.Point(7, 40);
-            this.quantity_label.Name = "quantity_label";
-            this.quantity_label.Size = new System.Drawing.Size(58, 13);
-            this.quantity_label.TabIndex = 1;
-            this.quantity_label.Text = "<Quantity>";
+            this.column3_listbox.BackColor = System.Drawing.SystemColors.Control;
+            this.column3_listbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.column3_listbox.FormattingEnabled = true;
+            this.column3_listbox.Items.AddRange(new object[] {
+            "<quantity1>",
+            "<quantity2>",
+            "<quantity3>"});
+            this.column3_listbox.Location = new System.Drawing.Point(0, 37);
+            this.column3_listbox.Name = "column3_listbox";
+            this.column3_listbox.Size = new System.Drawing.Size(122, 223);
+            this.column3_listbox.TabIndex = 55;
             // 
             // panel9
             // 
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel9.Controls.Add(this.label19);
+            this.panel9.Controls.Add(this.column3_label);
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(122, 37);
             this.panel9.TabIndex = 0;
             // 
-            // label19
+            // column3_label
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(35, 10);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(46, 13);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "Quantity";
+            this.column3_label.AutoSize = true;
+            this.column3_label.Location = new System.Drawing.Point(35, 10);
+            this.column3_label.Name = "column3_label";
+            this.column3_label.Size = new System.Drawing.Size(46, 13);
+            this.column3_label.TabIndex = 0;
+            this.column3_label.Text = "Quantity";
             // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.prodName_label);
+            this.panel6.Controls.Add(this.column2_listbox);
             this.panel6.Controls.Add(this.panel7);
             this.panel6.Location = new System.Drawing.Point(100, 0);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(109, 262);
             this.panel6.TabIndex = 20;
             // 
-            // prodName_label
+            // column2_listbox
             // 
-            this.prodName_label.AutoSize = true;
-            this.prodName_label.Location = new System.Drawing.Point(8, 40);
-            this.prodName_label.Name = "prodName_label";
-            this.prodName_label.Size = new System.Drawing.Size(68, 13);
-            this.prodName_label.TabIndex = 1;
-            this.prodName_label.Text = "<prodName>";
+            this.column2_listbox.BackColor = System.Drawing.SystemColors.Control;
+            this.column2_listbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.column2_listbox.FormattingEnabled = true;
+            this.column2_listbox.Items.AddRange(new object[] {
+            "<prodName1>",
+            "<prodName2>",
+            "<prodName3>"});
+            this.column2_listbox.Location = new System.Drawing.Point(-1, 37);
+            this.column2_listbox.Name = "column2_listbox";
+            this.column2_listbox.Size = new System.Drawing.Size(109, 223);
+            this.column2_listbox.TabIndex = 54;
             // 
             // panel7
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.label18);
+            this.panel7.Controls.Add(this.column2_label);
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(109, 37);
             this.panel7.TabIndex = 0;
             // 
-            // label18
+            // column2_label
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(18, 10);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(75, 13);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Product Name";
+            this.column2_label.AutoSize = true;
+            this.column2_label.Location = new System.Drawing.Point(18, 10);
+            this.column2_label.Name = "column2_label";
+            this.column2_label.Size = new System.Drawing.Size(75, 13);
+            this.column2_label.TabIndex = 0;
+            this.column2_label.Text = "Product Name";
             // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.ID_label);
+            this.panel4.Controls.Add(this.column1_listbox);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(102, 262);
             this.panel4.TabIndex = 19;
             // 
-            // ID_label
+            // column1_listbox
             // 
-            this.ID_label.AutoSize = true;
-            this.ID_label.Location = new System.Drawing.Point(3, 40);
-            this.ID_label.Name = "ID_label";
-            this.ID_label.Size = new System.Drawing.Size(51, 13);
-            this.ID_label.TabIndex = 1;
-            this.ID_label.Text = "<prodID>";
+            this.column1_listbox.BackColor = System.Drawing.SystemColors.Control;
+            this.column1_listbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.column1_listbox.FormattingEnabled = true;
+            this.column1_listbox.Items.AddRange(new object[] {
+            "<prodID1>",
+            "<prodID2>",
+            "<prodID3>"});
+            this.column1_listbox.Location = new System.Drawing.Point(-2, 37);
+            this.column1_listbox.Name = "column1_listbox";
+            this.column1_listbox.Size = new System.Drawing.Size(103, 223);
+            this.column1_listbox.TabIndex = 53;
             // 
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.label17);
+            this.panel5.Controls.Add(this.column1_label);
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(102, 37);
             this.panel5.TabIndex = 0;
             // 
-            // label17
+            // column1_label
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(37, 10);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(18, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "ID";
+            this.column1_label.AutoSize = true;
+            this.column1_label.Location = new System.Drawing.Point(37, 10);
+            this.column1_label.Name = "column1_label";
+            this.column1_label.Size = new System.Drawing.Size(18, 13);
+            this.column1_label.TabIndex = 0;
+            this.column1_label.Text = "ID";
             // 
             // panel3
             // 
@@ -520,14 +545,14 @@
             this.firstLastName_label.TabIndex = 5;
             this.firstLastName_label.Text = "<last name, first name>";
             // 
-            // purchaseDate_label
+            // custID_label
             // 
-            this.purchaseDate_label.AutoSize = true;
-            this.purchaseDate_label.Location = new System.Drawing.Point(48, 26);
-            this.purchaseDate_label.Name = "purchaseDate_label";
-            this.purchaseDate_label.Size = new System.Drawing.Size(87, 13);
-            this.purchaseDate_label.TabIndex = 4;
-            this.purchaseDate_label.Text = "<purchase date>";
+            this.custID_label.AutoSize = true;
+            this.custID_label.Location = new System.Drawing.Point(48, 26);
+            this.custID_label.Name = "custID_label";
+            this.custID_label.Size = new System.Drawing.Size(50, 13);
+            this.custID_label.TabIndex = 4;
+            this.custID_label.Text = "<custID>";
             // 
             // label4
             // 
@@ -638,23 +663,18 @@
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -686,7 +706,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label phoneNumber_label;
         private System.Windows.Forms.Label firstLastName_label;
-        private System.Windows.Forms.Label purchaseDate_label;
+        private System.Windows.Forms.Label custID_label;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -697,27 +717,27 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label probWeight_label;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label column5_label;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label price_label;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label column4_label;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label quantity_label;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label column3_label;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label prodName_label;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label column2_label;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label ID_label;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label column1_label;
         private System.Windows.Forms.Label total_label;
         private System.Windows.Forms.Label subtotal_label;
         private System.Windows.Forms.Label tax_label;
+        private System.Windows.Forms.ListBox column4_listbox;
+        private System.Windows.Forms.ListBox column3_listbox;
+        private System.Windows.Forms.ListBox column2_listbox;
+        private System.Windows.Forms.ListBox column1_listbox;
+        private System.Windows.Forms.ListBox column5_listbox;
     }
 }
