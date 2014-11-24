@@ -16,6 +16,7 @@ namespace CrazyMelsWeb.Controllers
     {
         private CrazyMelsEntities db = new CrazyMelsEntities();
 
+        [Route("api/cart")]
         public Cart[] Get()
         {
             List<Cart> data = new List<Cart>();
@@ -82,6 +83,7 @@ namespace CrazyMelsWeb.Controllers
             return Ok(new Cart(c_cart));
         }
 
+        [Route("api/cart")]
         public IHttpActionResult PutC_Cart(Cart cart)
         {
             C_Cart c_cart = new C_Cart();
@@ -116,6 +118,7 @@ namespace CrazyMelsWeb.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Route("api/cart")]
         public IHttpActionResult PostC_Cart(Cart cart)
         {
             C_Cart c_cart = new C_Cart();
