@@ -1118,7 +1118,7 @@ namespace CrazyMelsClient
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:1973/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
@@ -1171,7 +1171,7 @@ namespace CrazyMelsClient
             using (var client = new HttpClient())
             {
                 string path;
-                client.BaseAddress = new Uri("http://localhost:1973/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
@@ -1197,7 +1197,7 @@ namespace CrazyMelsClient
             using (var client = new HttpClient())
             {
                 string path;
-                client.BaseAddress = new Uri("http://192.168.0.120/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
@@ -1224,7 +1224,7 @@ namespace CrazyMelsClient
             using (var client = new HttpClient())
             {
                 string path = "api/Order/orderID=" + table.orderID + "/custID=" + table.custID + "/poNumber=" + table.poNumber + "/orderDate=" + table.orderDate;
-                client.BaseAddress = new Uri("http://192.168.0.120/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
@@ -1250,7 +1250,7 @@ namespace CrazyMelsClient
             using (var client = new HttpClient())
             {
                 string path = "api/Cart/orderID=" + table.orderID + "/prodID=" + table.prodID + "/quantity=" + table.quantity;
-                client.BaseAddress = new Uri("http://192.168.0.120/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
