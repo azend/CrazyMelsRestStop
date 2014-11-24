@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CrazyMelsWeb.Models
 {
-    public class Cart
+    public class Cart : CrazyMelDataModel
     {
         public Cart(C_Cart rawInput)
         {

@@ -32,7 +32,7 @@ namespace CrazyMelsWeb.Controllers
 
         }
 
-        [ResponseType(typeof(C_Cart))]
+        [ResponseType(typeof(Cart))]
         public IHttpActionResult DeleteC_Cart(int oid, int pid)
         {
             C_Cart c_cart = db.C_Cart.Find(oid, pid);
@@ -48,7 +48,7 @@ namespace CrazyMelsWeb.Controllers
             return Ok(c_cart);
         }
 
-        public IHttpActionResult PutC_Cart(int oid, Cart cart)
+        public IHttpActionResult PutC_Cart(Cart cart)
         {
             C_Cart c_cart = new C_Cart();
             c_cart = cart.CartToC_Cart(cart);
@@ -62,11 +62,11 @@ namespace CrazyMelsWeb.Controllers
             }
             /*if (c_product.inStock == false)
             {
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "Cart cannot be updated because the product is currently out of stock!"));
+                return BadRequest("Cart cannot be updated because the product is currently out of stock!"));
             }*/
-            if (oid != c_cart.orderID)
+            if (db.C_Cart.Find(c_cart.orderID) == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             db.Entry(c_cart).State = EntityState.Modified;
@@ -75,16 +75,9 @@ namespace CrazyMelsWeb.Controllers
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException e)
             {
-                if (!C_CartExists(oid))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                    throw e;
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -102,9 +95,13 @@ namespace CrazyMelsWeb.Controllers
             {
                 return BadRequest(ModelState);
             }
+            if (db.C_Product.Find(c_cart.prodID) == null)
+            {
+                return BadRequest("Invalid ProductId");
+            }
             /*if (c_product.inStock == false)
             {
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "The Product cannot be inserted into the cart because it is out of stock!"));
+                return BadRequest("The Product cannot be inserted into the cart because it is out of stock!");
             }*/
 
             db.Entry(c_cart).State = EntityState.Added;

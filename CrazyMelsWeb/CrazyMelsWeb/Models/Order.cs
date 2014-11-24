@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CrazyMelsWeb.Models
 {
-    public class Order
+    public class Order : CrazyMelDataModel
     {
         public Order (C_Order rawInput)
         {
@@ -21,7 +21,19 @@ namespace CrazyMelsWeb.Models
             orderID = 0;
             poNumber = String.Empty;
         }
-    
+
+        public C_Order ToC_Order(Order order)
+        {
+            C_Order c_order = new C_Order();
+
+            c_order.orderID = order.orderID;
+            c_order.custID = order.custID;
+            c_order.orderDate = order.orderDate;
+            c_order.poNumber = order.poNumber;
+
+            return c_order;
+        }
+
         public int orderID { get; set; }
         public int custID { get; set; }
         public string poNumber { get; set; }
