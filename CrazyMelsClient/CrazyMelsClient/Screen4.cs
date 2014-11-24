@@ -157,7 +157,7 @@ namespace CrazyMelsClient
             dataGridView1.Name = name;
             dataGridView1.Location = new Point(locationX, locationY[tablesToShow]);
             dataGridView1.Size = new Size(589, 169);
-
+            dataGridView1.ReadOnly = true;
             dataGridView1.ColumnCount = columnNumber;
             dataGridView1.ColumnHeadersVisible = true;
 

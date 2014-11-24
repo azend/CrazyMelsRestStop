@@ -650,7 +650,6 @@
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Screen3";
             this.RightToLeftLayout = true;
             this.Text = "Screen3";

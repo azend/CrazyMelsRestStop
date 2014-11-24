@@ -21,7 +21,6 @@ namespace CrazyMelsClient
     {
         /* ----- ATTRIBUTES ----- */
         private Screen1 screen1 = new Screen1();
-        private Screen3 screen3 = new Screen3();
         private int screen1Option = 0;
         private enum CRUD { SEARCH, INSERT, UPDATE, DELETE };
         private Regex rgx;
@@ -1046,85 +1045,76 @@ namespace CrazyMelsClient
                         return;
                     }
                 }
-                if (productOrder_checkbox.Checked == true)
+                string search = "";
+                if (customerCustID_textbox.Text != "")
                 {
-                    screen1 = this.Owner as Screen1;
-                    
-                    screen1.createScreen3();
-                    this.Close();
+                    search += "Customer.custID=" + customerCustID_textbox.Text + "/";
                 }
-                else
+                if (firstName_textbox.Text != "")
                 {
-                    string search = "";
-                    if (customerCustID_textbox.Text != "")
-                    {
-                        search += "Customer.custID=" + customerCustID_textbox.Text + "/";
-                    }
-                    if (firstName_textbox.Text != "")
-                    {
-                        search += "Customer.firstName=" + firstName_textbox.Text + "/";
-                    }
-                    if (lastName_textbox.Text != "")
-                    {
-                        search += "Customer.lastName=" + lastName_textbox.Text + "/";
-                    }
-                    if (phoneNumber_textbox.Text != "")
-                    {
-                        search += "Customer.phoneNumber=" + phoneNumber_textbox + "/";
-                    }
-                    if (productProdID_textbox.Text != "")
-                    {
-                        search += "Product.prodID=" + productProdID_textbox.Text + "/";
-                    }
-                    if (prodName_textbox.Text != "")
-                    {
-                        search += "Product.prodName=" + prodName_textbox.Text + "/";
-                    }
-                    if (price_textbox.Text != "")
-                    {
-                        search += "Product.price=" + price_textbox.Text + "/";
-                    }
-                    if (prodWeight_textbox.Text != "")
-                    {
-                        search += "Product.prodWeight=" + prodWeight_textbox.Text + "/";
-                    }
-                    if (orderOrderID_textbox.Text != "")
-                    {
-                        search += "Order.orderID=" + orderOrderID_textbox.Text + "/";
-                    }
-                    if (custID_textbox.Text != "")
-                    {
-                        search += "Order.custID=" + custID_textbox.Text + "/";
-                    }
-                    if (poNumber_textbox.Text != "")
-                    {
-                        search += "Order.poNumber=" + poNumber_textbox.Text + "/";
-                    }
-                    if (orderDate_textbox.Text != "")
-                    {
-                        search += "Order.orderDate=" + orderDate_textbox.Text + "/";
-                    }
-                    if (cartOrderID_textbox.Text != "")
-                    {
-                        search += "Cart.orderID=" + cartOrderID_textbox.Text + "/";
-                    }
-                    if (cartProdID_textbox.Text != "")
-                    {
-                        search += "Cart.prodID=" + cartProdID_textbox.Text + "/";
-                    }
-                    if (quantity_textbox.Text != "")
-                    {
-                        search += "Cart.quantity=" + quantity_textbox.Text + "/";
-                    }
-                    if (search.Length == 0)
-                    {
-                        MessageBox.Show("You did not enter anything to search");
-                        return;
-                    }
-                    search = search.Remove(search.Length - 1);
-
-                    this.search(search);
+                    search += "Customer.firstName=" + firstName_textbox.Text + "/";
                 }
+                if (lastName_textbox.Text != "")
+                {
+                    search += "Customer.lastName=" + lastName_textbox.Text + "/";
+                }
+                if (phoneNumber_textbox.Text != "")
+                {
+                    search += "Customer.phoneNumber=" + phoneNumber_textbox + "/";
+                }
+                if (productProdID_textbox.Text != "")
+                {
+                    search += "Product.prodID=" + productProdID_textbox.Text + "/";
+                }
+                if (prodName_textbox.Text != "")
+                {
+                    search += "Product.prodName=" + prodName_textbox.Text + "/";
+                }
+                if (price_textbox.Text != "")
+                {
+                    search += "Product.price=" + price_textbox.Text + "/";
+                }
+                if (prodWeight_textbox.Text != "")
+                {
+                    search += "Product.prodWeight=" + prodWeight_textbox.Text + "/";
+                }
+                if (orderOrderID_textbox.Text != "")
+                {
+                    search += "Order.orderID=" + orderOrderID_textbox.Text + "/";
+                }
+                if (custID_textbox.Text != "")
+                {
+                    search += "Order.custID=" + custID_textbox.Text + "/";
+                }
+                if (poNumber_textbox.Text != "")
+                {
+                    search += "Order.poNumber=" + poNumber_textbox.Text + "/";
+                }
+                if (orderDate_textbox.Text != "")
+                {
+                    search += "Order.orderDate=" + orderDate_textbox.Text + "/";
+                }
+                if (cartOrderID_textbox.Text != "")
+                {
+                    search += "Cart.orderID=" + cartOrderID_textbox.Text + "/";
+                }
+                if (cartProdID_textbox.Text != "")
+                {
+                    search += "Cart.prodID=" + cartProdID_textbox.Text + "/";
+                }
+                if (quantity_textbox.Text != "")
+                {
+                    search += "Cart.quantity=" + quantity_textbox.Text + "/";
+                }
+                if (search.Length == 0)
+                {
+                    MessageBox.Show("You did not enter anything to search");
+                    return;
+                }
+                search = search.Remove(search.Length - 1);
+                
+                this.search(search);
+                
             }
         }
 
@@ -1176,13 +1166,23 @@ namespace CrazyMelsClient
                         }
                     }
 
-                    Screen4 screen4 = new Screen4();
-                    screen4.customerList(customers);
-                    screen4.productList(products);
-                    screen4.orderList(orders);
-                    screen4.cartList(carts);
-                    screen4.positionButtons();
-                    screen4.Show();
+                    if (productOrder_checkbox.Checked == true)
+                    {
+                        Screen3 screen3 = new Screen3(customers, products, orders, carts);
+                        screen3.Show();
+                    }
+                    else
+                    {
+
+
+                        Screen4 screen4 = new Screen4();
+                        screen4.customerList(customers);
+                        screen4.productList(products);
+                        screen4.orderList(orders);
+                        screen4.cartList(carts);
+                        screen4.positionButtons();
+                        screen4.Show();
+                    }
                 }
             }
         }

@@ -21,7 +21,7 @@ namespace CrazyMelsClient
         private PrintDocument printDocument1 = new PrintDocument();
         private Bitmap memoryImage;
 
-        public Screen3()
+        /*public Screen3()
         {
             InitializeComponent();
             printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
@@ -51,7 +51,7 @@ namespace CrazyMelsClient
             //populateTableFields(dt);
             //populateCustomerInformation(dt2);
             //populateTotals();
-        }
+        }*/
 
         public Screen3(List<Customer> cust, List<Product> prod, List<Order> ord, List<Cart> cart)
         {

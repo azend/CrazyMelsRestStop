@@ -57,16 +57,7 @@ namespace CrazyMelsClient
             HideButtons();
         }
 
-        public void createScreen3()
-        {
-            screen3 = new Screen3();
-            screen3.Owner = this;
-            screen3.TopLevel = false;
-            panel.Dock = DockStyle.Fill;
-            panel.Controls.Add(screen3);
-            screen3.Show();
-            HideButtons();
-        }
+        
 
         private void exitButton_Click(object sender, EventArgs e)
         {
