@@ -32,38 +32,21 @@ namespace CrazyMelsWeb.Controllers
 
         }
 
-        [ResponseType(typeof(Cart))]
-        public IHttpActionResult DeleteC_Cart(int oid, int pid)
-        {
-            C_Cart c_cart = db.C_Cart.Find(oid, pid);
-
-            if (c_cart == null)
-            {
-                return NotFound();
-            }
-            
-            db.C_Cart.Remove(c_cart);
-            db.SaveChanges();
-
-            return Ok(c_cart);
-        }
-
         public IHttpActionResult PutC_Cart(Cart cart)
         {
             C_Cart c_cart = new C_Cart();
             c_cart = cart.CartToC_Cart(cart);
 
-            //TODO: change instock  in the Product table to a boolean and uncomment code below
-            //C_Product c_product = db.C_Product.Find(c_cart.prodID);
+            C_Product c_product = db.C_Product.Find(c_cart.prodID);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            /*if (c_product.inStock == false)
+            if (c_product.inStock == false)
             {
-                return BadRequest("Cart cannot be updated because the product is currently out of stock!"));
-            }*/
+                return BadRequest("Cart cannot be updated because the product is currently out of stock!");
+            }
             if (db.C_Cart.Find(c_cart.orderID) == null)
             {
                 return NotFound();
@@ -88,8 +71,7 @@ namespace CrazyMelsWeb.Controllers
             C_Cart c_cart = new C_Cart();
             c_cart = cart.CartToC_Cart(cart);
 
-            //TODO: change instock  in the Product table to a boolean and uncomment code below
-            //C_Product c_product = db.C_Product.Find(c_cart.prodID);
+            C_Product c_product = db.C_Product.Find(c_cart.prodID);
 
             if (!ModelState.IsValid)
             {
@@ -99,10 +81,10 @@ namespace CrazyMelsWeb.Controllers
             {
                 return BadRequest("Invalid ProductId");
             }
-            /*if (c_product.inStock == false)
+            if (c_product.inStock == false)
             {
                 return BadRequest("The Product cannot be inserted into the cart because it is out of stock!");
-            }*/
+            }
 
             db.Entry(c_cart).State = EntityState.Added;
 
@@ -116,6 +98,22 @@ namespace CrazyMelsWeb.Controllers
             }
 
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [ResponseType(typeof(Cart))]
+        public IHttpActionResult DeleteC_Cart(int oid, int pid)
+        {
+            C_Cart c_cart = db.C_Cart.Find(oid, pid);
+
+            if (c_cart == null)
+            {
+                return NotFound();
+            }
+
+            db.C_Cart.Remove(c_cart);
+            db.SaveChanges();
+
+            return Ok(c_cart);
         }
 
         private bool C_CartExists(int oid)
