@@ -21,40 +21,9 @@ namespace CrazyMelsClient
         private PrintDocument printDocument1 = new PrintDocument();
         private Bitmap memoryImage;
 
-        /*public Screen3()
-        {
-            InitializeComponent();
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-
-            // Debugging Code
-            //DataTable dt = new DataTable();
-            //dt.Columns.Add("ID");
-            //dt.Columns.Add("Product Name");
-            //dt.Columns.Add("Quantity");
-            //dt.Columns.Add("Unit Price");
-            //dt.Columns.Add("Unit Weight");
-            //dt.Rows.Add("1", "test1", "1", "5", "2");
-            //dt.Rows.Add("2", "test2", "2", "10", "4");
-            //dt.Rows.Add("3", "test3", "3", "15", "6");
-            //dt.Rows.Add("4", "test4", "4", "20", "8");
-            //dt.Rows.Add("5", "test5", "5", "25", "10");
-
-            //DataTable dt2 = new DataTable();
-            //dt2.Columns.Add("ID");
-            //dt2.Columns.Add("First Name");
-            //dt2.Columns.Add("Last Name");
-            //dt2.Columns.Add("Phone");
-            //dt2.Columns.Add("Purchase Date");
-            //dt2.Columns.Add("PO Number");
-            //dt2.Rows.Add("1", "Test First", "Test Last", "123-456-7890", "01/01/2014", "001");
-
-            //populateTableFields(dt);
-            //populateCustomerInformation(dt2);
-            //populateTotals();
-        }*/
-
         public Screen3(List<Customer> cust, List<Product> prod, List<Order> ord, List<Cart> cart)
         {
+            InitializeComponent();
             DataTable dt1 = new DataTable();
             dt1.Columns.Add("ID");
             dt1.Columns.Add("Product Name");

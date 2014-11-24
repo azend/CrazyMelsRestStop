@@ -250,6 +250,7 @@
             "<unitWeight3>"});
             this.column5_listbox.Location = new System.Drawing.Point(439, 38);
             this.column5_listbox.Name = "column5_listbox";
+            this.column5_listbox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.column5_listbox.Size = new System.Drawing.Size(99, 223);
             this.column5_listbox.TabIndex = 57;
             // 
@@ -292,6 +293,7 @@
             "<quantity3>"});
             this.column4_listbox.Location = new System.Drawing.Point(0, 37);
             this.column4_listbox.Name = "column4_listbox";
+            this.column4_listbox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.column4_listbox.Size = new System.Drawing.Size(108, 223);
             this.column4_listbox.TabIndex = 56;
             // 
@@ -334,6 +336,7 @@
             "<quantity3>"});
             this.column3_listbox.Location = new System.Drawing.Point(0, 37);
             this.column3_listbox.Name = "column3_listbox";
+            this.column3_listbox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.column3_listbox.Size = new System.Drawing.Size(122, 223);
             this.column3_listbox.TabIndex = 55;
             // 
@@ -376,6 +379,7 @@
             "<prodName3>"});
             this.column2_listbox.Location = new System.Drawing.Point(-1, 37);
             this.column2_listbox.Name = "column2_listbox";
+            this.column2_listbox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.column2_listbox.Size = new System.Drawing.Size(109, 223);
             this.column2_listbox.TabIndex = 54;
             // 
@@ -418,6 +422,7 @@
             "<prodID3>"});
             this.column1_listbox.Location = new System.Drawing.Point(-2, 37);
             this.column1_listbox.Name = "column1_listbox";
+            this.column1_listbox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.column1_listbox.Size = new System.Drawing.Size(103, 223);
             this.column1_listbox.TabIndex = 53;
             // 
