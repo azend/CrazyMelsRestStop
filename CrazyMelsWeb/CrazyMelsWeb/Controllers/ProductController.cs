@@ -32,13 +32,11 @@ namespace CrazyMelsWeb.Controllers
 
         }
 
-
         // DELETE api/Product/5
-        //[Route("api/product/{*data})]
         [ResponseType(typeof(Product))]
-        public IHttpActionResult DeleteProduct(int pid)
+        public IHttpActionResult DeleteProduct(int id)
         {
-            C_Product c_product = db.C_Product.Find(pid);
+            C_Product c_product = db.C_Product.Find(id);
             if (c_product == null)
             {
                 return NotFound();
@@ -46,7 +44,7 @@ namespace CrazyMelsWeb.Controllers
 
             db.C_Product.Remove(c_product);
 
-            foreach (C_Cart cart in db.C_Cart.Where(c => c.prodID == pid))
+            foreach (C_Cart cart in db.C_Cart.Where(c => c.prodID == id))
             {
                 db.C_Cart.Remove(cart);
             }
