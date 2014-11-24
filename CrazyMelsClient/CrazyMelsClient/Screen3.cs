@@ -41,7 +41,9 @@ namespace CrazyMelsClient
             dt2.Columns.Add("First Name");
             dt2.Columns.Add("Last Name");
             dt2.Columns.Add("Phone");
-            dt2.Rows.Add("1", "Test First", "Test Last", "123-456-7890");
+            dt2.Columns.Add("Purchase Date");
+            dt2.Columns.Add("PO Number");
+            dt2.Rows.Add("1", "Test First", "Test Last", "123-456-7890", "01/01/2014", "001");
 
             populateTableFields(dt);
             populateCustomerInformation(dt2);
@@ -71,8 +73,8 @@ namespace CrazyMelsClient
         /* ----- FIELD POPULATION ----- */
         private void populateCustomerInformation(DataTable table)
         {
-            //Assumes there is a DataTable of customer information
-            string[] rows = new string[4];
+            //Assumes there is a DataTable of customer/PO information
+            string[] rows = new string[6]; // 6 = number of fields in the top of PO
             int count = 0;
 
             foreach (DataColumn column in table.Columns)
@@ -87,13 +89,15 @@ namespace CrazyMelsClient
             custID_label.Text = rows[0];
             firstLastName_label.Text = (rows[2] + ", " + rows[1]);
             phoneNumber_label.Text = rows[3];
+            orderDate_label.Text = rows[4];
+            poNumber_label.Text = rows[5];
         }
 
         private void populateTableFields(DataTable table)
         {
-            //Assumes there is a DataTable of table information
-            string[] columnName = new string[5];
-            string[,] columnData = new string[5,3];
+            //Assumes there is a DataTable with the table information
+            string[] columnName = new string[table.Columns.Count];
+            string[,] columnData = new string[table.Columns.Count,table.Rows.Count];
             int rowCount = 0, colCount = 0;
 
             column1_listbox.Items.Clear();
@@ -122,14 +126,14 @@ namespace CrazyMelsClient
                     }
 
                     rowCount++;
-                    if (rowCount >= 3)
+                    if (rowCount >= table.Rows.Count)
                     {
                         rowCount = 0;
                         break;
                     }
                 }
                 colCount++;
-                if (colCount >= 5)
+                if (colCount >= table.Columns.Count)
                 {
                     break;
                 }
@@ -146,28 +150,35 @@ namespace CrazyMelsClient
         {
             int subtotal = 0;
             int subtotalBuffer = 0;
+            int weightTotal = 0;
+            int weightBuffer = 0;
             double tax = 0;
             double taxPercent = 0.13;
 
+            // Calculate subtotal
             foreach (object item in column4_listbox.Items)  
             {  
                 Int32.TryParse(column4_listbox.GetItemText(item), out subtotalBuffer);
                 subtotal += subtotalBuffer;
-            }  
-
+            }
             if (subtotal != 0)
             {
                 subtotal_label.Text = subtotal.ToString();
             }
-            else
-            {
-                subtotal_label.Text = "derp";
-            }
-
             tax = subtotal*taxPercent;
             tax_label.Text = tax.ToString();
-
             total_label.Text = (subtotal + tax).ToString();
+
+            // Calculate total weight
+            foreach (object item in column5_listbox.Items)
+            {
+                Int32.TryParse(column5_listbox.GetItemText(item), out weightBuffer);
+                weightTotal += weightBuffer;
+            }
+            totalOrderWeight_label.Text = weightTotal.ToString();
+
+            // Count of pieces in order
+            totalNumOrderPieces_label.Text = column1_listbox.Items.Count.ToString();
         }
         /* ----- END FIELD POPULATION ----- */
 

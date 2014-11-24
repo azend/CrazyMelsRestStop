@@ -64,7 +64,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.totalOrderWeight_label = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.totalNumOrderPieves_label = new System.Windows.Forms.Label();
+            this.totalNumOrderPieces_label = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.poNumber_label = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.totalOrderWeight_label);
             this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.totalNumOrderPieves_label);
+            this.panel1.Controls.Add(this.totalNumOrderPieces_label);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.poNumber_label);
             this.panel1.Controls.Add(this.label10);
@@ -473,14 +473,14 @@
             this.label14.TabIndex = 14;
             this.label14.Text = "Total Weight of Order :";
             // 
-            // totalNumOrderPieves_label
+            // totalNumOrderPieces_label
             // 
-            this.totalNumOrderPieves_label.AutoSize = true;
-            this.totalNumOrderPieves_label.Location = new System.Drawing.Point(195, 454);
-            this.totalNumOrderPieves_label.Name = "totalNumOrderPieves_label";
-            this.totalNumOrderPieves_label.Size = new System.Drawing.Size(103, 13);
-            this.totalNumOrderPieves_label.TabIndex = 13;
-            this.totalNumOrderPieves_label.Text = "________________";
+            this.totalNumOrderPieces_label.AutoSize = true;
+            this.totalNumOrderPieces_label.Location = new System.Drawing.Point(195, 454);
+            this.totalNumOrderPieces_label.Name = "totalNumOrderPieces_label";
+            this.totalNumOrderPieces_label.Size = new System.Drawing.Size(103, 13);
+            this.totalNumOrderPieces_label.TabIndex = 13;
+            this.totalNumOrderPieces_label.Text = "________________";
             // 
             // label12
             // 
@@ -698,7 +698,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label totalOrderWeight_label;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label totalNumOrderPieves_label;
+        private System.Windows.Forms.Label totalNumOrderPieces_label;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label poNumber_label;
         private System.Windows.Forms.Label label10;
