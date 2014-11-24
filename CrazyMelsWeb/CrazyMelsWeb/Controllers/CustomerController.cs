@@ -79,7 +79,7 @@ namespace CrazyMelsWeb.Controllers
 
         // DELETE api/Customer/5
         [ResponseType(typeof(Customer))]
-<<<<<<< HEAD
+
         [Route("api/customer/{*input}")]
         public IHttpActionResult DeleteCustomer(string input)       // Customer customerToDelete)
   
@@ -110,26 +110,27 @@ namespace CrazyMelsWeb.Controllers
                 }
 
             }
-=======
-        [Route("api/customer/custID={custId:int}/firstName={firstName}/lastName={lastName}/phoneNumber={phoneNumber}")]
-        public IHttpActionResult DeleteCustomer(int custID, String firstName, String lastName, String phoneNumber)       // Customer customerToDelete)
-        {
-           
->>>>>>> origin/master
+
 
             Customer customerToDelete = new Customer();
 
-            customerToDelete.custID = custID;
-            customerToDelete.firstName = firstName;
-          
-                customerToDelete.lastName = lastName;
+            if(paramValues.ContainsKey("custID"))
+            {
+                customerToDelete.custID = Int32.Parse(paramValues["custID"]);
+            }
 
-                customerToDelete.phoneNumber = phoneNumber;
-            
-
-
-
-
+            if (paramValues.ContainsKey("firstName"))
+            {
+                customerToDelete.firstName = paramValues["firstName"];
+            }
+            if (paramValues.ContainsKey("lastName"))
+            {
+                customerToDelete.lastName = paramValues["lastName"];
+            }
+            if (paramValues.ContainsKey("phoneNumber"))
+            {
+                customerToDelete.phoneNumber = paramValues["phoneNumber"];
+            }
             
             C_Customer c_customer = searchCustomer(customerToDelete);
             if (c_customer == null)
