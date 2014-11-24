@@ -1028,6 +1028,7 @@ namespace CrazyMelsClient
                 if (productOrder_checkbox.Checked == true)
                 {
                     screen1 = this.Owner as Screen1;
+                    
                     screen1.createScreen3();
                     this.Close();
                 }
@@ -1124,7 +1125,7 @@ namespace CrazyMelsClient
                 JsonMediaTypeFormatter jsonFormatter = new JsonMediaTypeFormatter();
                 jsonFormatter.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects;
 
-                response = await client.GetAsync("api/Search/");// + parameters);
+                response = await client.GetAsync("api/Search/" + parameters);
                 if (response.IsSuccessStatusCode)
                 {
                     IEnumerable<CrazyMelDataModel> data;
@@ -1134,28 +1135,27 @@ namespace CrazyMelsClient
                     List<Order> orders = new List<Order>();
                     List<Cart> carts = new List<Cart>();
 
-                    foreach (Customer c in data)
+                    foreach (CrazyMelDataModel model in data)
                     {
-                        customers.Add(c);
+                        if (model.GetType() == typeof(Customer))
+                        {
+                            customers.Add((Customer)model);
+                        }
+                        if (model.GetType() == typeof(Product))
+                        {
+                            products.Add((Product)model);
+                        }
+                        if (model.GetType() == typeof(Order))
+                        {
+                            orders.Add((Order)model);
+                        }
+                        if (model.GetType() == typeof(Cart))
+                        {
+                            carts.Add((Cart)model);
+                        }
                     }
 
-                    foreach (Product p in data)
-                    {
-                        products.Add(p);
-                    }
-
-                    foreach (Order o in data)
-                    {
-                        orders.Add(o);
-                    }
-
-                    foreach (Cart c in data)
-                    {
-                        carts.Add(c);
-                    }
-
-
-
+                    
                 }
             }
         }
