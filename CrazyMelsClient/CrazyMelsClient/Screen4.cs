@@ -23,8 +23,9 @@ namespace CrazyMelsClient
         {
             InitializeComponent();
 
+            this.Location = new Point(120, 0);
             label1.Visible = false;
-
+            
             locationY[0] = 94;
             locationY[1] = 269;
             locationY[2] = 444;
@@ -174,8 +175,17 @@ namespace CrazyMelsClient
 
         public void positionButtons()
         {
-            back_button.Location = new Point(locationX,(locationY[--tablesToShow] + 175));
+            if (tablesToShow == 0)
+            {
+                back_button.Location = new Point(locationX, (locationY[tablesToShow] + 175));
+            }
+            else
+            {
+                back_button.Location = new Point(locationX, (locationY[--tablesToShow] + 175));
+            }
             exit_button.Location = new Point(781, (locationY[tablesToShow] + 175));
+
+            this.Size = new Size(this.Size.Width, exit_button.Location.Y + 100);
         }
     }
 }

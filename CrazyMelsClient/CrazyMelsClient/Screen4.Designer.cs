@@ -99,7 +99,6 @@
             this.Controls.Add(this.back_button);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Screen4";
             this.Text = "Screen4";
             this.Load += new System.EventHandler(this.Screen4_Load);
