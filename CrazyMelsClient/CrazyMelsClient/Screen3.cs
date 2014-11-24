@@ -30,9 +30,38 @@ namespace CrazyMelsClient
             dt1.Columns.Add("Quantity");
             dt1.Columns.Add("Unit Price");
             dt1.Columns.Add("Unit Weight");
+
+            string custID = "", cFirst = "", cLast = "", cPhone = "";
+            string prodID = "", price = "", weight = "", prodName = "";
+            string ordDate = "", poNum = "";
+            string cartQuantity = "";
+
+            if (cust.Count != 0)
+            {
+                custID = cust.ElementAt(0).custID.ToString();
+                cFirst = cust.ElementAt(0).firstName.ToString();
+                cLast = cust.ElementAt(0).lastName.ToString();
+                cPhone = cust.ElementAt(0).phoneNumber.ToString();
+            }
+            if (ord.Count != 0)
+            {
+                ordDate = ord.ElementAt(0).orderDate.ToString();
+                poNum = ord.ElementAt(0).poNumber.ToString();
+            }
             for (int i = 0; i < cust.Count; i++)
             {
-                dt1.Rows.Add(prod.ElementAt(i).prodID, prod.ElementAt(i).prodName, cart.ElementAt(i).quantity, prod.ElementAt(i).price, prod.ElementAt(i).prodWeight);
+                if (prod.Count != 0)
+                {
+                    prodID = prod.ElementAt(i).prodID.ToString();
+                    price = prod.ElementAt(i).price.ToString();
+                    weight = prod.ElementAt(i).prodWeight.ToString();
+                    prodName = prod.ElementAt(i).prodName.ToString();
+                }
+                if (cart.Count != 0)
+                {
+                    cartQuantity = cart.ElementAt(i).quantity.ToString();
+                }
+                dt1.Rows.Add(prodID, prodName, cartQuantity, price, weight);
             }
 
             DataTable dt2 = new DataTable();
@@ -42,7 +71,7 @@ namespace CrazyMelsClient
             dt2.Columns.Add("Phone");
             dt2.Columns.Add("Purchase Date");
             dt2.Columns.Add("PO Number");
-            dt2.Rows.Add(cust.ElementAt(0).custID, cust.ElementAt(0).firstName, cust.ElementAt(0).lastName, cust.ElementAt(0).phoneNumber, ord.ElementAt(0).orderDate.ToString(), ord.ElementAt(0).poNumber);
+            dt2.Rows.Add(custID, cFirst, cLast, cPhone, ordDate, poNum);
 
             populateTableFields(dt1);
             populateCustomerInformation(dt2);
@@ -162,6 +191,11 @@ namespace CrazyMelsClient
             }
             if (subtotal != 0)
             {
+                subtotal_label.Text = subtotal.ToString();
+            }
+            else
+            {
+                subtotal = 0;
                 subtotal_label.Text = subtotal.ToString();
             }
             tax = subtotal*taxPercent;
