@@ -118,7 +118,7 @@ namespace CrazyMelsClient
         //Do not allow the user to do this – tell them they are in error.
         private void customerCustID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (customerCustID_textbox.Text != "")
+            if (customerCustID_textbox.Text != "" || firstName_textbox.Text != "" || lastName_textbox.Text != "" || phoneNumber_textbox.Text != "")
             {
                 toggleProductFields(true);
                 if (screen1Option != (int)CRUD.SEARCH)
@@ -140,7 +140,7 @@ namespace CrazyMelsClient
 
         private void firstName_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (firstName_textbox.Text != "")
+            if (customerCustID_textbox.Text != "" || firstName_textbox.Text != "" || lastName_textbox.Text != "" || phoneNumber_textbox.Text != "")
             {
                 toggleProductFields(true);
                 if (screen1Option != (int)CRUD.SEARCH)
@@ -162,7 +162,7 @@ namespace CrazyMelsClient
 
         private void lastName_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (lastName_textbox.Text != "")
+            if (customerCustID_textbox.Text != "" || firstName_textbox.Text != "" || lastName_textbox.Text != "" || phoneNumber_textbox.Text != "")
             {
                 toggleProductFields(true);
                 if (screen1Option != (int)CRUD.SEARCH)
@@ -184,7 +184,7 @@ namespace CrazyMelsClient
 
         private void phoneNumber_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (phoneNumber_textbox.Text != "")
+            if (customerCustID_textbox.Text != "" || firstName_textbox.Text != "" || lastName_textbox.Text != "" || phoneNumber_textbox.Text != "")
             {
                 toggleProductFields(true);
                 if (screen1Option != (int)CRUD.SEARCH)
@@ -207,7 +207,7 @@ namespace CrazyMelsClient
         /* ----- EDITING PRODUCT FIELDS ----- */
         private void productProdID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (productProdID_textbox.Text != "")
+            if (productProdID_textbox.Text != "" || prodName_textbox.Text != "" || price_textbox.Text != "" || prodWeight_textbox.Text != "" || soldOut_checkbox.Checked == true)
             {
                 toggleCustomerFields(true);
                 if (screen1Option != (int)CRUD.SEARCH)
@@ -229,7 +229,7 @@ namespace CrazyMelsClient
 
         private void prodName_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (prodName_textbox.Text != "")
+            if (productProdID_textbox.Text != "" || prodName_textbox.Text != "" || price_textbox.Text != "" || prodWeight_textbox.Text != "" || soldOut_checkbox.Checked == true)
             {
                 toggleCustomerFields(true);
                 if (screen1Option != (int)CRUD.SEARCH)
@@ -251,7 +251,7 @@ namespace CrazyMelsClient
 
         private void price_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (price_textbox.Text != "")
+            if (productProdID_textbox.Text != "" || prodName_textbox.Text != "" || price_textbox.Text != "" || prodWeight_textbox.Text != "" || soldOut_checkbox.Checked == true)
             {
                 toggleCustomerFields(true);
                 if (screen1Option != (int)CRUD.SEARCH)
@@ -273,7 +273,7 @@ namespace CrazyMelsClient
 
         private void prodWeight_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (prodWeight_textbox.Text != "")
+            if (productProdID_textbox.Text != "" || prodName_textbox.Text != "" || price_textbox.Text != "" || prodWeight_textbox.Text != "" || soldOut_checkbox.Checked == true)
             {
                 toggleCustomerFields(true);
                 if (screen1Option != (int)CRUD.SEARCH)
@@ -295,7 +295,7 @@ namespace CrazyMelsClient
 
         private void soldOut_checkbox_CheckedChanged(object sender, EventArgs e)
         {
-            if (soldOut_checkbox.Checked == true)
+            if (productProdID_textbox.Text != "" || prodName_textbox.Text != "" || price_textbox.Text != "" || prodWeight_textbox.Text != "" || soldOut_checkbox.Checked == true)
             {
                 toggleCustomerFields(true);
                 if (screen1Option != (int)CRUD.SEARCH)
@@ -320,7 +320,7 @@ namespace CrazyMelsClient
         {
             if (screen1Option != (int)CRUD.SEARCH)
             {
-                if (orderOrderID_textbox.Text != "")
+                if (orderOrderID_textbox.Text != "" || custID_textbox.Text != "" || poNumber_textbox.Text != "" || orderDate_textbox.Text != "")
                 {
                     toggleCustomerFields(true);
                     toggleProductFields(true);
@@ -339,7 +339,7 @@ namespace CrazyMelsClient
         {
             if (screen1Option != (int)CRUD.SEARCH)
             {
-                if (custID_textbox.Text != "")
+                if (orderOrderID_textbox.Text != "" || custID_textbox.Text != "" || poNumber_textbox.Text != "" || orderDate_textbox.Text != "")
                 {
                     toggleCustomerFields(true);
                     toggleProductFields(true);
@@ -358,7 +358,7 @@ namespace CrazyMelsClient
         {
             if (screen1Option != (int)CRUD.SEARCH)
             {
-                if (poNumber_textbox.Text != "")
+                if (orderOrderID_textbox.Text != "" || custID_textbox.Text != "" || poNumber_textbox.Text != "" || orderDate_textbox.Text != "")
                 {
                     toggleCustomerFields(true);
                     toggleProductFields(true);
@@ -377,7 +377,7 @@ namespace CrazyMelsClient
         {
             if (screen1Option != (int)CRUD.SEARCH)
             {
-                if (orderDate_textbox.Text != "")
+                if (orderOrderID_textbox.Text != "" || custID_textbox.Text != "" || poNumber_textbox.Text != "" || orderDate_textbox.Text != "")
                 {
                     toggleCustomerFields(true);
                     toggleProductFields(true);
@@ -397,7 +397,7 @@ namespace CrazyMelsClient
         {
             if (screen1Option != (int)CRUD.SEARCH)
             {
-                if (cartOrderID_textbox.Text != "")
+                if (cartOrderID_textbox.Text != "" || cartProdID_textbox.Text != "" || quantity_textbox.Text != "")
                 {
                     toggleCustomerFields(true);
                     toggleProductFields(true);
@@ -416,7 +416,7 @@ namespace CrazyMelsClient
         {
             if (screen1Option != (int)CRUD.SEARCH)
             {
-                if (cartProdID_textbox.Text != "")
+                if (cartOrderID_textbox.Text != "" || cartProdID_textbox.Text != "" || quantity_textbox.Text != "")
                 {
                     toggleCustomerFields(true);
                     toggleProductFields(true);
@@ -435,7 +435,7 @@ namespace CrazyMelsClient
         {
             if (screen1Option != (int)CRUD.SEARCH)
             {
-                if (quantity_textbox.Text != "")
+                if (cartOrderID_textbox.Text != "" || cartProdID_textbox.Text != "" || quantity_textbox.Text != "")
                 {
                     toggleCustomerFields(true);
                     toggleProductFields(true);
