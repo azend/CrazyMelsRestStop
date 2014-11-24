@@ -17,7 +17,7 @@ namespace CrazyMelsClient
         private Screen1 screen1 = new Screen1();
         private int tablesToShow = 0;
         private int locationX = 373;
-        private int[] locationY;
+        private int[] locationY = new int[4];
 
         /* ------ Constructor -------- */
         public Screen4()
@@ -25,9 +25,9 @@ namespace CrazyMelsClient
             InitializeComponent();
 
             locationY[0] = 94;
-            locationY[0] = 269;
-            locationY[0] = 444;
-            locationY[0] = 619;
+            locationY[1] = 269;
+            locationY[2] = 444;
+            locationY[3] = 619;
         }
         /* ----------- End Constructor -------------- */
 
