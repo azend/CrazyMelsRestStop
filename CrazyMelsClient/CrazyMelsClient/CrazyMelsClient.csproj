@@ -77,6 +77,12 @@
     <Compile Include="Screen3.Designer.cs">
       <DependentUpon>Screen3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screen4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screen4.Designer.cs">
+      <DependentUpon>Screen4.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screen3.resx">
       <DependentUpon>Screen3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screen4.resx">
+      <DependentUpon>Screen4.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
