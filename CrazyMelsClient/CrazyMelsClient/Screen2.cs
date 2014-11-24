@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using CrazyMelsWeb.Models;
+using System.Net.Http.Formatting;
 
 namespace CrazyMelsClient
 {
@@ -1119,13 +1121,41 @@ namespace CrazyMelsClient
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
+                JsonMediaTypeFormatter jsonFormatter = new JsonMediaTypeFormatter();
+                jsonFormatter.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects;
 
                 response = await client.GetAsync("api/Search/");// + parameters);
                 if (response.IsSuccessStatusCode)
                 {
                     IEnumerable<CrazyMelDataModel> data;
-                    data = await response.Content.ReadAsAsync<CrazyMelDataModel[]>();
-                    Cart c = (Cart)data.ToArray()[3];
+                    data = await response.Content.ReadAsAsync<CrazyMelDataModel[]>(new MediaTypeFormatter[] { jsonFormatter });
+                    List<Customer> customers = new List<Customer>();
+                    List<Product> products = new List<Product>();
+                    List<Order> orders = new List<Order>();
+                    List<Cart> carts = new List<Cart>();
+
+                    foreach (Customer c in data)
+                    {
+                        customers.Add(c);
+                    }
+
+                    foreach (Product p in data)
+                    {
+                        products.Add(p);
+                    }
+
+                    foreach (Order o in data)
+                    {
+                        orders.Add(o);
+                    }
+
+                    foreach (Cart c in data)
+                    {
+                        carts.Add(c);
+                    }
+
+
+
                 }
             }
         }

@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyMelsWeb", "CrazyMelsWeb\CrazyMelsWeb.csproj", "{ED5C2993-99A1-4169-B20B-997169FCE617}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{77888AF5-274D-4BF4-8C63-DFEAC2F409E1}"
@@ -11,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{77888A
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyMelsClient", "..\CrazyMelsClient\CrazyMelsClient\CrazyMelsClient.csproj", "{DDF07B8D-8E7C-4572-9517-296174C72319}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +22,10 @@ Global
 		{ED5C2993-99A1-4169-B20B-997169FCE617}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5C2993-99A1-4169-B20B-997169FCE617}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED5C2993-99A1-4169-B20B-997169FCE617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF07B8D-8E7C-4572-9517-296174C72319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF07B8D-8E7C-4572-9517-296174C72319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF07B8D-8E7C-4572-9517-296174C72319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF07B8D-8E7C-4572-9517-296174C72319}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -51,17 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cart.cs" />
-    <Compile Include="CrazyMelDataModel.cs" />
-    <Compile Include="Customer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Order.cs" />
-    <Compile Include="Product.cs" />
     <Compile Include="Screen1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CrazyMelsWeb\CrazyMelsWeb\CrazyMelsWeb.csproj">
+      <Project>{ed5c2993-99a1-4169-b20b-997169fce617}</Project>
+      <Name>CrazyMelsWeb</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
