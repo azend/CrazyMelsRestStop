@@ -32,10 +32,13 @@ namespace CrazyMelsWeb.Controllers
 
         }
 
+<<<<<<< HEAD
         [Route("api/product/{*input}")]
+=======
+>>>>>>> origin/master
         // DELETE api/Product/5
-        //[Route("api/product/{*data})]
         [ResponseType(typeof(Product))]
+<<<<<<< HEAD
         public IHttpActionResult DeleteProduct(String input)
         {
 
@@ -105,14 +108,23 @@ namespace CrazyMelsWeb.Controllers
                     return BadRequest();
                 }
          
+=======
+        public IHttpActionResult DeleteProduct(int id)
+        {
+            C_Product c_product = db.C_Product.Find(id);
+>>>>>>> origin/master
             if (c_product == null)
             {
                 return NotFound();
             }
 
 
+<<<<<<< HEAD
 
             foreach (C_Cart cart in db.C_Cart.Where(c => c.prodID == c_product.prodID))
+=======
+            foreach (C_Cart cart in db.C_Cart.Where(c => c.prodID == id))
+>>>>>>> origin/master
             {
                 db.C_Cart.Remove(cart);
             }

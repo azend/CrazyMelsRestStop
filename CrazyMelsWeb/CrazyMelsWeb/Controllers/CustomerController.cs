@@ -79,6 +79,7 @@ namespace CrazyMelsWeb.Controllers
 
         // DELETE api/Customer/5
         [ResponseType(typeof(Customer))]
+<<<<<<< HEAD
         [Route("api/customer/{*input}")]
         public IHttpActionResult DeleteCustomer(string input)       // Customer customerToDelete)
   
@@ -109,49 +110,14 @@ namespace CrazyMelsWeb.Controllers
                 }
 
             }
+=======
+        [Route("api/customer/custID={custId:int}/firstName={firstName}/lastName={lastName}/phoneNumber={phoneNumber}")]
+        public IHttpActionResult DeleteCustomer(int custID, String firstName, String lastName, String phoneNumber)       // Customer customerToDelete)
+        {
+           
+>>>>>>> origin/master
 
-            
             Customer customerToDelete = new Customer();
-
-            if(paramValues.ContainsKey("custID"))
-            {
-                if(String.IsNullOrWhiteSpace(paramValues["custID"]))
-                {
-                    customerToDelete.custID = 0;
-
-                }
-                else
-                {
-                    Int32 tempInt;
-                    if (Int32.TryParse(paramValues["custID"], out tempInt))
-                    {
-                        customerToDelete.custID = tempInt;
-                    }
-                    else
-                    {
-                        return BadRequest();
-                    }
-                     
-                }
-                
-            }
-            if (paramValues.ContainsKey("firstName"))
-            {
-                customerToDelete.firstName = paramValues["firstName"];
-            }
-
-            if (paramValues.ContainsKey("lastName"))
-            {
-                customerToDelete.lastName = paramValues["lastName"];
-            }
-
-            if (paramValues.ContainsKey("phoneNumber"))
-            {
-                customerToDelete.phoneNumber = paramValues["phoneNumber"];
-            }
-            
-
-         /*   Customer customerToDelete = new Customer();
 
             customerToDelete.custID = custID;
             customerToDelete.firstName = firstName;
@@ -160,7 +126,7 @@ namespace CrazyMelsWeb.Controllers
 
                 customerToDelete.phoneNumber = phoneNumber;
             
-            */
+
 
 
 
