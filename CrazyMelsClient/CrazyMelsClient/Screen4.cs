@@ -39,8 +39,6 @@ namespace CrazyMelsClient
         /* ----------- Button Clicks ---------------- */
         private void back_button_Click(object sender, EventArgs e)
         {
-            screen1 = this.Owner as Screen1;
-            screen1.ShowButtons();
             this.Close();
         }
 
@@ -117,7 +115,7 @@ namespace CrazyMelsClient
         public void positionButtons()
         {
             back_button.Location = new Point(locationX,(locationY[--tablesToShow] + 175));
-            exit_button.Location = new Point(781, (locationY[--tablesToShow] + 175));
+            exit_button.Location = new Point(781, (locationY[tablesToShow] + 175));
         }
     }
 }

@@ -1160,6 +1160,7 @@ namespace CrazyMelsClient
                     screen4.productList(products);
                     screen4.orderList(orders);
                     screen4.cartList(carts);
+                    screen4.positionButtons();
                     screen4.Show();
                 }
             }
