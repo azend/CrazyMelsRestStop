@@ -319,114 +319,135 @@ namespace CrazyMelsClient
         /* ----- EDITING ORDER FIELDS ----- */
         private void orderOrderID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (orderOrderID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleCartFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleCartFields(false);
+                if (orderOrderID_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleCartFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
         private void custID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (custID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleCartFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleCartFields(false);
+                if (custID_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleCartFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
         private void poNumber_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (poNumber_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleCartFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleCartFields(false);
+                if (poNumber_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleCartFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
         private void orderDate_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (orderDate_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleCartFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleCartFields(false);
+                if (orderDate_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleCartFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
         /* ----- EDITING CART FIELDS ----- */
         private void cartOrderID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (cartOrderID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleOrderFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleOrderFields(false);
+                if (cartOrderID_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleOrderFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleOrderFields(false);
+                }
             }
         }
 
         private void cartProdID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (cartProdID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleOrderFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleOrderFields(false);
+                if (cartProdID_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleOrderFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleOrderFields(false);
+                }
             }
         }
 
         private void quantity_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (quantity_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleOrderFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleOrderFields(false);
+                if (quantity_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleOrderFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleOrderFields(false);
+                }
             }
         }
 
