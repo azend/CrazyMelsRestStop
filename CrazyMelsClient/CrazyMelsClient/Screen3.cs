@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using CrazyMelsWeb.Models;
 
 namespace CrazyMelsClient
 {
@@ -24,17 +25,46 @@ namespace CrazyMelsClient
         {
             InitializeComponent();
             printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ID");
-            dt.Columns.Add("Product Name");
-            dt.Columns.Add("Quantity");
-            dt.Columns.Add("Unit Price");
-            dt.Columns.Add("Unit Weight");
-            dt.Rows.Add("1", "test1", "1", "5", "2");
-            dt.Rows.Add("2", "test2", "2", "10", "4");
-            dt.Rows.Add("3", "test3", "3", "15", "6");
-            dt.Rows.Add("4", "test4", "4", "20", "8");
-            dt.Rows.Add("5", "test5", "5", "25", "10");
+
+            // Debugging Code
+            //DataTable dt = new DataTable();
+            //dt.Columns.Add("ID");
+            //dt.Columns.Add("Product Name");
+            //dt.Columns.Add("Quantity");
+            //dt.Columns.Add("Unit Price");
+            //dt.Columns.Add("Unit Weight");
+            //dt.Rows.Add("1", "test1", "1", "5", "2");
+            //dt.Rows.Add("2", "test2", "2", "10", "4");
+            //dt.Rows.Add("3", "test3", "3", "15", "6");
+            //dt.Rows.Add("4", "test4", "4", "20", "8");
+            //dt.Rows.Add("5", "test5", "5", "25", "10");
+
+            //DataTable dt2 = new DataTable();
+            //dt2.Columns.Add("ID");
+            //dt2.Columns.Add("First Name");
+            //dt2.Columns.Add("Last Name");
+            //dt2.Columns.Add("Phone");
+            //dt2.Columns.Add("Purchase Date");
+            //dt2.Columns.Add("PO Number");
+            //dt2.Rows.Add("1", "Test First", "Test Last", "123-456-7890", "01/01/2014", "001");
+
+            //populateTableFields(dt);
+            //populateCustomerInformation(dt2);
+            //populateTotals();
+        }
+
+        public Screen3(List<Customer> cust, List<Product> prod, List<Order> ord, List<Cart> cart)
+        {
+            DataTable dt1 = new DataTable();
+            dt1.Columns.Add("ID");
+            dt1.Columns.Add("Product Name");
+            dt1.Columns.Add("Quantity");
+            dt1.Columns.Add("Unit Price");
+            dt1.Columns.Add("Unit Weight");
+            for (int i = 0; i < cust.Count; i++)
+            {
+                dt1.Rows.Add(prod.ElementAt(i).prodID, prod.ElementAt(i).prodName, cart.ElementAt(i).quantity, prod.ElementAt(i).price, prod.ElementAt(i).prodWeight);
+            }
 
             DataTable dt2 = new DataTable();
             dt2.Columns.Add("ID");
@@ -43,9 +73,9 @@ namespace CrazyMelsClient
             dt2.Columns.Add("Phone");
             dt2.Columns.Add("Purchase Date");
             dt2.Columns.Add("PO Number");
-            dt2.Rows.Add("1", "Test First", "Test Last", "123-456-7890", "01/01/2014", "001");
+            dt2.Rows.Add(cust.ElementAt(0).custID, cust.ElementAt(0).firstName, cust.ElementAt(0).lastName, cust.ElementAt(0).phoneNumber, ord.ElementAt(0).orderDate.ToString(), ord.ElementAt(0).poNumber);
 
-            populateTableFields(dt);
+            populateTableFields(dt1);
             populateCustomerInformation(dt2);
             populateTotals();
         }

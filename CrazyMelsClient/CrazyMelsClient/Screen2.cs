@@ -319,114 +319,135 @@ namespace CrazyMelsClient
         /* ----- EDITING ORDER FIELDS ----- */
         private void orderOrderID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (orderOrderID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleCartFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleCartFields(false);
+                if (orderOrderID_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleCartFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
         private void custID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (custID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleCartFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleCartFields(false);
+                if (custID_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleCartFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
         private void poNumber_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (poNumber_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleCartFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleCartFields(false);
+                if (poNumber_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleCartFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
         private void orderDate_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (orderDate_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleCartFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleCartFields(false);
+                if (orderDate_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleCartFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleCartFields(false);
+                }
             }
         }
 
         /* ----- EDITING CART FIELDS ----- */
         private void cartOrderID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (cartOrderID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleOrderFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleOrderFields(false);
+                if (cartOrderID_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleOrderFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleOrderFields(false);
+                }
             }
         }
 
         private void cartProdID_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (cartProdID_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleOrderFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleOrderFields(false);
+                if (cartProdID_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleOrderFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleOrderFields(false);
+                }
             }
         }
 
         private void quantity_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (quantity_textbox.Text != "" && screen1Option != (int)CRUD.SEARCH)
+            if (screen1Option != (int)CRUD.SEARCH)
             {
-                toggleCustomerFields(true);
-                toggleProductFields(true);
-                toggleOrderFields(true);
-            }
-            else
-            {
-                toggleCustomerFields(false);
-                toggleProductFields(false);
-                toggleOrderFields(false);
+                if (quantity_textbox.Text != "")
+                {
+                    toggleCustomerFields(true);
+                    toggleProductFields(true);
+                    toggleOrderFields(true);
+                }
+                else
+                {
+                    toggleCustomerFields(false);
+                    toggleProductFields(false);
+                    toggleOrderFields(false);
+                }
             }
         }
 
@@ -1093,14 +1114,14 @@ namespace CrazyMelsClient
                     }
                     if (quantity_textbox.Text != "")
                     {
-                        search += "Cart.quantity" + quantity_textbox.Text + "/";
+                        search += "Cart.quantity=" + quantity_textbox.Text + "/";
                     }
                     if (search.Length == 0)
                     {
                         MessageBox.Show("You did not enter anything to search");
                         return;
                     }
-                    search.Remove(search.Length - 1);
+                    search = search.Remove(search.Length - 1);
 
                     this.search(search);
                 }
@@ -1118,7 +1139,7 @@ namespace CrazyMelsClient
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:1973/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
@@ -1155,7 +1176,13 @@ namespace CrazyMelsClient
                         }
                     }
 
-                    
+                    Screen4 screen4 = new Screen4();
+                    screen4.customerList(customers);
+                    screen4.productList(products);
+                    screen4.orderList(orders);
+                    screen4.cartList(carts);
+                    screen4.positionButtons();
+                    screen4.Show();
                 }
             }
         }
@@ -1165,7 +1192,7 @@ namespace CrazyMelsClient
             using (var client = new HttpClient())
             {
                 string path;
-                client.BaseAddress = new Uri("http://localhost:1973/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
@@ -1191,7 +1218,7 @@ namespace CrazyMelsClient
             using (var client = new HttpClient())
             {
                 string path;
-                client.BaseAddress = new Uri("http://192.168.0.120/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
@@ -1218,7 +1245,7 @@ namespace CrazyMelsClient
             using (var client = new HttpClient())
             {
                 string path = "api/Order/orderID=" + table.orderID + "/custID=" + table.custID + "/poNumber=" + table.poNumber + "/orderDate=" + table.orderDate;
-                client.BaseAddress = new Uri("http://192.168.0.120/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;
@@ -1244,7 +1271,7 @@ namespace CrazyMelsClient
             using (var client = new HttpClient())
             {
                 string path = "api/Cart/orderID=" + table.orderID + "/prodID=" + table.prodID + "/quantity=" + table.quantity;
-                client.BaseAddress = new Uri("http://192.168.0.120/");
+                client.BaseAddress = new Uri(urlClass.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response;

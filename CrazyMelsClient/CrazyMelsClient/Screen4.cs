@@ -14,45 +14,30 @@ namespace CrazyMelsClient
     public partial class Screen4 : Form
     {
         private Screen1 screen1 = new Screen1();
-        private enum table { CUSTOMER, PRODUCT, ORDER, CART };
-        private int screen2option = 0;
+        private int tablesToShow = 0;
+        private int locationX = 373;
+        private int[] locationY = new int[4];
 
         /* ------ Constructor -------- */
-        public Screen4(int option)
+        public Screen4()
         {
             InitializeComponent();
 
-            screen2option = option;
-
-            if (option == (int)table.CUSTOMER)
-            {
- 
-            }
-            else if (option == (int)table.PRODUCT)
-            {
-
-            }
-            else if (option == (int)table.ORDER)
-            {
-
-            }
-            else
-            {
-                dataGridView1.ColumnCount = 3;
-                dataGridView1.ColumnHeadersVisible = true;
-
-                dataGridView1.Columns[0].Name = "Order ID";
-                dataGridView1.Columns[1].Name = "Product ID";
-                dataGridView1.Columns[2].Name = "Quantity";
-            }
+            locationY[0] = 94;
+            locationY[1] = 269;
+            locationY[2] = 444;
+            locationY[3] = 619;
         }
         /* ----------- End Constructor -------------- */
+
+        private void Screen4_Load(object sender, EventArgs e)
+        {
+
+        }
 
         /* ----------- Button Clicks ---------------- */
         private void back_button_Click(object sender, EventArgs e)
         {
-            screen1 = this.Owner as Screen1;
-            screen1.ShowButtons();
             this.Close();
         }
 
@@ -62,57 +47,126 @@ namespace CrazyMelsClient
         }
         /* ----------- End Button Clicks ------------ */
 
-        private void customerList(List<Customer> customer)
+        public void customerList(List<Customer> customer)
         {
+            DataGridView customerGridView = new DataGridView();
+            int x = 0;
+
+            string[] names = { "Customer ID", "First Name", "Last Name", "Phone Number" };
+
             if (customer.Count == 0)
             {
                 return;
             }
 
-            dataGridView1.ColumnCount = 4;
-            dataGridView1.ColumnHeadersVisible = true;
+            generateTable("customerGridView", 4, names, customerGridView);
 
-            dataGridView1.Columns[0].Name = "Customer ID";
-            dataGridView1.Columns[1].Name = "First Name";
-            dataGridView1.Columns[2].Name = "Last Name";
-            dataGridView1.Columns[3].Name = "Phone Number";
+            foreach (Customer cust in customer)
+            {
+                customerGridView.Rows.Add(1);
+                customerGridView.Rows[x].Cells[0].Value = cust.custID.ToString();
+                customerGridView.Rows[x].Cells[1].Value = cust.firstName.ToString();
+                customerGridView.Rows[x].Cells[2].Value = cust.lastName.ToString();
+                customerGridView.Rows[x].Cells[3].Value = cust.phoneNumber.ToString();
+                x++;
+            }
         }
-        private void customerList(List<Product> product)
+        public void productList(List<Product> product)
         {
+            DataGridView productGridView = new DataGridView();
+            int x = 0;
+
+            string[] names = { "Product ID", "Product Name", "Price", "Product Weight", "In Stock?" };
+
             if (product.Count == 0)
             {
                 return;
             }
-            dataGridView2.ColumnCount = 5;
-            dataGridView2.ColumnHeadersVisible = true;
 
-            dataGridView2.Columns[0].Name = "Product ID";
-            dataGridView2.Columns[1].Name = "Product Name";
-            dataGridView2.Columns[2].Name = "Price";
-            dataGridView2.Columns[3].Name = "Product Weight";
-            dataGridView2.Columns[4].Name = "In Stock?";
+            generateTable("productGridView", 5, names, productGridView);
+
+            foreach (Product prod in product)
+            {
+                productGridView.Rows.Add(1);
+                productGridView.Rows[x].Cells[0].Value = prod.prodID.ToString();
+                productGridView.Rows[x].Cells[1].Value = prod.prodName.ToString();
+                productGridView.Rows[x].Cells[2].Value = prod.price.ToString();
+                productGridView.Rows[x].Cells[3].Value = prod.prodWeight.ToString();
+                productGridView.Rows[x].Cells[4].Value = prod.inStock.ToString();
+                x++;
+            }
         }
-        private void customerList(List<Order> order)
+        public void orderList(List<Order> order)
         {
+            DataGridView orderGridView = new DataGridView();
+            int x = 0;
+
+            string[] names = { "Order ID", "Customer ID", "PO Number", "Order Date" };
+
             if (order.Count == 0)
             {
                 return;
             }
 
-            dataGridView3.ColumnCount = 4;
-            dataGridView3.ColumnHeadersVisible = true;
+            generateTable("orderGridView", 4, names, orderGridView);
 
-            dataGridView3.Columns[0].Name = "Order ID";
-            dataGridView3.Columns[1].Name = "Customer ID";
-            dataGridView3.Columns[2].Name = "PO Number";
-            dataGridView3.Columns[3].Name = "Order Date";
+            foreach (Order ord in order)
+            {
+                orderGridView.Rows.Add(1);
+                orderGridView.Rows[x].Cells[0].Value = ord.orderID.ToString();
+                orderGridView.Rows[x].Cells[1].Value = ord.custID.ToString();
+                orderGridView.Rows[x].Cells[2].Value = ord.poNumber.ToString();
+                orderGridView.Rows[x].Cells[3].Value = ord.orderDate.ToString();
+                x++;
+            }
         }
-        private void customerList(List<Cart> customer)
+        public void cartList(List<Cart> cart)
         {
-            if (customer.Count == 0)
+            DataGridView cartGridView = new DataGridView();
+            int x = 0;
+
+            string[] names = { "Order ID", "Product ID", "Quantity" };
+
+            if (cart.Count == 0)
             {
                 return;
             }
+
+            generateTable("cartGridView", 3, names, cartGridView);
+
+            foreach (Cart car in cart)
+            {
+                cartGridView.Rows.Add(1);
+                cartGridView.Rows[x].Cells[0].Value = car.orderID.ToString();
+                cartGridView.Rows[x].Cells[1].Value = car.prodID.ToString();
+                cartGridView.Rows[x].Cells[2].Value = car.quantity.ToString();
+                x++;
+            }
+        }
+
+        private void generateTable(string name, int columnNumber, string[] columnNames, DataGridView dataGridView1)
+        {
+           // DataGridView dataGridView1 = new DataGridView();
+            this.Controls.Add(dataGridView1);
+
+            dataGridView1.Name = name;
+            dataGridView1.Location = new Point(locationX, locationY[tablesToShow]);
+            dataGridView1.Size = new Size(589, 169);
+
+            dataGridView1.ColumnCount = columnNumber;
+            dataGridView1.ColumnHeadersVisible = true;
+
+            for (int x = 0; x < columnNumber; x++)
+            {
+                dataGridView1.Columns[x].Name = columnNames[x];
+            }
+            tablesToShow++;
+        }
+
+        public void positionButtons()
+        {
+            back_button.Location = new Point(locationX,(locationY[--tablesToShow] + 175));
+            exit_button.Location = new Point(781, (locationY[tablesToShow] + 175));
         }
     }
 }
