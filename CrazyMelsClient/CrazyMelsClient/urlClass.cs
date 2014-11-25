@@ -8,6 +8,6 @@ namespace CrazyMelsClient
 {
     static class urlClass
     {
-        public const string url = "http://localhost:1973/";
+        public const string url = "http://10.113.21.133/CrazyMelsRest/";
     }
 }
